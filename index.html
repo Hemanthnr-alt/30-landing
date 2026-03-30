@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>30 — Stay on top of everything</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink:     #ff6b9d;
+      --pink-light: #ff99cc;
+      --pink-glow: rgba(255,107,157,0.35);
+      --bg:       #0e0618;
+      --surface:  rgba(255,255,255,0.05);
+      --border:   rgba(255,107,157,0.15);
+      --text:     #f1f5f9;
+      --muted:    rgba(241,245,249,0.5);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 15% 10%,  rgba(139,47,180,0.22)  0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 5%,   rgba(255,107,157,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(120,30,160,0.18)  0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 90% 80%,  rgba(255,107,157,0.1)  0%, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,11,20,0.85);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .logo-box {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 900; color: white;
+      box-shadow: 0 0 18px var(--pink-glow);
+    }
+    .logo-text { font-size: 17px; font-weight: 900; color: var(--pink); letter-spacing: -0.04em; }
+
+    .nav-cta {
+      padding: 8px 18px; border-radius: 99px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color: white; font-size: 13px; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 4px 14px var(--pink-glow);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .nav-cta:hover { transform: scale(1.04); box-shadow: 0 6px 20px var(--pink-glow); }
+
+    /* HERO */
+    .hero {
+      max-width: 800px; margin: 0 auto;
+      padding: 80px 24px 60px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 6px 14px; border-radius: 99px;
+      background: rgba(255,107,157,0.1);
+      border: 1px solid rgba(255,107,157,0.25);
+      font-size: 12px; font-weight: 600; color: var(--pink);
+      margin-bottom: 28px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--pink);
+      animation: pulse-dot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+    .hero h1 {
+      font-size: clamp(38px, 8vw, 68px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--pink), #c084fc, var(--pink-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: var(--muted);
+      max-width: 480px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* CTA BUTTONS */
+    .cta-group {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 14px 28px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color: white; font-size: 15px; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 8px 28px var(--pink-glow);
+      transition: transform 0.15s, box-shadow 0.15s;
+      font-family: inherit;
+    }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 36px var(--pink-glow); }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 14px 28px; border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text); font-size: 15px; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.15s; font-family: inherit;
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover { background: rgba(255,107,157,0.1); border-color: rgba(255,107,157,0.35); color: var(--pink); transform: translateY(-1px); }
+
+    .btn-icon { font-size: 18px; }
+
+    /* PHONE MOCKUP */
+    .phone-wrap {
+      display: flex; justify-content: center;
+      margin-bottom: 80px;
+      perspective: 1000px;
+    }
+    .phone {
+      width: 260px;
+      background: rgba(15,10,30,0.9);
+      border-radius: 36px;
+      border: 1px solid rgba(255,107,157,0.2);
+      box-shadow:
+        0 0 0 6px rgba(255,107,157,0.06),
+        0 40px 80px rgba(0,0,0,0.5),
+        0 0 60px rgba(255,107,157,0.12);
+      overflow: hidden;
+      transform: rotateX(4deg) rotateY(-6deg);
+      transition: transform 0.4s;
+    }
+    .phone:hover { transform: rotateX(0deg) rotateY(0deg); }
+
+    .phone-notch {
+      height: 28px; background: #0a0514;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .phone-notch-inner {
+      width: 80px; height: 18px; background: #080310;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .phone-screen { padding: 14px 14px 18px; }
+
+    .phone-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 16px;
+    }
+    .phone-logo {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 900; color: white;
+    }
+    .phone-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), #c084fc);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: white;
+    }
+
+    .phone-greeting { font-size: 10px; color: rgba(241,245,249,0.5); margin-bottom: 2px; }
+    .phone-title { font-size: 16px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 14px; }
+    .phone-title span { color: var(--pink); }
+
+    .phone-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6px; margin-bottom: 12px;
+    }
+    .phone-stat {
+      padding: 8px 10px; border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,107,157,0.1);
+    }
+    .phone-stat-val { font-size: 16px; font-weight: 800; color: var(--pink); }
+    .phone-stat-lbl { font-size: 9px; color: rgba(241,245,249,0.4); margin-top: 1px; }
+
+    .phone-progress {
+      padding: 10px 12px; border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,107,157,0.08);
+      margin-bottom: 12px;
+    }
+    .phone-progress-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 10px; margin-bottom: 7px;
+    }
+    .phone-progress-bar {
+      height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;
+    }
+    .phone-progress-fill {
+      height: 100%; width: 65%;
+      background: linear-gradient(90deg, var(--pink), var(--pink-light));
+      border-radius: 2px;
+    }
+
+    .phone-task {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 10px; border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,107,157,0.08);
+      border-left: 2px solid var(--pink);
+      margin-bottom: 6px;
+    }
+    .phone-checkbox {
+      width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
+      border: 1.5px solid rgba(255,107,157,0.4);
+      background: transparent;
+    }
+    .phone-checkbox.done {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      border-color: #10b981;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; color: white;
+    }
+    .phone-task-text { font-size: 11px; font-weight: 500; flex: 1; }
+    .phone-task-text.done { text-decoration: line-through; opacity: 0.4; }
+    .phone-tag {
+      font-size: 8px; font-weight: 700; padding: 2px 6px; border-radius: 99px;
+      background: rgba(255,107,157,0.12); color: var(--pink);
+    }
+
+    /* Bottom nav */
+    .phone-bottom-nav {
+      display: flex; justify-content: space-around;
+      padding: 10px 0 4px;
+      border-top: 1px solid rgba(255,107,157,0.08);
+      margin-top: 8px;
+    }
+    .phone-nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      font-size: 7px; color: rgba(241,245,249,0.35);
+    }
+    .phone-nav-item.active { color: var(--pink); }
+    .phone-nav-icon { font-size: 14px; }
+
+    /* FEATURES */
+    .section {
+      max-width: 960px; margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 11px; font-weight: 700; color: var(--pink);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(24px, 4vw, 36px); font-weight: 800;
+      letter-spacing: -0.03em; margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .feature-card {
+      padding: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: rgba(255,107,157,0.35); transform: translateY(-4px); }
+    .feature-icon {
+      width: 46px; height: 46px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 14px;
+    }
+    .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* DOWNLOAD SECTION */
+    .download-section {
+      max-width: 700px; margin: 0 auto;
+      padding: 0 24px 100px;
+      text-align: center;
+    }
+    .download-card {
+      padding: 48px 36px;
+      background: rgba(255,107,157,0.06);
+      border: 1px solid rgba(255,107,157,0.2);
+      border-radius: 28px;
+      backdrop-filter: blur(12px);
+    }
+    .download-card h2 {
+      font-size: clamp(24px, 4vw, 32px); font-weight: 800;
+      letter-spacing: -0.03em; margin-bottom: 12px;
+    }
+    .download-card p { font-size: 15px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
+
+    .download-options {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+
+    .download-btn {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 24px; border-radius: 16px;
+      text-decoration: none; transition: all 0.18s;
+      min-width: 200px;
+    }
+    .download-btn-apk {
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color: white;
+      box-shadow: 0 8px 28px var(--pink-glow);
+      border: none;
+    }
+    .download-btn-apk:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 36px var(--pink-glow); }
+
+    .download-btn-web {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .download-btn-web:hover { background: rgba(255,107,157,0.1); border-color: rgba(255,107,157,0.35); color: var(--pink); transform: translateY(-2px); }
+
+    .download-btn-icon { font-size: 28px; flex-shrink: 0; }
+    .download-btn-text { text-align: left; }
+    .download-btn-sub { font-size: 11px; opacity: 0.7; display: block; }
+    .download-btn-main { font-size: 15px; font-weight: 700; display: block; }
+
+    .apk-note {
+      margin-top: 20px;
+      font-size: 12px; color: var(--muted);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px; color: var(--muted);
+    }
+    footer span { color: var(--pink); }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s, transform 0.5s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="logo-box">30</div>
+      <span class="logo-text">30</span>
+    </a>
+    <a href="https://todo-app-five-chi-14.vercel.app/" target="_blank" class="nav-cta">Open App →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge reveal">
+      <div class="badge-dot"></div>
+      Now available on Android &amp; Web
+    </div>
+
+    <h1 class="reveal">
+      Stay on top of<br/>
+      <span>everything.</span>
+    </h1>
+
+    <p class="reveal">
+      Tasks, habits, calendar and AI assistance — all in one beautifully designed app. Use it in your browser or install it on Android.
+    </p>
+
+    <div class="cta-group reveal">
+      <a href="#download" class="btn-primary">
+        <span class="btn-icon">⬇</span>
+        Download APK
+      </a>
+      <a href="https://todo-app-five-chi-14.vercel.app/" target="_blank" class="btn-secondary">
+        <span class="btn-icon">🌐</span>
+        Open in Browser
+      </a>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-wrap reveal">
+      <div class="phone">
+        <div class="phone-notch"><div class="phone-notch-inner"></div></div>
+        <div class="phone-screen">
+          <div class="phone-nav">
+            <div class="phone-logo">30</div>
+            <div class="phone-avatar">H</div>
+          </div>
+
+          <div class="phone-greeting">Monday, March 30</div>
+          <div class="phone-title">Good morning, <span>Hemanth</span> 👋</div>
+
+          <div class="phone-stats">
+            <div class="phone-stat">
+              <div class="phone-stat-val">8</div>
+              <div class="phone-stat-lbl">Total tasks</div>
+            </div>
+            <div class="phone-stat">
+              <div class="phone-stat-val" style="color:#10b981">5</div>
+              <div class="phone-stat-lbl">Completed</div>
+            </div>
+          </div>
+
+          <div class="phone-progress">
+            <div class="phone-progress-row">
+              <span style="color:rgba(241,245,249,0.6);font-size:10px">Today's progress</span>
+              <span style="color:var(--pink);font-weight:700;font-size:10px">65%</span>
+            </div>
+            <div class="phone-progress-bar">
+              <div class="phone-progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="phone-task">
+            <div class="phone-checkbox done">✓</div>
+            <div class="phone-task-text done">Morning workout</div>
+            <div class="phone-tag">Health</div>
+          </div>
+          <div class="phone-task">
+            <div class="phone-checkbox"></div>
+            <div class="phone-task-text">Review project docs</div>
+            <div class="phone-tag">Work</div>
+          </div>
+          <div class="phone-task" style="border-left-color:#f59e0b">
+            <div class="phone-checkbox"></div>
+            <div class="phone-task-text">Team standup call</div>
+            <div class="phone-tag" style="background:rgba(245,158,11,0.12);color:#f59e0b">Meeting</div>
+          </div>
+
+          <div class="phone-bottom-nav">
+            <div class="phone-nav-item active">
+              <div class="phone-nav-icon">✦</div>
+              <div>Today</div>
+            </div>
+            <div class="phone-nav-item">
+              <div class="phone-nav-icon">▣</div>
+              <div>Tasks</div>
+            </div>
+            <div class="phone-nav-item">
+              <div class="phone-nav-icon">◫</div>
+              <div>Calendar</div>
+            </div>
+            <div class="phone-nav-item">
+              <div class="phone-nav-icon">⟳</div>
+              <div>Habits</div>
+            </div>
+            <div class="phone-nav-item">
+              <div class="phone-nav-icon">◈</div>
+              <div>Categories</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-label reveal">Everything you need</div>
+    <div class="section-title reveal">Built for real productivity</div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(255,107,157,0.12)">📋</div>
+        <h3>Smart Task Management</h3>
+        <p>Create tasks with priorities, due dates, subtasks, and file attachments. Filter and search instantly.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(16,185,129,0.12)">🔥</div>
+        <h3>Habit Tracking</h3>
+        <p>Build daily habits with streak tracking. Stay consistent and see your progress grow over time.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(59,130,246,0.12)">📅</div>
+        <h3>Calendar View</h3>
+        <p>See all your tasks on a monthly calendar. Click any day to view or add tasks instantly.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(192,132,252,0.12)">✦</div>
+        <h3>AI Assistant</h3>
+        <p>30 AI helps you plan your day, break down goals, and gives you personalised productivity advice.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(245,158,11,0.12)">🏷️</div>
+        <h3>Categories</h3>
+        <p>Organise tasks into colour-coded categories with custom icons. Filter your task list with one tap.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(255,107,157,0.12)">📱</div>
+        <h3>Works Everywhere</h3>
+        <p>Use it in any browser or install the Android APK for a native app experience. Your data syncs everywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="download-section" id="download">
+    <div class="download-card reveal">
+      <div style="font-size:52px;margin-bottom:16px">📲</div>
+      <h2>Get 30 on your device</h2>
+      <p>Install the Android APK for a full native experience, or open the web app directly in your browser — no installation needed.</p>
+
+      <div class="download-options">
+        <!-- UPDATE THIS HREF ONCE YOU UPLOAD THE APK -->
+        <a href="./30-app.apk" download class="download-btn download-btn-apk">
+          <div class="download-btn-icon">🤖</div>
+          <div class="download-btn-text">
+            <span class="download-btn-sub">Download for</span>
+            <span class="download-btn-main">Android APK</span>
+          </div>
+        </a>
+
+        <a href="https://todo-app-five-chi-14.vercel.app/" target="_blank" class="download-btn download-btn-web">
+          <div class="download-btn-icon">🌐</div>
+          <div class="download-btn-text">
+            <span class="download-btn-sub">Open in browser</span>
+            <span class="download-btn-main">Web App</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="apk-note">
+        ⚠️ Android: Enable "Install from unknown sources" in Settings before installing
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Built with ❤️ by <span>Hemanth</span> · &copy; 2026 30 App
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
