@@ -4,27 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thirty — Stay on top of everything</title>
+  <meta name="description" content="Tasks, habits, streaks, timers and rewards — all in one beautifully designed app. Available on Android and Web." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --purple:       #a855f7;
-      --purple-light: #c084fc;
-      --purple-deep:  #7c3aed;
-      --purple-glow:  rgba(168,85,247,0.35);
-      --purple-dim:   rgba(168,85,247,0.12);
-      --bg:           #04030a;
-      --bg2:          #07050f;
-      --surface:      rgba(255,255,255,0.04);
-      --border:       rgba(168,85,247,0.18);
-      --border-bright:rgba(168,85,247,0.38);
-      --text:         #f1f5f9;
-      --muted:        rgba(241,245,249,0.45);
-      --green:        #10b981;
-      --amber:        #f59e0b;
-      --blue:         #3b82f6;
+      --purple:        #a855f7;
+      --purple-light:  #c084fc;
+      --purple-deep:   #7c3aed;
+      --purple-glow:   rgba(168,85,247,0.38);
+      --purple-dim:    rgba(168,85,247,0.12);
+      --bg:            #03020a;
+      --bg2:           #06040e;
+      --surface:       rgba(255,255,255,0.04);
+      --border:        rgba(168,85,247,0.16);
+      --border-bright: rgba(168,85,247,0.4);
+      --text:          #f1f5f9;
+      --muted:         rgba(241,245,249,0.44);
+      --green:         #10b981;
+      --amber:         #f59e0b;
+      --blue:          #3b82f6;
+      --red:           #f43f5e;
     }
 
     html { scroll-behavior: smooth; }
@@ -33,31 +35,32 @@
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       background-image:
-        radial-gradient(ellipse 90% 55% at 10% 0%,   rgba(124,58,237,0.28)  0%, transparent 55%),
-        radial-gradient(ellipse 55% 45% at 90% 8%,   rgba(168,85,247,0.18)  0%, transparent 50%),
-        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(109,40,217,0.20)  0%, transparent 60%),
-        radial-gradient(ellipse 40% 35% at 85% 75%,  rgba(168,85,247,0.10)  0%, transparent 50%);
+        radial-gradient(ellipse 90% 55% at 10% 0%,   rgba(124,58,237,0.30) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 90% 8%,   rgba(168,85,247,0.18) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(109,40,217,0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 35% at 85% 75%,  rgba(168,85,247,0.10) 0%, transparent 50%);
       background-attachment: fixed;
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NOISE TEXTURE OVERLAY ── */
+    /* Noise overlay */
     body::before {
       content: "";
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
       opacity: 0.5;
     }
 
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 200;
-      background: rgba(4,3,10,0.82);
-      backdrop-filter: blur(28px) saturate(1.4);
+      background: rgba(3,2,10,0.84);
+      backdrop-filter: blur(28px) saturate(1.5);
       border-bottom: 1px solid var(--border);
-      padding: 0 28px;
+      padding: 0 32px;
       height: 62px;
       display: flex; align-items: center; justify-content: space-between;
     }
@@ -67,13 +70,14 @@
     }
     .logo-box {
       width: 36px; height: 36px; border-radius: 11px;
-      background: linear-gradient(135deg, #a855f7, #c084fc);
+      background: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
       display: flex; align-items: center; justify-content: center;
-      font-size: 15px; font-weight: 900; color: white;
+      font-size: 14px; font-weight: 900; color: white;
       box-shadow: 0 0 22px var(--purple-glow);
+      letter-spacing: -0.04em;
     }
     .logo-text {
-      font-size: 18px; font-weight: 900; color: var(--purple);
+      font-size: 18px; font-weight: 900; color: var(--purple-light);
       letter-spacing: -0.04em;
     }
     .nav-right { display: flex; align-items: center; gap: 10px; }
@@ -82,16 +86,17 @@
       text-decoration: none; padding: 6px 12px; border-radius: 8px;
       transition: color 0.15s, background 0.15s;
     }
-    .nav-link:hover { color: var(--purple); background: var(--purple-dim); }
+    .nav-link:hover { color: var(--purple-light); background: var(--purple-dim); }
     .nav-cta {
-      padding: 9px 20px; border-radius: 99px;
-      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      padding: 9px 22px; border-radius: 99px;
+      background: linear-gradient(135deg, var(--purple-deep), var(--purple), var(--purple-light));
       color: white; font-size: 13px; font-weight: 700;
       text-decoration: none; border: none; cursor: pointer;
-      box-shadow: 0 4px 18px var(--purple-glow);
+      box-shadow: 0 4px 20px var(--purple-glow);
       transition: transform 0.15s, box-shadow 0.15s;
+      font-family: inherit;
     }
-    .nav-cta:hover { transform: scale(1.04); box-shadow: 0 6px 28px var(--purple-glow); }
+    .nav-cta:hover { transform: scale(1.04); box-shadow: 0 8px 32px var(--purple-glow); }
 
     /* ── HERO ── */
     .hero {
@@ -100,54 +105,47 @@
       text-align: center;
       position: relative; z-index: 1;
     }
-
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 7px 16px; border-radius: 99px;
+      padding: 7px 18px; border-radius: 99px;
       background: rgba(168,85,247,0.08);
       border: 1px solid rgba(168,85,247,0.28);
       font-size: 12px; font-weight: 600; color: var(--purple-light);
-      margin-bottom: 32px;
-      letter-spacing: 0.01em;
+      margin-bottom: 32px; letter-spacing: 0.01em;
     }
     .badge-dot {
       width: 7px; height: 7px; border-radius: 50%;
       background: var(--purple);
       animation: pulse-dot 2s ease-in-out infinite;
-      box-shadow: 0 0 6px var(--purple);
+      box-shadow: 0 0 8px var(--purple);
     }
     @keyframes pulse-dot {
-      0%,100% { opacity: 1; transform: scale(1); box-shadow: 0 0 6px var(--purple); }
-      50%      { opacity: 0.6; transform: scale(0.8); box-shadow: 0 0 12px var(--purple); }
+      0%,100% { opacity:1; transform:scale(1);   box-shadow:0 0 8px var(--purple);  }
+      50%      { opacity:.6; transform:scale(.8); box-shadow:0 0 16px var(--purple); }
     }
-
     .hero h1 {
-      font-size: clamp(42px, 9vw, 76px);
-      font-weight: 900;
-      line-height: 1.02;
-      letter-spacing: -0.05em;
+      font-size: clamp(44px, 9vw, 80px);
+      font-weight: 900; line-height: 1.01; letter-spacing: -0.055em;
       margin-bottom: 24px;
     }
     .hero h1 .grad {
-      background: linear-gradient(135deg, var(--purple) 0%, #e879f9 50%, var(--purple-light) 100%);
+      background: linear-gradient(135deg, #7c3aed 0%, var(--purple) 40%, #e879f9 70%, var(--purple-light) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero h1 .dim { color: rgba(241,245,249,0.35); }
-
     .hero p {
       font-size: clamp(15px, 2.5vw, 18px);
-      color: var(--muted); max-width: 500px; margin: 0 auto 48px;
+      color: var(--muted); max-width: 500px; margin: 0 auto 52px;
       line-height: 1.75; font-weight: 400;
     }
 
     /* ── CTA BUTTONS ── */
     .cta-group {
-      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
-      margin-bottom: 72px;
+      display: flex; gap: 14px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 80px;
     }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 15px 32px; border-radius: 16px;
+      padding: 15px 34px; border-radius: 18px;
       background: linear-gradient(135deg, var(--purple-deep), var(--purple), var(--purple-light));
       color: white; font-size: 15px; font-weight: 700;
       text-decoration: none; border: none; cursor: pointer;
@@ -157,16 +155,14 @@
     }
     .btn-primary::after {
       content: ""; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.13) 0%, transparent 55%);
       border-radius: inherit;
     }
-    .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 42px var(--purple-glow); }
-    .btn-primary:active { transform: scale(0.98); }
-
+    .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 48px var(--purple-glow); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 15px 32px; border-radius: 16px;
-      background: rgba(255,255,255,0.05);
+      padding: 15px 34px; border-radius: 18px;
+      background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
       color: var(--text); font-size: 15px; font-weight: 600;
       text-decoration: none; cursor: pointer;
@@ -174,131 +170,137 @@
       backdrop-filter: blur(10px);
     }
     .btn-secondary:hover {
-      background: rgba(168,85,247,0.1);
-      border-color: var(--border-bright);
-      color: var(--purple-light);
-      transform: translateY(-2px);
+      background: rgba(168,85,247,0.1); border-color: var(--border-bright);
+      color: var(--purple-light); transform: translateY(-2px);
     }
     .btn-icon { font-size: 18px; }
 
     /* ── PHONE MOCKUP ── */
     .phone-wrap {
       display: flex; justify-content: center;
-      margin-bottom: 100px;
-      perspective: 1200px;
+      margin-bottom: 110px; perspective: 1200px;
     }
     .phone {
-      width: 265px;
-      background: #080512;
-      border-radius: 40px;
+      width: 268px;
+      background: #06040e;
+      border-radius: 42px;
       border: 1px solid rgba(168,85,247,0.22);
       box-shadow:
-        0 0 0 1px rgba(168,85,247,0.08),
-        0 0 0 7px rgba(168,85,247,0.04),
-        0 50px 100px rgba(0,0,0,0.65),
-        0 0 80px rgba(168,85,247,0.14);
+        0 0 0 1px rgba(168,85,247,0.06),
+        0 0 0 8px rgba(168,85,247,0.03),
+        0 55px 110px rgba(0,0,0,0.7),
+        0 0 90px rgba(168,85,247,0.16);
       overflow: hidden;
       transform: rotateX(5deg) rotateY(-8deg);
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: transform 0.55s cubic-bezier(0.23,1,0.32,1);
     }
     .phone:hover { transform: rotateX(0deg) rotateY(0deg); }
     .phone-notch {
-      height: 30px; background: #050310;
+      height: 28px; background: #030209;
       display: flex; align-items: center; justify-content: center;
     }
     .phone-notch-inner {
-      width: 82px; height: 20px; background: #030209;
-      border-radius: 0 0 14px 14px;
+      width: 80px; height: 19px; background: #020107;
+      border-radius: 0 0 13px 13px;
     }
-    .phone-screen { padding: 14px 14px 16px; }
-    .phone-nav {
+    .phone-screen { padding: 12px 12px 14px; }
+    .phone-header {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
+    .phone-logo-wrap { display: flex; align-items: center; gap: 6px; }
     .phone-logo {
-      width: 30px; height: 30px; border-radius: 9px;
-      background: linear-gradient(135deg, #a855f7, #c084fc);
+      width: 29px; height: 29px; border-radius: 9px;
+      background: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 900; color: white;
-      box-shadow: 0 0 10px rgba(168,85,247,0.4);
+      font-size: 11px; font-weight: 900; color: white;
+      box-shadow: 0 0 12px rgba(168,85,247,0.45);
+      letter-spacing: -0.04em;
     }
-    .phone-brand { font-size: 13px; font-weight: 800; color: var(--purple-light); letter-spacing: -0.02em; }
+    .phone-brand { font-size: 13px; font-weight: 900; color: var(--purple-light); letter-spacing: -0.03em; }
     .phone-avatar {
-      width: 29px; height: 29px; border-radius: 50%;
+      width: 28px; height: 28px; border-radius: 50%;
       background: linear-gradient(135deg, var(--purple), #e879f9);
       display: flex; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 800; color: white;
     }
-    .phone-greeting { font-size: 10px; color: rgba(241,245,249,0.45); margin-bottom: 2px; }
-    .phone-title { font-size: 15px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 14px; }
-    .phone-title span { color: var(--purple-light); }
+    .phone-date  { font-size: 9px; color: rgba(241,245,249,0.4); margin-bottom: 2px; }
+    .phone-greet { font-size: 14px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 3px; }
+    .phone-greet span { color: var(--purple-light); }
+    .phone-sub   { font-size: 9px; color: var(--muted); margin-bottom: 12px; }
 
-    .phone-stats {
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 5px; margin-bottom: 11px;
-    }
-    .phone-stat {
-      padding: 7px 8px; border-radius: 10px;
-      background: rgba(168,85,247,0.07);
-      border: 1px solid rgba(168,85,247,0.12);
-    }
-    .phone-stat-val { font-size: 15px; font-weight: 800; color: var(--purple-light); }
-    .phone-stat-lbl { font-size: 8px; color: rgba(241,245,249,0.38); margin-top: 1px; }
+    /* Progress bar */
+    .phone-prog-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 9px; color: var(--muted); font-weight: 600; }
+    .phone-prog { height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; margin-bottom: 13px; }
+    .phone-prog-fill { height: 100%; width: 62%; background: linear-gradient(90deg,#7c3aed,#a855f7,#c084fc); border-radius: 2px; }
 
-    .phone-streak {
-      padding: 9px 11px; border-radius: 10px; margin-bottom: 10px;
-      background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(168,85,247,0.05));
-      border: 1px solid rgba(168,85,247,0.2);
-      display: flex; align-items: center; justify-content: space-between;
+    /* Date strip */
+    .phone-strip { display: flex; gap: 4px; margin-bottom: 12px; overflow: hidden; }
+    .phone-strip-day {
+      flex: 1; padding: 6px 3px; border-radius: 9px; text-align: center;
+      background: rgba(255,255,255,0.04); font-size: 8px; color: var(--muted);
     }
-    .phone-streak-left { display: flex; align-items: center; gap: 6px; }
-    .phone-streak-icon { font-size: 16px; }
-    .phone-streak-label { font-size: 9px; color: var(--muted); }
-    .phone-streak-val { font-size: 14px; font-weight: 800; color: var(--purple-light); }
-    .phone-streak-days { display: flex; gap: 3px; }
-    .phone-streak-day {
-      width: 14px; height: 14px; border-radius: 4px; font-size: 7px;
-      display: flex; align-items: center; justify-content: center; font-weight: 700;
-      background: rgba(168,85,247,0.12); color: var(--muted);
+    .phone-strip-day.today {
+      background: linear-gradient(135deg,#7c3aed,#a855f7);
+      color: white;
+      box-shadow: 0 3px 10px rgba(168,85,247,0.4);
     }
-    .phone-streak-day.done { background: var(--purple); color: white; }
+    .phone-strip-num { font-size: 13px; font-weight: 800; display: block; margin-top: 2px; }
 
+    /* Habit row */
+    .phone-section-label { font-size: 8px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .phone-habit {
+      display: flex; align-items: center; gap: 7px;
+      padding: 7px 8px; border-radius: 9px; margin-bottom: 5px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(168,85,247,0.08);
+    }
+    .phone-habit-icon {
+      width: 24px; height: 24px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; font-size: 12px;
+      flex-shrink: 0;
+    }
+    .phone-habit-text { font-size: 9px; font-weight: 600; flex: 1; }
+    .phone-habit-done {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg,#10b981,#34d399);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; color: white; font-weight: 800;
+    }
+    .phone-habit-circle {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+      border: 1.5px solid rgba(168,85,247,0.35);
+    }
+
+    /* Task row */
     .phone-task {
       display: flex; align-items: center; gap: 7px;
-      padding: 8px 9px; border-radius: 9px;
+      padding: 7px 8px; border-radius: 9px; margin-bottom: 5px;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(168,85,247,0.08);
       border-left: 2px solid var(--purple);
-      margin-bottom: 5px;
     }
     .phone-checkbox {
-      width: 15px; height: 15px; border-radius: 4px; flex-shrink: 0;
+      width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0;
       border: 1.5px solid rgba(168,85,247,0.35);
     }
     .phone-checkbox.done {
-      background: linear-gradient(135deg, #10b981, #34d399);
+      background: linear-gradient(135deg,#10b981,#34d399);
       border-color: #10b981;
       display: flex; align-items: center; justify-content: center;
-      font-size: 9px; color: white;
+      font-size: 8px; color: white;
     }
-    .phone-task-text { font-size: 10px; font-weight: 500; flex: 1; }
-    .phone-task-text.done { text-decoration: line-through; opacity: 0.38; }
+    .phone-task-text { font-size: 9px; font-weight: 500; flex: 1; }
+    .phone-task-text.done { text-decoration: line-through; opacity: 0.35; }
     .phone-tag {
       font-size: 7px; font-weight: 700; padding: 2px 5px; border-radius: 99px;
       background: rgba(168,85,247,0.12); color: var(--purple-light);
     }
-    .phone-timer-pill {
-      display: flex; align-items: center; gap: 6px;
-      padding: 7px 11px; border-radius: 9px; margin-top: 8px;
-      background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2);
-    }
-    .phone-timer-dot { width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; animation: pulse-dot 1.4s ease-in-out infinite; }
-    .phone-timer-text { font-size: 9px; font-weight: 700; color: #f59e0b; }
-    .phone-timer-val { font-size: 11px; font-weight: 800; color: #fcd34d; margin-left: auto; }
 
+    /* Bottom nav */
     .phone-bottom-nav {
       display: flex; justify-content: space-around;
-      padding: 9px 0 3px;
+      padding: 8px 0 2px;
       border-top: 1px solid rgba(168,85,247,0.1);
       margin-top: 10px;
     }
@@ -307,40 +309,36 @@
       font-size: 7px; color: rgba(241,245,249,0.3);
     }
     .phone-nav-item.active { color: var(--purple-light); }
-    .phone-nav-icon { font-size: 13px; }
+    .phone-nav-icon { font-size: 13px; line-height: 1; }
 
-    /* ── FEATURES ── */
-    .section {
-      max-width: 1000px; margin: 0 auto;
-      padding: 0 24px 100px;
-      position: relative; z-index: 1;
-    }
-    .section-label {
-      text-align: center;
-      font-size: 11px; font-weight: 700; color: var(--purple);
-      text-transform: uppercase; letter-spacing: 0.12em;
-      margin-bottom: 12px;
-    }
-    .section-title {
-      text-align: center;
-      font-size: clamp(26px, 4vw, 40px); font-weight: 800;
-      letter-spacing: -0.04em; margin-bottom: 16px;
-    }
-    .section-sub {
-      text-align: center; font-size: 15px; color: var(--muted);
-      max-width: 500px; margin: 0 auto 56px; line-height: 1.7;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-    }
-    .feature-card {
-      padding: 28px 26px;
+    /* ── STATS BAR ── */
+    .stats-bar { max-width: 760px; margin: 0 auto 90px; padding: 0 24px; position: relative; z-index: 1; }
+    .stats-bar-inner {
+      display: grid; grid-template-columns: repeat(3,1fr);
       background: rgba(255,255,255,0.025);
       border: 1px solid var(--border);
-      border-radius: 22px;
+      border-radius: 24px; overflow: hidden;
+    }
+    .stat-item { padding: 28px 20px; text-align: center; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: clamp(28px,5vw,42px); font-weight: 900; letter-spacing: -0.04em;
+      background: linear-gradient(135deg,var(--purple),var(--purple-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-desc { font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 500; }
+
+    /* ── SECTION COMMONS ── */
+    .section { max-width: 1000px; margin: 0 auto; padding: 0 24px 100px; position: relative; z-index: 1; }
+    .section-label { text-align:center; font-size:11px; font-weight:700; color:var(--purple); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:12px; }
+    .section-title { text-align:center; font-size:clamp(26px,4vw,42px); font-weight:800; letter-spacing:-0.04em; margin-bottom:16px; }
+    .section-sub   { text-align:center; font-size:15px; color:var(--muted); max-width:500px; margin:0 auto 56px; line-height:1.7; }
+
+    /* ── FEATURES GRID ── */
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+    .feature-card {
+      padding: 28px 26px; background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border); border-radius: 22px;
       transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
       position: relative; overflow: hidden;
     }
@@ -350,15 +348,15 @@
       pointer-events: none;
     }
     .feature-card:hover {
-      border-color: rgba(168,85,247,0.4);
+      border-color: rgba(168,85,247,0.42);
       transform: translateY(-5px);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(168,85,247,0.2);
+      box-shadow: 0 20px 52px rgba(0,0,0,0.4), 0 0 0 1px rgba(168,85,247,0.2);
     }
     .feature-icon {
       width: 50px; height: 50px; border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
       font-size: 24px; margin-bottom: 16px;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.05);
     }
     .feature-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
     .feature-card p  { font-size: 13px; color: var(--muted); line-height: 1.65; }
@@ -369,224 +367,133 @@
       padding: 2px 8px; border-radius: 99px; margin-bottom: 10px;
     }
 
-    /* ── SHOWCASE STRIP ── */
-    .showcase {
-      max-width: 1000px; margin: 0 auto;
-      padding: 0 24px 100px;
-      position: relative; z-index: 1;
-    }
-    .showcase-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
+    /* ── SHOWCASE ── */
+    .showcase { max-width: 1000px; margin: 0 auto; padding: 0 24px 100px; position: relative; z-index: 1; }
+    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 640px) { .showcase-grid { grid-template-columns: 1fr; } }
-
-    .showcase-card {
-      padding: 30px 28px; border-radius: 24px;
-      border: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
-    .showcase-card.purple {
-      background: linear-gradient(135deg, rgba(124,58,237,0.22), rgba(168,85,247,0.08));
-    }
-    .showcase-card.dark {
-      background: rgba(255,255,255,0.025);
-    }
+    .showcase-card { padding: 30px 28px; border-radius: 24px; border: 1px solid var(--border); position: relative; overflow: hidden; }
+    .showcase-card.purple { background: linear-gradient(135deg,rgba(124,58,237,0.22),rgba(168,85,247,0.08)); }
+    .showcase-card.dark   { background: rgba(255,255,255,0.025); }
     .showcase-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; }
-    .showcase-card p { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+    .showcase-card p  { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
     .showcase-tag {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 11px; font-weight: 700; color: var(--purple-light);
       background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.22);
       padding: 4px 10px; border-radius: 99px; margin-bottom: 14px;
     }
-    .streak-row {
-      display: flex; gap: 6px; margin-top: 4px;
-    }
-    .streak-pip {
-      flex: 1; height: 28px; border-radius: 7px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 800;
-    }
-    .streak-pip.done { background: var(--purple); color: white; }
-    .streak-pip.today { background: linear-gradient(135deg,#7c3aed,#a855f7); color: white; box-shadow: 0 0 10px rgba(168,85,247,0.5); }
-    .streak-pip.empty { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
 
-    .timer-display {
-      font-size: 42px; font-weight: 900; letter-spacing: -0.04em;
-      color: white; margin: 8px 0;
-      text-shadow: 0 0 30px rgba(168,85,247,0.5);
+    /* Streak */
+    .streak-row { display:flex; gap:6px; margin-top:4px; }
+    .streak-pip {
+      flex:1; height:28px; border-radius:7px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:10px; font-weight:800;
     }
-    .timer-label { font-size: 12px; color: var(--muted); font-weight: 600; }
-    .timer-bar {
-      height: 5px; background: rgba(255,255,255,0.06);
-      border-radius: 3px; overflow: hidden; margin-top: 14px;
-    }
-    .timer-bar-fill {
-      height: 100%; width: 62%;
-      background: linear-gradient(90deg, var(--purple-deep), var(--purple), var(--purple-light));
-      border-radius: 3px;
-      box-shadow: 0 0 8px var(--purple-glow);
-    }
-    .theme-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .streak-pip.done  { background: var(--purple); color:white; }
+    .streak-pip.today { background: linear-gradient(135deg,#7c3aed,#a855f7); color:white; box-shadow:0 0 12px rgba(168,85,247,0.5); }
+    .streak-pip.empty { background: rgba(255,255,255,0.05); color:var(--muted); border:1px solid var(--border); }
+
+    /* Timer */
+    .timer-display { font-size:44px; font-weight:900; letter-spacing:-0.04em; color:white; margin:8px 0; text-shadow:0 0 32px rgba(168,85,247,0.5); }
+    .timer-label   { font-size:12px; color:var(--muted); font-weight:600; }
+    .timer-bar     { height:5px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden; margin-top:14px; }
+    .timer-bar-fill { height:100%; width:62%; background:linear-gradient(90deg,var(--purple-deep),var(--purple),var(--purple-light)); border-radius:3px; box-shadow:0 0 10px var(--purple-glow); }
+
+    /* Themes */
+    .theme-row { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
     .theme-dot {
-      width: 32px; height: 32px; border-radius: 10px; cursor: pointer;
-      transition: transform 0.15s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      width:32px; height:32px; border-radius:10px; cursor:pointer;
+      transition:transform 0.15s, box-shadow 0.15s;
+      box-shadow:0 2px 8px rgba(0,0,0,0.4);
     }
-    .theme-dot:hover { transform: scale(1.1); }
-    .theme-dot.active { outline: 2px solid white; outline-offset: 2px; }
-    .rewards-row { display: flex; gap: 10px; margin-top: 8px; }
-    .reward-badge {
-      flex: 1; padding: 10px 8px; border-radius: 12px; text-align: center;
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-    }
-    .reward-icon { font-size: 20px; margin-bottom: 4px; }
-    .reward-name { font-size: 9px; font-weight: 700; color: var(--muted); }
-    .reward-pts { font-size: 11px; font-weight: 800; color: var(--purple-light); }
+    .theme-dot:hover { transform:scale(1.12); }
+    .theme-dot.active { outline:2.5px solid white; outline-offset:2px; box-shadow:0 0 14px var(--purple-glow); }
+
+    /* Rewards */
+    .rewards-row { display:flex; gap:10px; margin-top:8px; }
+    .reward-badge { flex:1; padding:10px 8px; border-radius:12px; text-align:center; background:rgba(255,255,255,0.04); border:1px solid var(--border); }
+    .reward-icon { font-size:20px; margin-bottom:4px; }
+    .reward-name { font-size:9px; font-weight:700; color:var(--muted); }
+    .reward-pts  { font-size:11px; font-weight:800; color:var(--purple-light); }
 
     /* ── DOWNLOAD ── */
-    .download-section {
-      max-width: 760px; margin: 0 auto;
-      padding: 0 24px 120px;
-      text-align: center;
-      position: relative; z-index: 1;
-    }
+    .download-section { max-width: 780px; margin: 0 auto; padding: 0 24px 128px; text-align: center; position: relative; z-index: 1; }
     .download-card {
-      padding: 60px 40px;
-      background: linear-gradient(135deg,
-        rgba(124,58,237,0.14) 0%,
-        rgba(168,85,247,0.06) 50%,
-        rgba(109,40,217,0.12) 100%);
+      padding: 64px 44px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.16) 0%, rgba(168,85,247,0.06) 50%, rgba(109,40,217,0.14) 100%);
       border: 1px solid rgba(168,85,247,0.28);
-      border-radius: 32px;
-      backdrop-filter: blur(16px);
+      border-radius: 36px;
+      backdrop-filter: blur(20px);
       position: relative; overflow: hidden;
     }
     .download-card::before {
-      content: "";
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 300px; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(168,85,247,0.6), transparent);
+      background: linear-gradient(90deg,transparent,rgba(168,85,247,0.7),transparent);
     }
     .download-glow {
-      position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
-      width: 200px; height: 200px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%);
+      position: absolute; top:-60px; left:50%; transform:translateX(-50%);
+      width:220px; height:220px; border-radius:50%;
+      background: radial-gradient(circle,rgba(168,85,247,0.22),transparent 70%);
       pointer-events: none;
     }
-    .download-card .big-icon { font-size: 56px; margin-bottom: 20px; display: block; }
-    .download-card h2 {
-      font-size: clamp(26px, 4.5vw, 38px); font-weight: 900;
-      letter-spacing: -0.04em; margin-bottom: 14px;
-    }
-    .download-card h2 span {
-      background: linear-gradient(135deg, var(--purple), var(--purple-light));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .download-card p {
-      font-size: 16px; color: var(--muted);
-      margin-bottom: 40px; line-height: 1.7; max-width: 480px; margin-left: auto; margin-right: auto;
-    }
-    .download-options {
-      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-    }
+    .download-card .big-icon { font-size:56px; margin-bottom:22px; display:block; }
+    .download-card h2 { font-size:clamp(26px,4.5vw,40px); font-weight:900; letter-spacing:-0.04em; margin-bottom:14px; }
+    .download-card h2 span { background:linear-gradient(135deg,var(--purple),var(--purple-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .download-card p { font-size:16px; color:var(--muted); margin-bottom:42px; line-height:1.7; max-width:480px; margin-left:auto; margin-right:auto; }
+    .download-options { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
     .download-btn {
-      display: flex; align-items: center; gap: 14px;
-      padding: 18px 28px; border-radius: 20px;
-      text-decoration: none; transition: all 0.2s;
-      min-width: 210px; position: relative; overflow: hidden;
+      display:flex; align-items:center; gap:14px;
+      padding:18px 28px; border-radius:20px;
+      text-decoration:none; transition:all 0.22s;
+      min-width:210px; position:relative; overflow:hidden;
     }
     .download-btn-apk {
-      background: linear-gradient(135deg, var(--purple-deep), var(--purple), var(--purple-light));
-      color: white;
-      box-shadow: 0 10px 32px var(--purple-glow), 0 0 0 1px rgba(168,85,247,0.3);
-      border: none;
+      background: linear-gradient(135deg,var(--purple-deep),var(--purple),var(--purple-light));
+      color:white;
+      box-shadow:0 10px 36px var(--purple-glow),0 0 0 1px rgba(168,85,247,0.3);
+      border:none;
     }
-    .download-btn-apk::after {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 50%);
-    }
-    .download-btn-apk:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 16px 44px var(--purple-glow); }
-    .download-btn-web {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .download-btn-web:hover {
-      background: rgba(168,85,247,0.1);
-      border-color: var(--border-bright);
-      color: var(--purple-light);
-      transform: translateY(-3px);
-    }
-    .download-btn-icon { font-size: 30px; flex-shrink: 0; position: relative; z-index: 1; }
-    .download-btn-text { text-align: left; position: relative; z-index: 1; }
-    .download-btn-sub  { font-size: 11px; opacity: 0.65; display: block; font-weight: 500; }
-    .download-btn-main { font-size: 16px; font-weight: 800; display: block; letter-spacing: -0.02em; }
-    .apk-note {
-      margin-top: 24px; font-size: 12px; color: var(--muted);
-      display: flex; align-items: center; justify-content: center; gap: 6px;
-    }
+    .download-btn-apk::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,0.13) 0%,transparent 50%); }
+    .download-btn-apk:hover { transform:translateY(-3px) scale(1.02); box-shadow:0 18px 50px var(--purple-glow); }
+    .download-btn-web { background:rgba(255,255,255,0.05); border:1px solid var(--border); color:var(--text); }
+    .download-btn-web:hover { background:rgba(168,85,247,0.1); border-color:var(--border-bright); color:var(--purple-light); transform:translateY(-3px); }
+    .download-btn-icon { font-size:30px; flex-shrink:0; position:relative; z-index:1; }
+    .download-btn-text { text-align:left; position:relative; z-index:1; }
+    .download-btn-sub  { font-size:11px; opacity:.65; display:block; font-weight:500; }
+    .download-btn-main { font-size:16px; font-weight:800; display:block; letter-spacing:-0.02em; }
+    .apk-note { margin-top:24px; font-size:12px; color:var(--muted); display:flex; align-items:center; justify-content:center; gap:6px; }
     .version-tag {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 11px; font-weight: 700; color: var(--purple-light);
-      background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.22);
-      padding: 4px 12px; border-radius: 99px; margin-bottom: 20px;
+      display:inline-flex; align-items:center; gap:5px;
+      font-size:11px; font-weight:700; color:var(--purple-light);
+      background:rgba(168,85,247,0.10); border:1px solid rgba(168,85,247,0.24);
+      padding:4px 14px; border-radius:99px; margin-bottom:20px;
     }
-
-    /* ── STATS BAR ── */
-    .stats-bar {
-      max-width: 760px; margin: 0 auto 80px;
-      padding: 0 24px;
-      position: relative; z-index: 1;
-    }
-    .stats-bar-inner {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 22px; overflow: hidden;
-    }
-    .stat-item {
-      padding: 28px 20px; text-align: center;
-      border-right: 1px solid var(--border);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-size: clamp(28px, 5vw, 40px); font-weight: 900;
-      letter-spacing: -0.04em;
-      background: linear-gradient(135deg, var(--purple), var(--purple-light));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .stat-desc { font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 500; }
 
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 32px 24px;
-      text-align: center;
+      padding: 32px 24px; text-align: center;
       font-size: 13px; color: var(--muted);
       position: relative; z-index: 1;
     }
-    footer span { color: var(--purple-light); font-weight: 700; }
-    .footer-links {
-      display: flex; gap: 20px; justify-content: center;
-      margin-bottom: 16px; flex-wrap: wrap;
-    }
-    .footer-link { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
-    .footer-link:hover { color: var(--purple-light); }
+    footer .hl { color: var(--purple-light); font-weight: 700; }
+    .footer-links { display:flex; gap:20px; justify-content:center; margin-bottom:16px; flex-wrap:wrap; }
+    .footer-link { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.15s; }
+    .footer-link:hover { color:var(--purple-light); }
 
     /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s cubic-bezier(0.23,1,0.32,1), transform 0.6s cubic-bezier(0.23,1,0.32,1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.6s cubic-bezier(0.23,1,0.32,1), transform 0.6s cubic-bezier(0.23,1,0.32,1); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.08s; }
+    .reveal-delay-2 { transition-delay:0.16s; }
+    .reveal-delay-3 { transition-delay:0.24s; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 520px) {
-      .nav-link { display: none; }
-      .download-card { padding: 40px 22px; }
-      .stat-item { padding: 20px 12px; }
+      .nav-link { display:none; }
+      .download-card { padding:40px 20px; }
+      .stat-item { padding:20px 12px; }
     }
   </style>
 </head>
@@ -618,112 +525,97 @@
     </h1>
 
     <p class="reveal">
-      Tasks, habits, streaks, timers and rewards — all in one beautifully designed app. Built for people who take their time seriously.
+      Tasks, habits, streaks, timers and rewards — all in one beautifully designed app.
+      Built for people who take their time seriously.
     </p>
 
     <div class="cta-group reveal">
       <a href="#download" class="btn-primary">
-        <span class="btn-icon">⬇</span>
-        Download APK
+        <span class="btn-icon">⬇</span> Download APK
       </a>
       <a href="https://todo-app-five-chi-14.vercel.app/" target="_blank" class="btn-secondary">
-        <span class="btn-icon">🌐</span>
-        Open in Browser
+        <span class="btn-icon">🌐</span> Open in Browser
       </a>
     </div>
 
-    <!-- Phone Mockup -->
+    <!-- Phone mockup -->
     <div class="phone-wrap reveal">
-      <div class="phone">
+      <div class="phone" id="phone">
         <div class="phone-notch"><div class="phone-notch-inner"></div></div>
         <div class="phone-screen">
-          <div class="phone-nav">
-            <div style="display:flex;align-items:center;gap:6px">
+
+          <!-- Top nav bar -->
+          <div class="phone-header">
+            <div class="phone-logo-wrap">
               <div class="phone-logo">30</div>
               <span class="phone-brand">Thirty</span>
             </div>
             <div class="phone-avatar">H</div>
           </div>
 
-          <div class="phone-greeting">Thursday, April 2</div>
-          <div class="phone-title">Good morning, <span>Hemanth</span> 👋</div>
+          <!-- Greeting -->
+          <div class="phone-date">Thursday, April 2</div>
+          <div class="phone-greet">Good morning, <span>Hemanth</span> 👋</div>
+          <div class="phone-sub">5/8 done today · 62%</div>
 
-          <div class="phone-stats">
-            <div class="phone-stat">
-              <div class="phone-stat-val">8</div>
-              <div class="phone-stat-lbl">Tasks</div>
-            </div>
-            <div class="phone-stat">
-              <div class="phone-stat-val" style="color:#10b981">5</div>
-              <div class="phone-stat-lbl">Done</div>
-            </div>
-            <div class="phone-stat">
-              <div class="phone-stat-val" style="color:#f59e0b">240</div>
-              <div class="phone-stat-lbl">Points</div>
-            </div>
+          <!-- Progress bar -->
+          <div class="phone-prog-row">
+            <span>Today's progress</span>
+            <span style="color:var(--purple-light);font-weight:700">62%</span>
+          </div>
+          <div class="phone-prog"><div class="phone-prog-fill"></div></div>
+
+          <!-- Date strip -->
+          <div class="phone-strip">
+            <div class="phone-strip-day">MON<span class="phone-strip-num">31</span></div>
+            <div class="phone-strip-day">TUE<span class="phone-strip-num">1</span></div>
+            <div class="phone-strip-day today">THU<span class="phone-strip-num">2</span></div>
+            <div class="phone-strip-day">FRI<span class="phone-strip-num">3</span></div>
+            <div class="phone-strip-day">SAT<span class="phone-strip-num">4</span></div>
           </div>
 
-          <!-- Streak -->
-          <div class="phone-streak">
-            <div class="phone-streak-left">
-              <div class="phone-streak-icon">🔥</div>
-              <div>
-                <div class="phone-streak-val">12 day streak</div>
-                <div class="phone-streak-label">Keep it going!</div>
-              </div>
-            </div>
-            <div class="phone-streak-days">
-              <div class="phone-streak-day done">M</div>
-              <div class="phone-streak-day done">T</div>
-              <div class="phone-streak-day done">W</div>
-              <div class="phone-streak-day done" style="background:var(--purple);color:white">T</div>
-              <div class="phone-streak-day">F</div>
-            </div>
+          <!-- Habits -->
+          <div class="phone-section-label">Habits · 1/2</div>
+          <div class="phone-habit">
+            <div class="phone-habit-icon" style="background:rgba(168,85,247,0.15)">💧</div>
+            <div class="phone-habit-text" style="text-decoration:line-through;opacity:.4">Drink water</div>
+            <div class="phone-habit-done">✓</div>
+          </div>
+          <div class="phone-habit">
+            <div class="phone-habit-icon" style="background:rgba(245,158,11,0.15)">🧘</div>
+            <div class="phone-habit-text">Meditation</div>
+            <div class="phone-habit-circle"></div>
           </div>
 
+          <!-- Tasks -->
+          <div class="phone-section-label" style="margin-top:8px">Tasks · 1/2</div>
           <div class="phone-task">
             <div class="phone-checkbox done">✓</div>
             <div class="phone-task-text done">Morning workout</div>
             <div class="phone-tag">Health</div>
           </div>
-          <div class="phone-task">
-            <div class="phone-checkbox"></div>
-            <div class="phone-task-text">Review project docs</div>
-            <div class="phone-tag">Work</div>
-          </div>
           <div class="phone-task" style="border-left-color:#f59e0b">
             <div class="phone-checkbox"></div>
-            <div class="phone-task-text">Team standup call</div>
-            <div class="phone-tag" style="background:rgba(245,158,11,0.12);color:#f59e0b">Meeting</div>
+            <div class="phone-task-text">Team standup</div>
+            <div class="phone-tag" style="background:rgba(245,158,11,0.12);color:#f59e0b">Work</div>
           </div>
 
-          <!-- Timer pill -->
-          <div class="phone-timer-pill">
-            <div class="phone-timer-dot"></div>
-            <div class="phone-timer-text">Focus Timer</div>
-            <div class="phone-timer-val">18:42</div>
-          </div>
-
+          <!-- Bottom nav -->
           <div class="phone-bottom-nav">
             <div class="phone-nav-item active">
-              <div class="phone-nav-icon">🏠</div>
-              <div>Today</div>
+              <div class="phone-nav-icon">🏠</div><div>Today</div>
             </div>
             <div class="phone-nav-item">
-              <div class="phone-nav-icon">⏱</div>
-              <div>Habits</div>
+              <div class="phone-nav-icon">⏱</div><div>Habits</div>
             </div>
             <div class="phone-nav-item">
-              <div class="phone-nav-icon">✅</div>
-              <div>Tasks</div>
+              <div class="phone-nav-icon">✅</div><div>Tasks</div>
             </div>
             <div class="phone-nav-item">
-              <div class="phone-nav-icon">⏰</div>
-              <div>Timer</div>
+              <div class="phone-nav-icon">⏰</div><div>Timer</div>
             </div>
             <div class="phone-nav-item">
-              <div class="phone-nav-icon">🏆</div>
-              <div>Rewards</div>
+              <div class="phone-nav-icon">🏆</div><div>Rewards</div>
             </div>
           </div>
         </div>
@@ -740,7 +632,7 @@
       </div>
       <div class="stat-item">
         <div class="stat-num">∞</div>
-        <div class="stat-desc">Tasks & habits</div>
+        <div class="stat-desc">Tasks &amp; habits</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">8+</div>
@@ -759,68 +651,66 @@
       <div class="feature-card reveal">
         <div class="feature-icon" style="background:rgba(168,85,247,0.12)">📋</div>
         <h3>Smart Task Management</h3>
-        <p>Create tasks with priorities, due dates, subtasks, and categories. Filter, search, and stay organised with zero friction.</p>
+        <p>Priorities, due dates, subtasks, categories and attachments. Filter and search with zero friction.</p>
       </div>
       <div class="feature-card reveal reveal-delay-1">
         <div class="feature-icon" style="background:rgba(16,185,129,0.12)">🔥</div>
         <div class="feature-new">✦ New</div>
-        <h3>Habits & Streak System</h3>
-        <p>Build daily habits with visual streak tracking. Your longest streak is remembered — breaking it stings in all the right ways.</p>
+        <h3>Habits &amp; Streak System</h3>
+        <p>Build daily habits with visual streak tracking. Mark habits done or missed — every day counts.</p>
       </div>
       <div class="feature-card reveal reveal-delay-2">
         <div class="feature-icon" style="background:rgba(59,130,246,0.12)">📅</div>
         <h3>Calendar View</h3>
-        <p>See all your tasks laid out on a monthly calendar. Click any day to view or add tasks instantly — no extra steps.</p>
+        <p>See all your tasks on a monthly calendar. Tap any day to view or add tasks instantly.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon" style="background:rgba(245,158,11,0.12)">⏱</div>
         <div class="feature-new">✦ New</div>
         <h3>Focus Timer</h3>
-        <p>Pomodoro-style focus sessions built right in. Run a timer against any task and watch your productivity sessions stack up.</p>
+        <p>Stopwatch, countdown, Pomodoro and interval timer — all with real sounds and notifications.</p>
       </div>
       <div class="feature-card reveal reveal-delay-1">
         <div class="feature-icon" style="background:rgba(232,121,249,0.12)">🏆</div>
         <div class="feature-new">✦ New</div>
-        <h3>Rewards System</h3>
-        <p>Earn points for every completed task and streak day. Unlock badges and achievements that actually mean something.</p>
+        <h3>Rewards &amp; Badges</h3>
+        <p>Earn badges for completing tasks, building streaks, and hitting milestones. Real achievement, not fluff.</p>
       </div>
       <div class="feature-card reveal reveal-delay-2">
         <div class="feature-icon" style="background:rgba(168,85,247,0.12)">🎨</div>
         <div class="feature-new">✦ New</div>
         <h3>Custom Themes</h3>
-        <p>Switch between 8+ carefully crafted colour themes — Purple, Pink, Teal, Gold and more. Dark mode always on.</p>
+        <p>8+ accent colour presets plus a full colour picker. Your app, your palette.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon" style="background:rgba(245,158,11,0.12)">🏷️</div>
         <h3>Categories</h3>
-        <p>Organise tasks into colour-coded categories with custom icons. Filter your whole task list with a single tap.</p>
+        <p>Colour-coded categories with custom icons. See task counts and progress per category at a glance.</p>
       </div>
       <div class="feature-card reveal reveal-delay-1">
-        <div class="feature-icon" style="background:rgba(168,85,247,0.12)">⚙️</div>
-        <div class="feature-new">✦ New</div>
-        <h3>Settings & Preferences</h3>
-        <p>Control notifications, default views, accent colours, and more. Thirty adapts to how you work, not the other way around.</p>
+        <div class="feature-icon" style="background:rgba(16,185,129,0.12)">📱</div>
+        <h3>Offline-First APK</h3>
+        <p>The Android app stores all data on your device. Full offline support — no internet required.</p>
       </div>
       <div class="feature-card reveal reveal-delay-2">
-        <div class="feature-icon" style="background:rgba(59,130,246,0.12)">📱</div>
-        <h3>Works Everywhere</h3>
-        <p>Use it in any browser or install the Android APK for a native experience. Your data syncs seamlessly across devices.</p>
+        <div class="feature-icon" style="background:rgba(59,130,246,0.12)">☁️</div>
+        <h3>Web Sync</h3>
+        <p>The web version syncs to a secure backend. Access your tasks from any browser, any device.</p>
       </div>
     </div>
   </section>
 
-  <!-- SHOWCASE STRIP -->
+  <!-- SHOWCASE -->
   <section class="showcase">
     <div class="section-label reveal">See it in action</div>
     <div class="section-title reveal">Details that delight</div>
-    <div class="section-sub reveal">Every screen is designed with intention — from the streak tracker to the focus timer display.</div>
+    <div class="section-sub reveal">Every screen is designed with intention — from the streak tracker to the Pomodoro timer.</div>
 
     <div class="showcase-grid">
-      <!-- Streak showcase -->
       <div class="showcase-card purple reveal">
         <div class="showcase-tag">🔥 Streaks</div>
         <h3>Never break the chain</h3>
-        <p>Visual daily streak tiles make your consistency impossible to ignore. Fourteen days in? You'll do whatever it takes to hit fifteen.</p>
+        <p>Visual daily streak tiles make your consistency impossible to ignore. Fourteen days in? You'll do anything to hit fifteen.</p>
         <div class="streak-row">
           <div class="streak-pip done">M</div>
           <div class="streak-pip done">T</div>
@@ -832,21 +722,19 @@
         </div>
       </div>
 
-      <!-- Timer showcase -->
       <div class="showcase-card dark reveal reveal-delay-1">
         <div class="showcase-tag">⏱ Focus Timer</div>
         <h3>Deep work, simplified</h3>
-        <p>25-minute focus sessions. Visual progress bar. Task-linked sessions so you always know what you're working on.</p>
-        <div class="timer-label">FOCUS SESSION</div>
+        <p>Pomodoro sessions, custom intervals, countdown timers. Real audio cues. Full notification support.</p>
+        <div class="timer-label">FOCUS SESSION · 25:00</div>
         <div class="timer-display">18:42</div>
         <div class="timer-bar"><div class="timer-bar-fill"></div></div>
       </div>
 
-      <!-- Themes showcase -->
       <div class="showcase-card dark reveal">
         <div class="showcase-tag">🎨 Themes</div>
         <h3>Make it yours</h3>
-        <p>Eight accent colours, always dark. Pick what fits your mood — or your desk setup.</p>
+        <p>Eight accent presets plus a custom colour picker. The whole app adapts — gradients, glows, and all.</p>
         <div class="theme-row">
           <div class="theme-dot active" style="background:linear-gradient(135deg,#7c3aed,#a855f7)" title="Purple"></div>
           <div class="theme-dot" style="background:linear-gradient(135deg,#db2777,#f472b6)" title="Pink"></div>
@@ -859,26 +747,25 @@
         </div>
       </div>
 
-      <!-- Rewards showcase -->
       <div class="showcase-card purple reveal reveal-delay-1">
         <div class="showcase-tag">🏆 Rewards</div>
         <h3>Progress that matters</h3>
-        <p>Earn XP, unlock badges, and watch your productivity score grow. Every task you finish counts.</p>
+        <p>Unlock 17 badges across Tasks, Habits, Organisation and Special categories. Every action counts.</p>
         <div class="rewards-row">
           <div class="reward-badge">
             <div class="reward-icon">🔥</div>
-            <div class="reward-name">Streak King</div>
-            <div class="reward-pts">+50 pts</div>
+            <div class="reward-name">On Fire</div>
+            <div class="reward-pts">3d streak</div>
           </div>
           <div class="reward-badge">
-            <div class="reward-icon">⚡</div>
-            <div class="reward-name">Speed Run</div>
-            <div class="reward-pts">+30 pts</div>
+            <div class="reward-icon">💫</div>
+            <div class="reward-name">Week Warrior</div>
+            <div class="reward-pts">7d streak</div>
           </div>
           <div class="reward-badge">
-            <div class="reward-icon">🎯</div>
-            <div class="reward-name">Focused</div>
-            <div class="reward-pts">+25 pts</div>
+            <div class="reward-icon">🌟</div>
+            <div class="reward-name">Perfect Day</div>
+            <div class="reward-pts">All done</div>
           </div>
         </div>
       </div>
@@ -890,10 +777,9 @@
     <div class="download-card reveal">
       <div class="download-glow"></div>
       <span class="big-icon">📲</span>
-      <div class="version-tag">✦ v2.0 — New features dropped</div>
+      <div class="version-tag">✦ v2.0 — Rewards, Pomodoro &amp; more</div>
       <h2>Get <span>Thirty</span> on your device</h2>
-      <p>Install the Android APK for a full native experience, or open the web app directly — no sign-up, no friction.</p>
-
+      <p>Install the Android APK for a full native offline experience, or open the web app directly — no sign-up, no friction.</p>
       <div class="download-options">
         <a href="./thirty-app.apk" download class="download-btn download-btn-apk">
           <div class="download-btn-icon">🤖</div>
@@ -910,9 +796,8 @@
           </div>
         </a>
       </div>
-
       <div class="apk-note">
-        ⚠️ Android: Enable "Install from unknown sources" in Settings before installing
+        ⚠️ Android: Enable "Install from unknown sources" before installing
       </div>
     </div>
   </section>
@@ -920,12 +805,12 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-links">
-      <a href="#" class="footer-link">Home</a>
-      <a href="#features" class="footer-link">Features</a>
-      <a href="#download" class="footer-link">Download</a>
+      <a href="#"          class="footer-link">Home</a>
+      <a href="#features"  class="footer-link">Features</a>
+      <a href="#download"  class="footer-link">Download</a>
       <a href="https://todo-app-five-chi-14.vercel.app/" target="_blank" class="footer-link">Open App</a>
     </div>
-    Built with ❤️ by <span>Hemanth</span> &nbsp;·&nbsp; &copy; 2026 <span>Thirty</span>
+    Built with ❤️ by <span class="hl">Hemanth</span> &nbsp;·&nbsp; &copy; 2026 <span class="hl">Thirty</span>
   </footer>
 
   <script>
@@ -934,11 +819,11 @@
       entries => entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       }),
-      { threshold: 0.08 }
+      { threshold: 0.07 }
     );
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Theme dot click (visual only demo)
+    // Theme dot demo click
     document.querySelectorAll('.theme-dot').forEach(dot => {
       dot.addEventListener('click', () => {
         document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
@@ -946,14 +831,15 @@
       });
     });
 
-    // Subtle phone tilt on mousemove
-    const phone = document.querySelector('.phone');
-    document.addEventListener('mousemove', e => {
-      const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-      const dx = (e.clientX - cx) / cx, dy = (e.clientY - cy) / cy;
-      phone.style.transform = `rotateX(${-dy * 5}deg) rotateY(${dx * 8}deg)`;
-    });
+    // Subtle phone tilt on mousemove (desktop only)
+    const phone = document.getElementById('phone');
+    if (window.innerWidth > 768) {
+      document.addEventListener('mousemove', e => {
+        const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx, dy = (e.clientY - cy) / cy;
+        phone.style.transform = `rotateX(${-dy * 5}deg) rotateY(${dx * 8}deg)`;
+      });
+    }
   </script>
-
 </body>
 </html>
