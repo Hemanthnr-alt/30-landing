@@ -3,42 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>THIRTY [30-ECO] — Precision Life Engine for Android</title>
-  <meta name="description" content="The anti-subscription life engine. Precision task orchestration, atomic habit loops, scientific macro calculus, hardware focus timers, and sandboxed transformation archives." />
-  <meta name="theme-color" content="#08090B" />
+  <title>Thirty (30-ECO) — The Personal Life Engine</title>
+  <meta name="description" content="A calm, unified operating system for your tasks, habits, nutrition, timers, and body transformation. 100% Offline. Zero Subscriptions." />
+  <meta name="theme-color" content="#0C0E14" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="THIRTY [30-ECO] — Precision Life Engine" />
-  <meta property="og:description" content="Engineered for those who track everything and tolerate zero friction. 100% Offline. Zero Subscriptions." />
+  <meta property="og:title" content="Thirty (30-ECO) — The Personal Life Engine" />
+  <meta property="og:description" content="A calm, unified operating system for tasks, habits, nutrition, and focus. 100% Offline & Private." />
   <meta property="og:url" content="https://30-landing.vercel.app/" />
   <meta property="og:type" content="website" />
 
-  <!-- Typography: Syne, Space Grotesk, JetBrains Mono, Instrument Serif -->
+  <!-- Fonts: Instrument Serif, Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg: #07080A;
-      --surface: #0E1015;
-      --surface-2: #141720;
-      --surface-3: #1C202C;
+      /* Soft, Understated Palette */
+      --bg: #0C0E14;
+      --card: #131620;
+      --card-inner: #191E2C;
       --border: rgba(255, 255, 255, 0.08);
-      --border-strong: rgba(255, 255, 255, 0.18);
-      --border-laser: #D4FF00;
+      --border-soft: rgba(255, 255, 255, 0.14);
       
-      /* Studio / Hardware Colorway */
-      --laser: #D4FF00;
-      --laser-glow: rgba(212, 255, 0, 0.25);
-      --ice: #38BDF8;
-      --white: #FFFFFF;
-      --silver: #E2E8F0;
-      --muted: #8E95A5;
-      --dim: #505666;
+      --pearl: #F8FAFC;
+      --cashmere: #E2E8F0;
+      --sage-soft: #A3B899;
+      --slate-soft: #94A3B8;
+      --sky-soft: #BAE6FD;
+      --lavender-soft: #DDD6FE;
+      --text-dim: #64748B;
       
-      --font-display: 'Space Grotesk', sans-serif;
       --font-serif: 'Instrument Serif', serif;
+      --font-display: 'Space Grotesk', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
@@ -52,7 +50,7 @@
 
     html, body {
       background: var(--bg);
-      color: var(--white);
+      color: var(--pearl);
       font-family: var(--font-body);
       overflow-x: hidden;
       scroll-behavior: smooth;
@@ -61,245 +59,202 @@
     body {
       padding-bottom: 96px;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(212, 255, 0, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 100% 60%, rgba(56, 189, 248, 0.04) 0%, transparent 40%),
-        linear-gradient(to bottom, #07080A, #040507);
+        radial-gradient(circle at 50% 0%, rgba(226, 232, 240, 0.04) 0%, transparent 60%),
+        radial-gradient(circle at 85% 40%, rgba(163, 184, 153, 0.03) 0%, transparent 50%),
+        linear-gradient(to bottom, #0C0E14, #08090D);
       background-attachment: fixed;
     }
 
-    /* Technical Corner Crosshairs */
-    .crosshair {
-      position: absolute;
-      color: var(--dim);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      pointer-events: none;
-      user-select: none;
-    }
-    .cross-tl { top: 8px; left: 8px; }
-    .cross-tr { top: 8px; right: 8px; }
-    .cross-bl { bottom: 8px; left: 8px; }
-    .cross-br { bottom: 8px; right: 8px; }
-
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
-    /* ─── Top Telemetry Status Header ─────────────────────────────────── */
-    .telemetry-bar {
+    /* ─── Top Floating Navigation ───────────────────────────────────────── --> */
+    .top-nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(7, 8, 10, 0.88);
+      padding: 12px 18px;
+      background: rgba(12, 14, 20, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      padding: 12px 18px;
     }
 
-    .telemetry-inner {
-      max-width: 1120px;
+    .nav-inner {
+      max-width: 1080px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .system-badge {
+    .brand-group {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--laser);
-      box-shadow: 0 0 10px var(--laser);
-      animation: pulseLaser 2.2s infinite ease-in-out;
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: #F1F5F9;
+      color: #0F172A;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(255,255,255,0.08);
     }
 
-    @keyframes pulseLaser {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.85); }
-    }
-
-    .system-title {
-      font-family: var(--font-mono);
+    .brand-title {
+      font-family: var(--font-display);
       font-weight: 700;
-      font-size: 13.5px;
+      font-size: 18px;
       letter-spacing: -0.02em;
-      color: var(--white);
     }
 
-    .system-spec-tag {
+    .brand-pill {
       font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 700;
-      background: var(--surface-2);
+      font-size: 9.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--slate-soft);
       border: 1px solid var(--border);
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: var(--laser);
     }
 
-    .btn-quick-download {
+    .btn-nav-get {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 8px 16px;
-      border-radius: 8px;
-      background: var(--laser);
-      color: #000 !important;
-      font-family: var(--font-mono);
-      font-weight: 800;
-      font-size: 12px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      color: #0F172A !important;
+      font-weight: 700;
+      font-size: 12.5px;
       transition: all 0.2s;
-      letter-spacing: 0.02em;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.08);
     }
 
-    .btn-quick-download:active {
-      transform: scale(0.95);
-      background: #E8FF59;
+    .btn-nav-get:active {
+      transform: scale(0.96);
+      background: #E2E8F0;
     }
 
-    /* ─── Hero Section ─────────────────────────────────────────────────── */
-    .hero-wrap {
-      padding: 44px 20px 24px;
-      max-width: 840px;
+    /* ─── Hero Section ─────────────────────────────────────────────────── --> */
+    .hero-container {
+      padding: 48px 20px 24px;
+      max-width: 800px;
       margin: 0 auto;
       text-align: center;
-      position: relative;
     }
 
-    .spec-header-pill {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 12px;
-      border-radius: 6px;
-      background: var(--surface);
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
+      color: var(--cashmere);
+      font-size: 12px;
+      font-weight: 600;
       margin-bottom: 24px;
     }
 
-    .spec-header-pill span.highlight {
-      color: var(--laser);
-      font-weight: 700;
+    .soft-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sage-soft);
     }
 
     .hero-h1 {
       font-family: var(--font-display);
-      font-size: clamp(34px, 8.8vw, 68px);
+      font-size: clamp(34px, 8.5vw, 64px);
       font-weight: 800;
-      line-height: 1.02;
-      letter-spacing: -0.045em;
-      margin-bottom: 20px;
-      text-transform: uppercase;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
     }
 
-    .hero-h1 .editorial-italic {
+    .hero-h1 .serif-italic {
       font-family: var(--font-serif);
       font-weight: 400;
       font-style: italic;
-      text-transform: none;
-      letter-spacing: 0.01em;
-      color: var(--laser);
+      color: var(--cashmere);
       display: block;
       margin-top: 4px;
     }
 
-    .hero-subtext {
+    .hero-p {
       font-size: clamp(15px, 3.8vw, 18px);
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 580px;
-      margin: 0 auto 32px;
+      color: var(--slate-soft);
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .hero-action-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .btn-heavy-install {
+    .btn-hero-primary {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
-      max-width: 380px;
+      max-width: 360px;
+      margin: 0 auto 18px;
       padding: 18px 24px;
-      border-radius: 12px;
-      background: var(--laser);
-      color: #000;
-      font-family: var(--font-mono);
-      font-weight: 900;
-      font-size: 15px;
-      letter-spacing: -0.01em;
-      box-shadow: 0 6px 28px var(--laser-glow);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 14px;
+      background: #FFFFFF;
+      color: #0F172A;
+      font-weight: 800;
+      font-size: 16px;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.08);
+      transition: all 0.2s;
     }
 
-    .btn-heavy-install:active {
+    .btn-hero-primary:active {
       transform: scale(0.97);
-      background: #E8FF59;
+      background: #E2E8F0;
     }
 
-    /* Hardware Telemetry Specs Grid */
-    .specs-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 12px;
-      border-radius: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      text-align: left;
-    }
-
-    .spec-item {
+    .specs-row {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 6px 8px;
-      border-right: 1px solid var(--border);
-    }
-
-    .spec-item:last-child {
-      border-right: none;
-    }
-
-    .spec-label {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      color: var(--dim);
-      text-transform: uppercase;
-    }
-
-    .spec-val {
-      font-family: var(--font-mono);
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
       font-size: 12.5px;
-      font-weight: 700;
-      color: var(--white);
+      color: var(--text-dim);
+      margin-top: 14px;
     }
 
-    /* ─── Viewfinder Showcase Carousel ────────────────────────────────── */
-    .viewfinder-section {
-      padding: 40px 0 20px;
+    .specs-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .viewfinder-bar {
+    .specs-row svg {
+      color: var(--sage-soft);
+    }
+
+    /* ─── Swipeable Mobile App Screenshots Carousel ─────────────────────── --> */
+    .screenshots-section {
+      padding: 34px 0 20px;
+    }
+
+    .section-bar-header {
       padding: 0 20px 14px;
       display: flex;
       align-items: center;
@@ -308,23 +263,26 @@
       margin: 0 auto;
     }
 
-    .viewfinder-id {
+    .section-kicker {
       font-family: var(--font-mono);
       font-size: 11px;
-      font-weight: 700;
-      color: var(--laser);
-      letter-spacing: 0.1em;
+      font-weight: 600;
+      color: var(--slate-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    .viewfinder-scroll-hint {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--dim);
-    }
-
-    .viewfinder-reel {
+    .swipe-label {
+      font-size: 12px;
+      color: var(--text-dim);
       display: flex;
-      gap: 16px;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .screenshot-scroller {
+      display: flex;
+      gap: 14px;
       overflow-x: auto;
       padding: 0 20px 24px;
       scroll-snap-type: x mandatory;
@@ -332,937 +290,913 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    .viewfinder-reel::-webkit-scrollbar {
+    .screenshot-scroller::-webkit-scrollbar {
       display: none;
     }
 
-    .view-card {
-      flex: 0 0 260px;
+    .shot-card {
+      flex: 0 0 245px;
       scroll-snap-align: center;
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
-      position: relative;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
       transition: border-color 0.2s;
     }
 
-    .view-card:active {
-      border-color: var(--laser);
+    .shot-card:active {
+      border-color: var(--border-soft);
     }
 
-    .card-top-hud {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 12px;
-      background: #000;
-      border-bottom: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--dim);
-    }
-
-    .card-top-hud span.rec {
-      color: #EF4444;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-weight: 700;
-    }
-
-    .card-top-hud span.rec::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #EF4444;
-    }
-
-    .view-card img {
+    .shot-card img {
       width: 100%;
-      height: 460px;
+      height: 440px;
       object-fit: cover;
       display: block;
     }
 
-    .card-bottom-info {
+    .shot-meta {
       padding: 12px 14px;
-      background: var(--surface);
+      background: var(--card-inner);
       border-top: 1px solid var(--border);
     }
 
-    .card-title {
-      font-family: var(--font-display);
-      font-size: 14.5px;
-      font-weight: 800;
-      color: var(--white);
+    .shot-meta-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--pearl);
       margin-bottom: 2px;
     }
 
-    .card-meta {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
+    .shot-meta-desc {
+      font-size: 11.5px;
+      color: var(--slate-soft);
     }
 
-    /* ─── Laboratory Micro-Modules ─────────────────────────────────────── */
-    .lab-section {
-      padding: 30px 20px;
+    /* ─── The 5 Pillars (Soft Cards) ──────────────────────────────────── --> */
+    .features-container {
+      padding: 36px 20px;
       max-width: 800px;
       margin: 0 auto;
     }
 
-    .module-header {
-      margin-bottom: 24px;
-      text-align: left;
+    .headline-block {
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    .module-tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--laser);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 4px;
-      display: block;
-    }
-
-    .module-title {
+    .headline-h2 {
       font-family: var(--font-display);
-      font-size: clamp(24px, 5.5vw, 34px);
+      font-size: clamp(26px, 6vw, 36px);
       font-weight: 800;
       letter-spacing: -0.03em;
-    }
-
-    /* Caloric Laboratory Mixer */
-    .console-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 20px;
-      position: relative;
-    }
-
-    .console-controls {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .control-row {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .control-label-bar {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .control-label-bar span.val {
-      color: var(--laser);
-      font-weight: 700;
-    }
-
-    .slider-fader {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 8px;
-      border-radius: 4px;
-      background: var(--surface-3);
-      outline: none;
-    }
-
-    .slider-fader::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
-      background: var(--laser);
-      cursor: pointer;
-      box-shadow: 0 0 10px var(--laser-glow);
-    }
-
-    .console-select {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 8px;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      color: var(--white);
-      font-family: var(--font-mono);
-      font-size: 13.5px;
-      outline: none;
-    }
-
-    .console-screen {
-      background: #050608;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .screen-row {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .screen-row-labels {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 12px;
-    }
-
-    .meter-rail {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .meter-fill {
-      height: 100%;
-      border-radius: 3px;
-      transition: width 0.25s ease;
-    }
-
-    .formula-badge {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--dim);
-      text-align: center;
-      padding-top: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    /* ─── Synthesizer & Oscilloscope ───────────────────────────────────── */
-    .synth-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px 20px;
-      margin-top: 20px;
-    }
-
-    .canvas-wrap {
-      background: #040507;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    canvas#oscCanvas {
-      width: 100%;
-      height: 100%;
-    }
-
-    .synth-buttons-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .synth-key {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 10px;
-      text-align: center;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      transition: all 0.15s;
-    }
-
-    .synth-key:active {
-      transform: scale(0.97);
-    }
-
-    .synth-key.on {
-      background: rgba(212, 255, 0, 0.12);
-      border-color: var(--laser);
-    }
-
-    .synth-key.on .key-name {
-      color: var(--laser);
-    }
-
-    .key-name {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .key-hz {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      color: var(--dim);
-    }
-
-    /* ─── System Blueprints ────────────────────────────────────────────── */
-    .blueprints-container {
-      padding: 30px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .blueprint-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px 18px;
-      margin-bottom: 14px;
-      position: relative;
-    }
-
-    .blueprint-num {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--laser);
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .blueprint-h3 {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .blueprint-p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* ─── Anti-Subscription Comparison ─────────────────────────────────── */
-    .comparison-wrap {
-      padding: 30px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .telemetry-table {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .table-header {
-      padding: 14px 18px;
-      background: var(--surface-2);
-      border-bottom: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--dim);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .table-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--border);
-      font-size: 13.5px;
-    }
-
-    .table-row:last-child {
-      border-bottom: none;
-    }
-
-    .row-param {
-      color: var(--silver);
-    }
-
-    .row-thirty {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      color: var(--laser);
-    }
-
-    /* ─── Download Terminal ────────────────────────────────────────────── */
-    .download-terminal-wrap {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .terminal-box {
-      background: #000;
-      border: 1.5px solid var(--laser);
-      border-radius: 16px;
-      padding: 32px 20px;
-      text-align: center;
-      box-shadow: 0 0 35px var(--laser-glow);
-      position: relative;
-    }
-
-    .terminal-title {
-      font-family: var(--font-display);
-      font-size: clamp(22px, 5vw, 30px);
-      font-weight: 800;
       margin-bottom: 10px;
     }
 
-    .terminal-sub {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 24px;
-      line-height: 1.5;
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 20px;
+      margin-bottom: 16px;
     }
 
-    /* ─── Sticky Mobile Floating Bar ───────────────────────────────────── */
-    .bottom-bar {
+    .pillar-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .pillar-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .pillar-h3 {
+      font-family: var(--font-display);
+      font-size: 17.5px;
+      font-weight: 700;
+    }
+
+    .pillar-p {
+      font-size: 14px;
+      color: var(--slate-soft);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .pillar-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pillar-checklist li {
+      font-size: 13px;
+      color: var(--cashmere);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .pillar-checklist li svg {
+      color: var(--sage-soft);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* ─── Interactive Soft Macro Calculator ───────────────────────────── --> */
+    .calculator-container {
+      padding: 24px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .calc-card-box {
+      background: var(--card);
+      border: 1px solid var(--border-soft);
+      border-radius: 22px;
+      padding: 26px 20px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+
+    .calc-row {
+      margin-bottom: 18px;
+    }
+
+    .calc-label-bar {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-soft);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .touch-input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--card-inner);
+      border: 1px solid var(--border);
+      color: #FFF;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .touch-input:focus {
+      border-color: var(--border-soft);
+    }
+
+    .touch-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 7px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.08);
+      outline: none;
+    }
+
+    .touch-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .macro-feedback-card {
+      background: var(--card-inner);
+      border-radius: 14px;
+      padding: 18px 14px;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .bar-line-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .bar-track-bg {
+      height: 7px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-track-val {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    /* ─── Ambient Focus Soundboard ────────────────────────────────────── --> */
+    .audio-container {
+      padding: 20px 20px 36px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .sound-tiles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .sound-action-tile {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .sound-action-tile:active {
+      transform: scale(0.96);
+    }
+
+    .sound-action-tile.active-sound {
+      border-color: var(--border-soft);
+      background: var(--card-inner);
+    }
+
+    .sound-tile-emoji {
+      font-size: 22px;
+    }
+
+    .sound-tile-head {
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .sound-tile-desc {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* ─── Comparison Matrix ─────────────────────────────────────────────── --> */
+    .comparison-container {
+      padding: 24px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .matrix-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .matrix-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 13px;
+    }
+
+    .matrix-item:last-child {
+      border-bottom: none;
+    }
+
+    .matrix-win {
+      font-weight: 700;
+      color: var(--pearl);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ─── Download Hub ──────────────────────────────────────────────────── --> */
+    .download-section {
+      padding: 36px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .download-card-banner {
+      background: var(--card);
+      border: 1px solid var(--border-soft);
+      border-radius: 22px;
+      padding: 34px 20px;
+      text-align: center;
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────────────── --> */
+    .faq-container {
+      padding: 24px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-card-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .faq-card-row summary {
+      padding: 16px 18px;
+      font-weight: 700;
+      font-size: 14.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+    }
+
+    .faq-card-row summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-content {
+      padding: 0 18px 16px;
+      font-size: 13.5px;
+      color: var(--slate-soft);
+      line-height: 1.6;
+    }
+
+    /* ─── Mobile Sticky Bottom Floating Install Bar ─────────────────────── --> */
+    .floating-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       z-index: 999;
-      background: rgba(5, 6, 8, 0.95);
+      background: rgba(12, 14, 20, 0.94);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-top: 1px solid var(--border);
       padding: 12px 18px;
     }
 
-    .bottom-bar-inner {
+    .floating-bar-inner {
       max-width: 600px;
       margin: 0 auto;
     }
 
-    .btn-bottom-install {
+    .floating-install-btn {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       width: 100%;
       padding: 15px 20px;
-      border-radius: 10px;
-      background: var(--laser);
-      color: #000;
-      font-family: var(--font-mono);
-      font-weight: 900;
+      border-radius: 12px;
+      background: #FFFFFF;
+      color: #0F172A;
+      font-weight: 800;
       font-size: 14.5px;
-      letter-spacing: -0.01em;
-      box-shadow: 0 4px 18px var(--laser-glow);
+      box-shadow: 0 2px 14px rgba(255, 255, 255, 0.1);
     }
 
-    .btn-bottom-install:active {
+    .floating-install-btn:active {
       transform: scale(0.98);
-      background: #E8FF59;
+      background: #E2E8F0;
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── Telemetry Top Bar ────────────────────────────────────────────── -->
-  <header class="telemetry-bar">
-    <div class="telemetry-inner">
-      <div class="system-badge">
-        <div class="status-dot"></div>
-        <span class="system-title">THIRTY</span>
-        <span class="system-spec-tag">v2.0-PRO</span>
+  <!-- ─── Top Floating Navigation ───────────────────────────────────────── -->
+  <header class="top-nav">
+    <div class="nav-inner">
+      <div class="brand-group">
+        <div class="brand-mark">30</div>
+        <div class="brand-title">Thirty</div>
+        <span class="brand-pill">30-ECO</span>
       </div>
 
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-quick-download">
-        GET APK · 9.8MB
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-nav-get">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Get APK
       </a>
     </div>
   </header>
 
-  <!-- ─── Hero Section ─────────────────────────────────────────────────── -->
-  <section class="hero-wrap">
-    <div class="spec-header-pill">
-      <span>SYS_ARCH:</span>
-      <span class="highlight">LOCAL_FIRST_OFFLINE</span>
-      <span>·</span>
-      <span>API:</span>
-      <span class="highlight">ANDROID_14+</span>
+  <!-- ─── Hero Section ──────────────────────────────────────────────────── -->
+  <section class="hero-container">
+    <div class="hero-badge">
+      <div class="soft-dot"></div>
+      Thirty 2.0.0 PRO · Official Release
     </div>
 
     <h1 class="hero-h1">
-      The Anti-Subscription
-      <span class="editorial-italic">Life Operating Engine.</span>
+      A calm operating system
+      <span class="serif-italic">for your entire day.</span>
     </h1>
 
-    <p class="hero-subtext">
-      Engineered for those who track everything and tolerate zero friction. Unites precision tasks, atomic habits, scientific nutrition, hardware focus timers, and private visual body archives.
+    <p class="hero-p">
+      Replace fragmented trackers with a quiet, unified Android engine. Tasks, habits, nutrition, focus timers, and body transformation — entirely offline and private.
     </p>
 
-    <div class="hero-action-box">
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-heavy-install">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        DOWNLOAD THIRTY (9.8 MB)
-      </a>
-    </div>
+    <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-hero-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Thirty APK (9.8 MB)
+    </a>
 
-    <!-- Hardware Specs Grid -->
-    <div class="specs-strip">
-      <div class="spec-item">
-        <span class="spec-label">Latency</span>
-        <span class="spec-val">0.00 ms</span>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label">Telemetry</span>
-        <span class="spec-val">0 BYTES</span>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label">Monthly Fee</span>
-        <span class="spec-val" style="color:var(--laser);">$0.00</span>
-      </div>
+    <div class="specs-row">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg> 100% Offline Database</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg> Zero Telemetry & Ads</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free Forever</span>
     </div>
   </section>
 
-  <!-- ─── Viewfinder Showcase ──────────────────────────────────────────── -->
-  <section class="viewfinder-section">
-    <div class="viewfinder-bar">
-      <span class="viewfinder-id">[ 01 // INTERFACE_VIEWFINDER ]</span>
-      <span class="viewfinder-scroll-hint">SWIPE REEL 👉</span>
+  <!-- ─── Swipeable Mobile App Screenshots Carousel ─────────────────────── -->
+  <section class="screenshots-section">
+    <div class="section-bar-header">
+      <span class="section-kicker">Visual Tour</span>
+      <span class="swipe-label">Swipe to explore 👉</span>
     </div>
 
-    <div class="viewfinder-reel">
+    <div class="screenshot-scroller">
       <!-- 1. Today Agenda -->
-      <div class="view-card">
-        <div class="card-top-hud">
-          <span class="rec">LIVE</span>
-          <span>MOD_01 // TODAY</span>
-          <span>100% OFFLINE</span>
-        </div>
-        <img src="screenshots/today-agenda-dark.jpeg" alt="Today Horizon" loading="lazy" />
-        <div class="card-bottom-info">
-          <div class="card-title">Horizon Daily Timeline</div>
-          <div class="card-meta">Unified task, habit, and macro stream</div>
+      <div class="shot-card">
+        <img src="screenshots/today-agenda-dark.jpeg" alt="Today Agenda View" loading="lazy" />
+        <div class="shot-meta">
+          <div class="shot-meta-title">Today Horizon</div>
+          <div class="shot-meta-desc">Unified agenda with smooth gesture physics</div>
         </div>
       </div>
 
-      <!-- 2. Tasks -->
-      <div class="view-card">
-        <div class="card-top-hud">
-          <span class="rec">LIVE</span>
-          <span>MOD_02 // TASKS</span>
-          <span>ATOMIC RECURRING</span>
-        </div>
-        <img src="screenshots/tasks-overview-dark.jpeg" alt="Tasks Inbox" loading="lazy" />
-        <div class="card-bottom-info">
-          <div class="card-title">Precision Task Engine</div>
-          <div class="card-meta">Historical fidelity & nested checklists</div>
+      <!-- 2. Tasks Inbox -->
+      <div class="shot-card">
+        <img src="screenshots/tasks-overview-dark.jpeg" alt="Tasks Overview" loading="lazy" />
+        <div class="shot-meta">
+          <div class="shot-meta-title">Precision Tasks</div>
+          <div class="shot-meta-desc">Atomic recurring items & nested subtasks</div>
         </div>
       </div>
 
-      <!-- 3. Habits -->
-      <div class="view-card">
-        <div class="card-top-hud">
-          <span class="rec">LIVE</span>
-          <span>MOD_03 // HABITS</span>
-          <span>STREAK MULTIPLIER</span>
-        </div>
+      <!-- 3. Habits Tracker -->
+      <div class="shot-card">
         <img src="screenshots/habits-overview-dark.jpeg" alt="Habits Tracker" loading="lazy" />
-        <div class="card-bottom-info">
-          <div class="card-title">Atomic Habit Loops</div>
-          <div class="card-meta">Rolling 7-day consistency matrices</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">Atomic Habits</div>
+          <div class="shot-meta-desc">Rolling consistency & streak tracking</div>
         </div>
       </div>
 
-      <!-- 4. Macros -->
-      <div class="view-card">
-        <div class="card-top-hud">
-          <span class="rec">LIVE</span>
-          <span>MOD_04 // MACROS</span>
-          <span>EQUILIBRIUM SOLVER</span>
-        </div>
-        <img src="screenshots/calories-overview-dark.jpeg" alt="Calorie Diary" loading="lazy" />
-        <div class="card-bottom-info">
-          <div class="card-title">Scientific Calorie Diary</div>
-          <div class="card-meta">Dynamic P×4 + C×4 + F×9 recalculation</div>
+      <!-- 4. Macro & Calorie Diary -->
+      <div class="shot-card">
+        <img src="screenshots/calories-overview-dark.jpeg" alt="Calories Overview" loading="lazy" />
+        <div class="shot-meta">
+          <div class="shot-meta-title">Calorie & Macro Diary</div>
+          <div class="shot-meta-desc">Dynamic P×4 + C×4 + F×9 formula</div>
         </div>
       </div>
 
-      <!-- 5. Timers -->
-      <div class="view-card">
-        <div class="card-top-hud">
-          <span class="rec">LIVE</span>
-          <span>MOD_05 // TIMERS</span>
-          <span>FOREGROUND_SERVICE</span>
-        </div>
-        <img src="screenshots/timer-pomodoro-active-dark.jpeg" alt="Focus Engine" loading="lazy" />
-        <div class="card-bottom-info">
-          <div class="card-title">Foreground Focus Engine</div>
-          <div class="card-meta">Zero drift Android 14 notification controls</div>
+      <!-- 5. Food Multiplier Modal -->
+      <div class="shot-card">
+        <img src="screenshots/calories-food-multiplier-modal.jpeg" alt="Food Multiplier" loading="lazy" />
+        <div class="shot-meta">
+          <div class="shot-meta-title">500+ Verified Foods</div>
+          <div class="shot-meta-desc">Portion multipliers (0.5x, 1x, 1.5x, 2x)</div>
         </div>
       </div>
 
-      <!-- 6. Photos -->
-      <div class="view-card">
-        <div class="card-top-hud">
-          <span class="rec">LIVE</span>
-          <span>MOD_06 // BODY</span>
-          <span>INDEXED_DB_VAULT</span>
-        </div>
-        <img src="screenshots/photos-gallery-timeline-dark.jpeg" alt="Progress Photo Vault" loading="lazy" />
-        <div class="card-bottom-info">
-          <div class="card-title">Private Body Journal</div>
-          <div class="card-meta">Sandboxed client-side compressed archives</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── Caloric Laboratory Console ──────────────────────────────────── -->
-  <section class="lab-section">
-    <div class="module-header">
-      <span class="module-tag">[ 02 // NUTRITIONAL_CALCULUS ]</span>
-      <h2 class="module-title">Mathematical Equilibrium Console</h2>
-    </div>
-
-    <div class="console-box">
-      <div class="console-controls">
-        <div class="control-row">
-          <div class="control-label-bar">
-            <span>TARGET_ENERGY:</span>
-            <span class="val" id="calOutput">2500 kcal</span>
-          </div>
-          <input type="range" id="calRange" min="1200" max="4500" step="50" value="2500" class="slider-fader" oninput="runCaloricMath()" />
-        </div>
-
-        <div class="control-row">
-          <div class="control-label-bar">
-            <span>PROTEIN_TARGET:</span>
-            <span class="val" id="protOutput">160g (640 kcal)</span>
-          </div>
-          <input type="range" id="protRange" min="60" max="280" step="5" value="160" class="slider-fader" oninput="runCaloricMath()" />
-        </div>
-
-        <div class="control-row">
-          <select id="presetSelector" class="console-select" onchange="runPresetGoal()">
-            <option value="0">MODE // MAINTENANCE (2,500 kcal)</option>
-            <option value="-250">MODE // LEAN CUT (-250 kcal)</option>
-            <option value="-500">MODE // AGGRESSIVE DEFICIT (-500 kcal)</option>
-            <option value="250" selected>MODE // LEAN BULK (+250 kcal)</option>
-            <option value="500">MODE // HYPERTROPHY BULK (+500 kcal)</option>
-          </select>
+      <!-- 6. Focus Pomodoro -->
+      <div class="shot-card">
+        <img src="screenshots/timer-pomodoro-active-dark.jpeg" alt="Focus Pomodoro" loading="lazy" />
+        <div class="shot-meta">
+          <div class="shot-meta-title">Foreground Timers</div>
+          <div class="shot-meta-desc">Android 14+ notification service</div>
         </div>
       </div>
 
-      <div class="console-screen">
-        <div class="screen-row">
-          <div class="screen-row-labels">
-            <span style="color:var(--laser);">[P] PROTEIN (4 kcal/g)</span>
-            <span id="screenProt" style="font-family:var(--font-mono);">160g · 25%</span>
-          </div>
-          <div class="meter-rail">
-            <div class="meter-fill" id="protBar" style="background:var(--laser); width:25%;"></div>
-          </div>
+      <!-- 7. Progress Photo Gallery -->
+      <div class="shot-card">
+        <img src="screenshots/photos-gallery-timeline-dark.jpeg" alt="Photo Gallery" loading="lazy" />
+        <div class="shot-meta">
+          <div class="shot-meta-title">Private Photo Journal</div>
+          <div class="shot-meta-desc">100% on-device transformation timeline</div>
         </div>
+      </div>
 
-        <div class="screen-row">
-          <div class="screen-row-labels">
-            <span style="color:var(--ice);">[C] CARBS (4 kcal/g)</span>
-            <span id="screenCarb" style="font-family:var(--font-mono);">279g · 45%</span>
-          </div>
-          <div class="meter-rail">
-            <div class="meter-fill" id="carbBar" style="background:var(--ice); width:45%;"></div>
-          </div>
-        </div>
-
-        <div class="screen-row">
-          <div class="screen-row-labels">
-            <span style="color:#C084FC;">[F] FATS (9 kcal/g)</span>
-            <span id="screenFat" style="font-family:var(--font-mono);">83g · 30%</span>
-          </div>
-          <div class="meter-rail">
-            <div class="meter-fill" id="fatBar" style="background:#C084FC; width:30%;"></div>
-          </div>
-        </div>
-
-        <div class="formula-badge">
-          ∑ = (P × 4) + (C × 4) + (F × 9) ≡ 2,500 KCAL EQUILIBRIUM
+      <!-- 8. Android Widgets -->
+      <div class="shot-card">
+        <img src="screenshots/android-widget-tasks-habits.jpeg" alt="Android Widgets" loading="lazy" />
+        <div class="shot-meta">
+          <div class="shot-meta-title">Home Screen Widgets</div>
+          <div class="shot-meta-desc">Live SharedPreferences RemoteViews</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Focus Audio Synthesizer ──────────────────────────────────────── -->
-  <section class="lab-section">
-    <div class="module-header">
-      <span class="module-tag">[ 03 // ACOUSTIC_ENGINE ]</span>
-      <h2 class="module-title">Oscilloscope & Focus Synthesizer</h2>
+  <!-- ─── The 5 Pillars ─────────────────────────────────────────────────── -->
+  <section class="features-container">
+    <div class="headline-block">
+      <span class="section-kicker">Core System</span>
+      <h2 class="headline-h2">Quiet precision.</h2>
     </div>
 
-    <div class="synth-box">
-      <div class="canvas-wrap">
-        <canvas id="oscCanvas"></canvas>
-      </div>
-
-      <div class="synth-buttons-grid">
-        <div class="synth-key" onclick="triggerSynth('rain', this)">
-          <div class="key-name">BROWN RAIN</div>
-          <div class="key-hz">1/f² NOISE DENSITY</div>
-        </div>
-
-        <div class="synth-key" onclick="triggerSynth('alpha', this)">
-          <div class="key-name">40Hz ALPHA</div>
-          <div class="key-hz">BINAURAL SINE</div>
-        </div>
-
-        <div class="synth-key" onclick="triggerSynth('forest', this)">
-          <div class="key-name">FOREST WATER</div>
-          <div class="key-hz">ORGANIC STREAM</div>
-        </div>
-
-        <div class="synth-key" onclick="triggerSynth('space', this)">
-          <div class="key-name">DEEP SPACE</div>
-          <div class="key-hz">WHITE MASK</div>
+    <!-- 1. Horizon Today -->
+    <div class="pillar-card">
+      <div class="pillar-top">
+        <div class="pillar-badge">⚡</div>
+        <div>
+          <h3 class="pillar-h3">Today Horizon</h3>
+          <span style="font-size:12px; color:var(--slate-soft);">Complete daily clarity</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ─── System Blueprints ────────────────────────────────────────────── -->
-  <section class="blueprints-container">
-    <div class="module-header">
-      <span class="module-tag">[ 04 // SYSTEM_ARCHITECTURE ]</span>
-      <h2 class="module-title">Architectural Principles</h2>
-    </div>
-
-    <div class="blueprint-card">
-      <span class="blueprint-num">01 // RECURRING_FIDELITY</span>
-      <h3 class="blueprint-h3">Atomic Historical Record</h3>
-      <p class="blueprint-p">
-        Tasks track individual dates in <code>completedDates[]</code>. Checking off a task today maintains exact past streaks without mutating historical records.
+      <p class="pillar-p">
+        Aggregates tasks, recurring items, habit routines, water logging, and progress photos into one quiet daily timeline.
       </p>
+      <ul class="pillar-checklist">
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Smooth drag-handle reordering bound to left color strip</span>
+        </li>
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Bi-directional completion with calorie and camera logs</span>
+        </li>
+      </ul>
     </div>
 
-    <div class="blueprint-card">
-      <span class="blueprint-num">02 // FOREGROUND_PERSISTENCE</span>
-      <h3 class="blueprint-h3">Zero-Drift Android 14+ Service</h3>
-      <p class="blueprint-p">
-        Stopwatches and Pomodoro cycles run via a dedicated native Foreground Service. Never throttled or terminated by battery optimizers.
+    <!-- 2. Scientific Macros -->
+    <div class="pillar-card">
+      <div class="pillar-top">
+        <div class="pillar-badge">🥗</div>
+        <div>
+          <h3 class="pillar-h3">Macro Balancing Engine</h3>
+          <span style="font-size:12px; color:var(--slate-soft);">Exact nutritional math</span>
+        </div>
+      </div>
+      <p class="pillar-p">
+        Enforces <code>(Protein × 4) + (Carbs × 4) + (Fats × 9) = Calories</code>. Adjusting protein dynamically solves carbs and fats to preserve your daily goal.
       </p>
+      <ul class="pillar-checklist">
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>500+ Indian staples and global nutritional items</span>
+        </li>
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Goal presets: Lean Bulk, Lean Cut, and Maintenance</span>
+        </li>
+      </ul>
     </div>
 
-    <div class="blueprint-card">
-      <span class="blueprint-num">03 // VAULT_SANDBOXING</span>
-      <h3 class="blueprint-h3">Local IndexedDB Storage</h3>
-      <p class="blueprint-p">
-        Body transformation photos are compressed client-side via hardware canvas APIs. Zero external network requests.
+    <!-- 3. Focus Timers -->
+    <div class="pillar-card">
+      <div class="pillar-top">
+        <div class="pillar-badge">⏱️</div>
+        <div>
+          <h3 class="pillar-h3">Foreground Focus Timers</h3>
+          <span style="font-size:12px; color:var(--slate-soft);">Zero drift · Android 14+ Ready</span>
+        </div>
+      </div>
+      <p class="pillar-p">
+        Stopwatch, Countdowns, and Pomodoro sessions stay live in your notification shade with zero background termination.
+      </p>
+      <ul class="pillar-checklist">
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Notification action buttons (Pause, Resume, Stop)</span>
+        </li>
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Gentle focus audio: Rainstorm, 40Hz Alpha, Forest stream</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 4. Transformation Photos -->
+    <div class="pillar-card">
+      <div class="pillar-top">
+        <div class="pillar-badge">📸</div>
+        <div>
+          <h3 class="pillar-h3">Private Body Journal</h3>
+          <span style="font-size:12px; color:var(--slate-soft);">100% On-Device IndexedDB</span>
+        </div>
+      </div>
+      <p class="pillar-p">
+        Client-side canvas compression saves your transformation milestones securely to your device with zero cloud tracking.
       </p>
     </div>
   </section>
 
-  <!-- ─── Anti-Subscription Telemetry Table ────────────────────────────── -->
-  <section class="comparison-wrap">
-    <div class="module-header">
-      <span class="module-tag">[ 05 // TELEMETRY_AUDIT ]</span>
-      <h2 class="module-title">Thirty vs. Fragmented Apps</h2>
+  <!-- ─── Interactive Soft Macro Calculator ───────────────────────────── -->
+  <section class="calculator-container">
+    <div class="headline-block">
+      <span class="section-kicker">Interactive Demo</span>
+      <h2 class="headline-h2">Macro Balancing Calculator</h2>
     </div>
 
-    <div class="telemetry-table">
-      <div class="table-header">SPECIFICATION AUDIT</div>
-      <div class="table-row">
-        <span class="row-param">Cloud Tracking SDKs</span>
-        <span class="row-thirty">0 (NONE)</span>
+    <div class="calc-card-box">
+      <div class="calc-row">
+        <label class="calc-label-bar">Target Calories (kcal)</label>
+        <input type="number" id="calInputVal" value="2500" min="1000" max="6000" step="50" class="touch-input" oninput="solveNutrition()" />
       </div>
-      <div class="table-row">
-        <span class="row-param">Recurring Subscriptions</span>
-        <span class="row-thirty">$0.00 / LIFETIME</span>
+
+      <div class="calc-row">
+        <div class="calc-label-bar">
+          <span>Protein Target</span>
+          <span id="proteinGramsTag" style="color:var(--pearl); font-family:var(--font-mono);">150g</span>
+        </div>
+        <input type="range" id="proteinInputSlider" min="50" max="300" value="150" class="touch-slider" oninput="solveNutrition()" />
       </div>
-      <div class="table-row">
-        <span class="row-param">Offline Autonomy</span>
-        <span class="row-thirty">100% OPERATIONAL</span>
+
+      <div class="calc-row">
+        <label class="calc-label-bar">Goal Preset</label>
+        <select id="goalSelectBox" class="touch-input" style="font-size:13.5px;" onchange="handleGoalChange()">
+          <option value="0">Maintenance (2,500 kcal)</option>
+          <option value="-250">Lean Weight Loss (-250 kcal)</option>
+          <option value="-500">Aggressive Cut (-500 kcal)</option>
+          <option value="250" selected>Lean Bulk (+250 kcal)</option>
+          <option value="500">Aggressive Bulk (+500 kcal)</option>
+        </select>
       </div>
-      <div class="table-row">
-        <span class="row-param">Binary Payload</span>
-        <span class="row-thirty">9.8 MB STANDALONE</span>
+
+      <div class="macro-feedback-card">
+        <div>
+          <div class="bar-line-top">
+            <span style="color:var(--pearl);">Protein (4 kcal/g)</span>
+            <span id="proteinStats" style="font-family:var(--font-mono); color:var(--slate-soft);">150g · 600 kcal (24%)</span>
+          </div>
+          <div class="bar-track-bg">
+            <div class="bar-track-val" id="proteinTrack" style="background:#F8FAFC; width:24%;"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="bar-line-top">
+            <span style="color:var(--sky-soft);">Carbohydrates (4 kcal/g)</span>
+            <span id="carbsStats" style="font-family:var(--font-mono); color:var(--slate-soft);">285g · 1,140 kcal (46%)</span>
+          </div>
+          <div class="bar-track-bg">
+            <div class="bar-track-val" id="carbsTrack" style="background:var(--sky-soft); width:46%;"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="bar-line-top">
+            <span style="color:var(--lavender-soft);">Fats (9 kcal/g)</span>
+            <span id="fatsStats" style="font-family:var(--font-mono); color:var(--slate-soft);">84g · 760 kcal (30%)</span>
+          </div>
+          <div class="bar-track-bg">
+            <div class="bar-track-val" id="fatsTrack" style="background:var(--lavender-soft); width:30%;"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Download Terminal ────────────────────────────────────────────── -->
-  <section class="download-terminal-wrap">
-    <div class="terminal-box">
-      <span class="module-tag" style="margin-bottom:8px;">[ FINAL_PAYLOAD ]</span>
-      <h2 class="terminal-title">Deploy Thirty to Android.</h2>
-      <p class="terminal-sub">
-        Direct standalone APK installation. Zero sign-up friction.
+  <!-- ─── Ambient Focus Soundboard ────────────────────────────────────── -->
+  <section class="audio-container">
+    <div class="headline-block">
+      <span class="section-kicker">Focus Soundscapes</span>
+      <h2 class="headline-h2">Gentle Focus Audio</h2>
+    </div>
+
+    <div class="sound-tiles-grid">
+      <div class="sound-action-tile" onclick="handleAudio('rain', this)">
+        <div class="sound-tile-emoji">🌧️</div>
+        <div class="sound-tile-head">Rainstorm</div>
+        <div class="sound-tile-desc">Brown noise</div>
+      </div>
+
+      <div class="sound-action-tile" onclick="handleAudio('alpha', this)">
+        <div class="sound-tile-emoji">⚡</div>
+        <div class="sound-tile-head">40Hz Alpha</div>
+        <div class="sound-tile-desc">Binaural wave</div>
+      </div>
+
+      <div class="sound-action-tile" onclick="handleAudio('forest', this)">
+        <div class="sound-tile-emoji">🌲</div>
+        <div class="sound-tile-head">Deep Forest</div>
+        <div class="sound-tile-desc">Stream audio</div>
+      </div>
+
+      <div class="sound-action-tile" onclick="handleAudio('space', this)">
+        <div class="sound-tile-emoji">🌌</div>
+        <div class="sound-tile-head">Deep Space</div>
+        <div class="sound-tile-desc">Soft ambient</div>
+      </div>
+    </div>
+    <div id="audioLiveStatus" style="text-align:center; font-size:12.5px; color:var(--text-dim); margin-top:14px;">
+      Tap any button to preview live ambient sound.
+    </div>
+  </section>
+
+  <!-- ─── Comparison Matrix ─────────────────────────────────────────────── -->
+  <section class="comparison-container">
+    <div class="headline-block">
+      <span class="section-kicker">Why Thirty?</span>
+      <h2 class="headline-h2">One unified app.</h2>
+    </div>
+
+    <div class="matrix-box">
+      <div class="matrix-item">
+        <span style="color:var(--slate-soft);">Monthly Subscriptions</span>
+        <span class="matrix-win">$0 (Free Forever)</span>
+      </div>
+      <div class="matrix-item">
+        <span style="color:var(--slate-soft);">Data Privacy</span>
+        <span class="matrix-win">100% On-Device</span>
+      </div>
+      <div class="matrix-item">
+        <span style="color:var(--slate-soft);">Offline Functionality</span>
+        <span class="matrix-win">Full Offline Mode</span>
+      </div>
+      <div class="matrix-item">
+        <span style="color:var(--slate-soft);">App Size</span>
+        <span class="matrix-win">9.8 MB Native Binary</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Download Hub ──────────────────────────────────────────────────── -->
+  <section class="download-section">
+    <div class="download-card-banner">
+      <h2 class="headline-h2" style="margin-bottom:10px;">Get Thirty on Android</h2>
+      <p style="font-size:14px; color:var(--slate-soft); margin-bottom:22px;">
+        Direct standalone APK installation. No subscription barriers.
       </p>
 
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-heavy-install" style="margin:0 auto;">
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-hero-primary" style="max-width:320px; font-size:15.5px;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        INSTALL THIRTY (v2.0.0)
+        Download APK (v2.0.0)
       </a>
+
+      <div style="font-size:12px; color:var(--text-dim); margin-top:14px;">
+        Compatible with Android 8.0 through Android 14+
+      </div>
     </div>
+  </section>
+
+  <!-- ─── FAQ ───────────────────────────────────────────────────────────── -->
+  <section class="faq-container">
+    <div class="headline-block">
+      <span class="section-kicker">Help & Info</span>
+      <h2 class="headline-h2">FAQ</h2>
+    </div>
+
+    <details class="faq-card-row">
+      <summary>
+        How do I install the APK?
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="faq-content">
+        Tap the Download button. When the file finishes downloading, tap the notification and choose Install (allow "Install Unknown Apps" if prompted).
+      </div>
+    </details>
+
+    <details class="faq-card-row">
+      <summary>
+        Is my data really private?
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="faq-content">
+        Yes. All tasks, routines, food logs, and transformation photos are stored exclusively in your device's private sandboxed IndexedDB storage.
+      </div>
+    </details>
   </section>
 
   <!-- ─── Mobile Sticky Bottom Floating Install Bar ─────────────────────── -->
-  <div class="bottom-bar">
-    <div class="bottom-bar-inner">
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-bottom-install">
+  <div class="floating-bar">
+    <div class="floating-bar-inner">
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="floating-install-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        INSTALL THIRTY APK [9.8 MB]
+        Download Thirty APK (9.8 MB)
       </a>
     </div>
   </div>
 
   <script>
-    // ─── Mathematical Laboratory Calculations ───────────────────────────
-    function runCaloricMath() {
-      const cal = parseInt(document.getElementById('calRange').value) || 2500;
-      const protG = parseInt(document.getElementById('protRange').value) || 160;
+    function solveNutrition() {
+      const cal = Math.max(1000, parseInt(document.getElementById('calInputVal').value) || 2500);
+      const proteinG = parseInt(document.getElementById('proteinInputSlider').value) || 150;
+      document.getElementById('proteinGramsTag').innerText = proteinG + 'g';
 
-      document.getElementById('calOutput').innerText = cal + ' kcal';
-      document.getElementById('protOutput').innerText = `${protG}g (${protG * 4} kcal)`;
+      const proteinCal = proteinG * 4;
+      const remainingCal = Math.max(0, cal - proteinCal);
 
-      const protCal = protG * 4;
-      const remCal = Math.max(0, cal - protCal);
+      const carbsCal = Math.round(remainingCal * 0.60);
+      const fatsCal = Math.round(remainingCal * 0.40);
 
-      const carbCal = Math.round(remCal * 0.60);
-      const fatCal = Math.round(remCal * 0.40);
+      const carbsG = Math.round(carbsCal / 4);
+      const fatsG = Math.round(fatsCal / 9);
 
-      const carbG = Math.round(carbCal / 4);
-      const fatG = Math.round(fatCal / 9);
+      const pPct = Math.round((proteinCal / cal) * 100);
+      const cPct = Math.round((carbsCal / cal) * 100);
+      const fPct = Math.round((fatsCal / cal) * 100);
 
-      const pPct = Math.round((protCal / cal) * 100);
-      const cPct = Math.round((carbCal / cal) * 100);
-      const fPct = Math.round((fatCal / cal) * 100);
+      document.getElementById('proteinStats').innerText = `${proteinG}g · ${proteinCal} kcal (${pPct}%)`;
+      document.getElementById('proteinTrack').style.width = pPct + '%';
 
-      document.getElementById('screenProt').innerText = `${protG}g · ${pPct}%`;
-      document.getElementById('protBar').style.width = pPct + '%';
+      document.getElementById('carbsStats').innerText = `${carbsG}g · ${carbsCal} kcal (${cPct}%)`;
+      document.getElementById('carbsTrack').style.width = cPct + '%';
 
-      document.getElementById('screenCarb').innerText = `${carbG}g · ${cPct}%`;
-      document.getElementById('carbBar').style.width = cPct + '%';
-
-      document.getElementById('screenFat').innerText = `${fatG}g · ${fPct}%`;
-      document.getElementById('fatBar').style.width = fPct + '%';
+      document.getElementById('fatsStats').innerText = `${fatG = fatsG}g · ${fatsCal} kcal (${fPct}%)`;
+      document.getElementById('fatsTrack').style.width = fPct + '%';
     }
 
-    function runPresetGoal() {
-      const offset = parseInt(document.getElementById('presetSelector').value) || 0;
-      const target = 2500 + offset;
-      document.getElementById('calRange').value = target;
-      runCaloricMath();
+    function handleGoalChange() {
+      const offset = parseInt(document.getElementById('goalSelectBox').value) || 0;
+      const base = 2500;
+      document.getElementById('calInputVal').value = base + offset;
+      solveNutrition();
     }
 
-    // ─── Audio Synthesizer & Real Oscilloscope Animation ─────────────────
-    let audioContext = null;
+    // Ambient Audio Synthesizer
+    let audioCtx = null;
     let oscNode = null;
     let gainNode = null;
-    let noiseSource = null;
-    let isSynthPlaying = false;
-    let animId = null;
+    let noiseSrc = null;
 
-    const canvas = document.getElementById('oscCanvas');
-    const ctx = canvas.getContext('2d');
-
-    function drawWave() {
-      canvas.width = canvas.parentElement.clientWidth;
-      canvas.height = canvas.parentElement.clientHeight;
-
-      ctx.fillStyle = '#040507';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = isSynthPlaying ? '#D4FF00' : 'rgba(255,255,255,0.1)';
-      ctx.beginPath();
-
-      const time = Date.now() * 0.005;
-      const centerY = canvas.height / 2;
-
-      for (let x = 0; x < canvas.width; x++) {
-        const freq = isSynthPlaying ? 0.04 : 0.01;
-        const amp = isSynthPlaying ? (Math.sin(time * 2) * 12 + 18) : 3;
-        const y = centerY + Math.sin(x * freq + time) * amp * Math.cos(x * 0.01);
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-
-      animId = requestAnimationFrame(drawWave);
-    }
-
-    drawWave();
-
-    function triggerSynth(type, btn) {
-      if (btn.classList.contains('on')) {
-        killSynth();
-        document.querySelectorAll('.synth-key').forEach(k => k.classList.remove('on'));
-        isSynthPlaying = false;
+    function handleAudio(type, btn) {
+      if (btn.classList.contains('active-sound')) {
+        shutAudio();
+        document.querySelectorAll('.sound-action-tile').forEach(b => b.classList.remove('active-sound'));
+        document.getElementById('audioLiveStatus').innerText = 'Audio paused.';
         return;
       }
 
-      killSynth();
-      document.querySelectorAll('.synth-key').forEach(k => k.classList.remove('on'));
-      btn.classList.add('on');
-      isSynthPlaying = true;
+      shutAudio();
+      document.querySelectorAll('.sound-action-tile').forEach(b => b.classList.remove('active-sound'));
+      btn.classList.add('active-sound');
 
-      if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
 
+      document.getElementById('audioLiveStatus').innerText = `Playing ${type.toUpperCase()} ambient soundscape...`;
+
       if (type === 'alpha') {
-        oscNode = audioContext.createOscillator();
-        gainNode = audioContext.createGain();
+        oscNode = audioCtx.createOscillator();
+        gainNode = audioCtx.createGain();
         oscNode.type = 'sine';
-        oscNode.frequency.setValueAtTime(40, audioContext.currentTime);
-        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+        oscNode.frequency.setValueAtTime(40, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
         oscNode.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+        gainNode.connect(audioCtx.destination);
         oscNode.start();
       } else {
-        const bufferSize = audioContext.sampleRate * 2;
-        const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+        const bufferSize = audioCtx.sampleRate * 2;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
         const out = buffer.getChannelData(0);
         for (let i = 0; i < bufferSize; i++) {
-          out[i] = (Math.random() * 2 - 1) * (type === 'rain' ? 0.05 : 0.02);
+          out[i] = (Math.random() * 2 - 1) * (type === 'rain' ? 0.04 : 0.015);
         }
-        noiseSource = audioContext.createBufferSource();
-        noiseSource.buffer = buffer;
-        noiseSource.loop = true;
-        gainNode = audioContext.createGain();
-        gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
-        noiseSource.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        noiseSource.start();
+        noiseSrc = audioCtx.createBufferSource();
+        noiseSrc.buffer = buffer;
+        noiseSrc.loop = true;
+        gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        noiseSrc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        noiseSrc.start();
       }
     }
 
-    function killSynth() {
+    function shutAudio() {
       if (oscNode) {
         try { oscNode.stop(); } catch(e) {}
         oscNode = null;
       }
-      if (noiseSource) {
-        try { noiseSource.stop(); } catch(e) {}
-        noiseSource = null;
+      if (noiseSrc) {
+        try { noiseSrc.stop(); } catch(e) {}
+        noiseSrc = null;
       }
     }
-
-    // Initialize math
-    runCaloricMath();
   </script>
 </body>
 </html>
