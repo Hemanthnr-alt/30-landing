@@ -3,42 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>30-ECO — Your Complete Life Operating System</title>
-  <meta name="description" content="Tasks. Habits. Macros. Timers. Body. All unified into one ultra-fast native Android app. 100% Offline. Zero Subscriptions." />
-  <meta name="theme-color" content="#08090C" />
+  <title>Thirty (30-ECO) — Total Life Control</title>
+  <meta name="description" content="Stop balancing your life across 5 apps. Thirty converges precision tasks, atomic habits, scientific nutrition, hardware focus timers, and private visual milestones into one unified Android engine." />
+  <meta name="theme-color" content="#030508" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="30-ECO — Your Complete Life Operating System" />
-  <meta property="og:description" content="Replace 5 fragmented apps with one high-performance Android ecosystem. 100% Offline & Private." />
+  <meta property="og:title" content="Thirty (30-ECO) — Total Life Control" />
+  <meta property="og:description" content="One ecosystem. Absolute peak performance. 100% Offline. Zero subscriptions." />
   <meta property="og:url" content="https://30-landing.vercel.app/" />
   <meta property="og:type" content="website" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg: #08090C;
-      --card-bg: #12151C;
-      --card-bg-subtle: #181D26;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-amber: rgba(245, 158, 11, 0.35);
+      --bg: #030508;
+      --card-bg: #0B0F19;
+      --card-bg-subtle: #111726;
+      --border: rgba(255, 255, 255, 0.09);
+      --border-cyan: rgba(0, 242, 254, 0.35);
       
-      --amber: #F59E0B;
-      --amber-light: #FBBF24;
-      --amber-glow: rgba(245, 158, 11, 0.25);
-      --cyan: #06B6D4;
+      --cyan: #00F2FE;
+      --cyan-light: #38BDF8;
+      --cyan-glow: rgba(0, 242, 254, 0.28);
+      --blue-accent: #2563EB;
       --emerald: #10B981;
-      --violet: #8B5CF6;
+      --purple: #8B5CF6;
       
       --text-white: #FFFFFF;
+      --text-silver: #E2E8F0;
       --text-gray: #94A3B8;
       --text-dim: #64748B;
       
-      --font-display: 'Syne', sans-serif;
-      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-heading: 'Syne', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
@@ -52,13 +53,30 @@
     html, body {
       background: var(--bg);
       color: var(--text-white);
-      font-family: var(--font-sans);
+      font-family: var(--font-body);
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
     body {
-      padding-bottom: 90px; /* Space for mobile sticky footer */
+      padding-bottom: 96px; /* Space for mobile floating install bar */
+      background-image: 
+        radial-gradient(ellipse 80% 40% at 50% -10%, rgba(0, 242, 254, 0.12), transparent 70%),
+        radial-gradient(ellipse 50% 30% at 90% 40%, rgba(37, 99, 235, 0.08), transparent 60%),
+        radial-gradient(ellipse 50% 30% at 10% 75%, rgba(139, 92, 246, 0.06), transparent 60%),
+        #030508;
+      background-attachment: fixed;
+    }
+
+    .ambient-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
     }
 
     a {
@@ -66,201 +84,219 @@
       color: inherit;
     }
 
-    /* ─── Top Floating Header ─────────────────────────────────────────── */
+    /* ─── Sticky Header ───────────────────────────────────────────────── */
     .top-nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 12px 16px;
-      background: rgba(8, 9, 12, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      padding: 12px 18px;
+      background: rgba(3, 5, 8, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
-      max-width: 1100px;
+      max-width: 1080px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .brand-box {
+    .brand-group {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .brand-logo {
+    .brand-mark {
       width: 34px;
       height: 34px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #F59E0B, #D97706);
+      background: linear-gradient(135deg, #00F2FE, #0284C7);
       color: #000;
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 900;
       font-size: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 10px var(--amber-glow);
+      box-shadow: 0 0 16px var(--cyan-glow);
     }
 
-    .brand-name {
-      font-family: var(--font-display);
+    .brand-title {
+      font-family: var(--font-heading);
       font-weight: 900;
-      font-size: 18px;
+      font-size: 19px;
       letter-spacing: -0.02em;
     }
 
-    .badge-eco {
+    .brand-pill {
       font-family: var(--font-mono);
       font-size: 9.5px;
       font-weight: 700;
-      padding: 2px 6px;
+      padding: 2px 7px;
       border-radius: 6px;
-      background: rgba(245, 158, 11, 0.15);
-      color: var(--amber);
-      border: 1px solid rgba(245, 158, 11, 0.3);
+      background: rgba(0, 242, 254, 0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 242, 254, 0.3);
     }
 
-    .btn-nav-install {
+    .btn-nav-download {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 999px;
-      background: var(--amber);
+      background: #FFFFFF;
       color: #000 !important;
       font-weight: 800;
       font-size: 13px;
-      transition: transform 0.2s;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(255,255,255,0.15);
     }
 
-    .btn-nav-install:active {
+    .btn-nav-download:active {
       transform: scale(0.96);
+      background: var(--cyan);
     }
 
     /* ─── Hero Section ─────────────────────────────────────────────────── */
     .hero-container {
-      padding: 36px 20px 24px;
+      position: relative;
+      z-index: 1;
+      padding: 44px 20px 24px;
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
     }
 
-    .pill-hero {
+    .hero-tagline-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      color: var(--amber);
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.28);
+      color: var(--cyan);
       font-size: 12px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      letter-spacing: 0.02em;
     }
 
-    .pulse-amber {
+    .pulse-cyan {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--amber);
-      box-shadow: 0 0 8px var(--amber);
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+      animation: pulseGlow 2s infinite ease-in-out;
     }
 
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(34px, 8.5vw, 64px);
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
+    .hero-h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 8.5vw, 66px);
       font-weight: 900;
-      line-height: 1.05;
+      line-height: 1.04;
       letter-spacing: -0.04em;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .hero-title .text-gold {
-      background: linear-gradient(135deg, #F59E0B, #FBBF24);
+    .hero-h1 .glow-ice {
+      background: linear-gradient(135deg, #00F2FE 0%, #38BDF8 50%, #E2E8F0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(0, 242, 254, 0.25);
     }
 
-    .hero-sub {
-      font-size: clamp(15px, 4vw, 18px);
+    .hero-p {
+      font-size: clamp(15.5px, 4vw, 18.5px);
       color: var(--text-gray);
-      line-height: 1.6;
-      margin-bottom: 28px;
-      max-width: 560px;
+      line-height: 1.65;
+      margin-bottom: 30px;
+      max-width: 580px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .hero-cta-btn {
+    .btn-hero-primary {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       width: 100%;
       max-width: 360px;
-      margin: 0 auto 16px;
-      padding: 18px 24px;
+      margin: 0 auto 18px;
+      padding: 18px 26px;
       border-radius: 16px;
-      background: linear-gradient(135deg, #F59E0B, #EAB308);
+      background: linear-gradient(135deg, #00F2FE, #0284C7);
       color: #000;
       font-weight: 900;
-      font-size: 17px;
-      box-shadow: 0 8px 30px var(--amber-glow);
-      transition: all 0.2s;
+      font-size: 16.5px;
+      box-shadow: 0 8px 32px var(--cyan-glow);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .hero-cta-btn:active {
+    .btn-hero-primary:active {
       transform: scale(0.97);
-      background: #FBBF24;
+      background: #38BDF8;
     }
 
-    .trust-chips {
+    .trust-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-dim);
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
-    .trust-chips span {
+    .trust-row span {
       display: inline-flex;
       align-items: center;
       gap: 5px;
     }
 
-    /* ─── Swipeable Mobile App Screenshots Carousel ─────────────────────── */
-    .screenshots-section {
-      padding: 30px 0 20px;
+    .trust-row svg {
+      color: var(--cyan);
     }
 
-    .section-label-bar {
+    /* ─── Swipeable Mobile App Screenshots Carousel ─────────────────────── */
+    .screenshots-deck-section {
+      padding: 34px 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-bar-header {
       padding: 0 20px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1100px;
+      max-width: 1080px;
       margin: 0 auto;
     }
 
-    .section-tag {
+    .section-kicker {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
-      color: var(--amber);
+      color: var(--cyan);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
     }
 
-    .swipe-hint {
+    .swipe-label {
       font-size: 12px;
       color: var(--text-dim);
       display: flex;
@@ -268,100 +304,111 @@
       gap: 4px;
     }
 
-    .screenshot-scroll {
+    .screenshot-scroller {
       display: flex;
       gap: 14px;
       overflow-x: auto;
-      padding: 0 20px 20px;
+      padding: 0 20px 24px;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
     }
 
-    .screenshot-scroll::-webkit-scrollbar {
+    .screenshot-scroller::-webkit-scrollbar {
       display: none;
     }
 
-    .app-screen-card {
+    .shot-card {
       flex: 0 0 240px;
       scroll-snap-align: center;
       border-radius: 24px;
       overflow: hidden;
       background: var(--card-bg);
       border: 1.5px solid var(--border);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.7);
       display: flex;
       flex-direction: column;
+      transition: border-color 0.2s;
     }
 
-    .app-screen-card img {
+    .shot-card:active {
+      border-color: var(--cyan);
+    }
+
+    .shot-card img {
       width: 100%;
       height: 440px;
       object-fit: cover;
       display: block;
     }
 
-    .card-footer-info {
+    .shot-meta {
       padding: 12px 14px;
       background: var(--card-bg-subtle);
       border-top: 1px solid var(--border);
     }
 
-    .card-footer-title {
+    .shot-meta-title {
       font-size: 13.5px;
       font-weight: 800;
       color: var(--text-white);
       margin-bottom: 2px;
     }
 
-    .card-footer-sub {
+    .shot-meta-desc {
       font-size: 11.5px;
       color: var(--text-gray);
     }
 
-    /* ─── The 6 Superpowers (Mobile Clean Cards) ────────────────────────── */
-    .features-section {
+    /* ─── Core Architecture Sections ──────────────────────────────────── */
+    .features-container {
       padding: 40px 20px;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .section-heading-box {
+    .headline-block {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 32px;
     }
 
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(26px, 6vw, 36px);
+    .headline-h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(26px, 6vw, 38px);
       font-weight: 900;
       letter-spacing: -0.03em;
       margin-bottom: 10px;
     }
 
-    .feature-card {
+    .pillar-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 24px 20px;
       margin-bottom: 16px;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
-    .feature-top {
+    .pillar-card:active {
+      border-color: rgba(0, 242, 254, 0.4);
+    }
+
+    .pillar-top {
       display: flex;
       align-items: center;
       gap: 14px;
       margin-bottom: 12px;
     }
 
-    .feature-icon-badge {
+    .pillar-badge {
       width: 44px;
       height: 44px;
       border-radius: 12px;
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      color: var(--amber);
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      color: var(--cyan);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -369,60 +416,62 @@
       flex-shrink: 0;
     }
 
-    .feature-title {
-      font-family: var(--font-display);
+    .pillar-h3 {
+      font-family: var(--font-heading);
       font-size: 18px;
       font-weight: 800;
     }
 
-    .feature-desc {
+    .pillar-p {
       font-size: 14px;
       color: var(--text-gray);
       line-height: 1.6;
       margin-bottom: 14px;
     }
 
-    .feature-points {
+    .pillar-checklist {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .feature-points li {
+    .pillar-checklist li {
       font-size: 13px;
-      color: #CBD5E1;
+      color: var(--text-silver);
       display: flex;
       align-items: flex-start;
       gap: 8px;
     }
 
-    .feature-points li svg {
-      color: var(--amber);
+    .pillar-checklist li svg {
+      color: var(--cyan);
       flex-shrink: 0;
       margin-top: 3px;
     }
 
     /* ─── Interactive Mobile Macro Calculator ─────────────────────────── */
-    .calculator-section {
+    .calculator-container {
       padding: 30px 20px;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .calc-card {
-      background: linear-gradient(180deg, #121622 0%, #0C0F17 100%);
-      border: 1.5px solid var(--border-amber);
+    .calc-card-box {
+      background: linear-gradient(180deg, #0D121F 0%, #080B12 100%);
+      border: 1.5px solid var(--border-cyan);
       border-radius: 24px;
       padding: 26px 20px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7), 0 0 30px rgba(0, 242, 254, 0.08);
     }
 
-    .calc-input-row {
+    .calc-row {
       margin-bottom: 18px;
     }
 
-    .calc-label {
+    .calc-label-bar {
       font-size: 13px;
       font-weight: 700;
       color: var(--text-gray);
@@ -431,24 +480,25 @@
       justify-content: space-between;
     }
 
-    .input-touch {
+    .touch-input {
       width: 100%;
       padding: 14px 16px;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
       color: #FFF;
       font-size: 17px;
       font-weight: 800;
       font-family: var(--font-mono);
       outline: none;
+      transition: border-color 0.2s;
     }
 
-    .input-touch:focus {
-      border-color: var(--amber);
+    .touch-input:focus {
+      border-color: var(--cyan);
     }
 
-    .slider-touch {
+    .touch-slider {
       -webkit-appearance: none;
       width: 100%;
       height: 8px;
@@ -457,16 +507,16 @@
       outline: none;
     }
 
-    .slider-touch::-webkit-slider-thumb {
+    .touch-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: var(--amber);
-      box-shadow: 0 0 10px var(--amber);
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
     }
 
-    .macro-bars-card {
+    .macro-feedback-card {
       background: rgba(255, 255, 255, 0.03);
       border-radius: 16px;
       padding: 18px 14px;
@@ -476,7 +526,7 @@
       gap: 14px;
     }
 
-    .bar-item-header {
+    .bar-line-top {
       display: flex;
       justify-content: space-between;
       font-size: 13px;
@@ -484,34 +534,36 @@
       margin-bottom: 5px;
     }
 
-    .bar-track {
+    .bar-track-bg {
       height: 9px;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 999px;
       overflow: hidden;
     }
 
-    .bar-fill {
+    .bar-track-val {
       height: 100%;
       border-radius: 999px;
       transition: width 0.3s ease;
     }
 
-    /* ─── Ambient Audio Soundscape Generator ──────────────────────────── */
-    .audio-section {
+    /* ─── Ambient Focus Soundboard ────────────────────────────────────── */
+    .audio-container {
       padding: 20px 20px 40px;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .audio-grid {
+    .sound-tiles-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-top: 18px;
     }
 
-    .audio-btn {
+    .sound-action-tile {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -525,45 +577,51 @@
       text-align: center;
     }
 
-    .audio-btn:active {
+    .sound-action-tile:active {
       transform: scale(0.96);
     }
 
-    .audio-btn.active-audio {
-      border-color: var(--amber);
-      background: rgba(245, 158, 11, 0.15);
-      box-shadow: 0 0 20px var(--amber-glow);
+    .sound-action-tile.active-sound {
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.12);
+      box-shadow: 0 0 20px var(--cyan-glow);
     }
 
-    .audio-btn-icon {
+    .sound-action-tile.active-sound .sound-tile-head {
+      color: var(--cyan);
+    }
+
+    .sound-tile-emoji {
       font-size: 24px;
     }
 
-    .audio-btn-title {
+    .sound-tile-head {
       font-size: 14px;
       font-weight: 800;
     }
 
-    .audio-btn-sub {
+    .sound-tile-desc {
       font-size: 11px;
       color: var(--text-dim);
     }
 
-    /* ─── App Comparison Table (Mobile Friendly) ───────────────────────── */
-    .comparison-section {
+    /* ─── Comparison Matrix ─────────────────────────────────────────────── */
+    .comparison-container {
       padding: 30px 20px;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .comp-card {
+    .matrix-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 20px;
     }
 
-    .comp-row {
+    .matrix-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -572,45 +630,45 @@
       font-size: 13.5px;
     }
 
-    .comp-row:last-child {
+    .matrix-item:last-child {
       border-bottom: none;
     }
 
-    .comp-val-thirty {
+    .matrix-win {
       font-weight: 800;
-      color: var(--amber);
+      color: var(--cyan);
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
-    .comp-val-other {
-      color: var(--text-dim);
-    }
-
-    /* ─── Direct Download Hub ─────────────────────────────────────────── */
-    .download-hub-section {
+    /* ─── Download Hub ──────────────────────────────────────────────────── */
+    .download-section {
       padding: 40px 20px;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .hub-box {
-      background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.16) 0%, #121622 75%);
-      border: 1.5px solid var(--border-amber);
+    .download-card-banner {
+      background: radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.18) 0%, #0B0F19 80%);
+      border: 1.5px solid var(--border-cyan);
       border-radius: 24px;
-      padding: 34px 20px;
+      padding: 36px 20px;
       text-align: center;
     }
 
-    /* ─── FAQ ─────────────────────────────────────────────────────────── */
-    .faq-section {
+    /* ─── FAQ ───────────────────────────────────────────────────────────── */
+    .faq-container {
       padding: 30px 20px;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .faq-item {
+    .faq-card-row {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -618,7 +676,7 @@
       overflow: hidden;
     }
 
-    .faq-item summary {
+    .faq-card-row summary {
       padding: 18px 20px;
       font-weight: 800;
       font-size: 15px;
@@ -629,11 +687,11 @@
       list-style: none;
     }
 
-    .faq-item summary::-webkit-details-marker {
+    .faq-card-row summary::-webkit-details-marker {
       display: none;
     }
 
-    .faq-text {
+    .faq-content {
       padding: 0 20px 18px;
       font-size: 14px;
       color: var(--text-gray);
@@ -641,21 +699,21 @@
     }
 
     /* ─── Mobile Sticky Bottom Floating Install Bar ─────────────────────── */
-    .sticky-mobile-bar {
+    .floating-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       z-index: 999;
-      background: rgba(8, 9, 12, 0.92);
+      background: rgba(3, 5, 8, 0.94);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding: 12px 16px;
-      box-shadow: 0 -10px 30px rgba(0,0,0,0.7);
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
     }
 
-    .sticky-bar-inner {
+    .floating-bar-inner {
       max-width: 600px;
       margin: 0 auto;
       display: flex;
@@ -663,7 +721,7 @@
       gap: 12px;
     }
 
-    .sticky-btn {
+    .floating-install-btn {
       flex: 1;
       display: flex;
       align-items: center;
@@ -671,30 +729,31 @@
       gap: 8px;
       padding: 15px 20px;
       border-radius: 14px;
-      background: linear-gradient(135deg, #F59E0B, #EAB308);
+      background: linear-gradient(135deg, #00F2FE, #0284C7);
       color: #000;
       font-weight: 900;
       font-size: 15.5px;
-      box-shadow: 0 4px 18px var(--amber-glow);
+      box-shadow: 0 4px 18px var(--cyan-glow);
     }
 
-    .sticky-btn:active {
+    .floating-install-btn:active {
       transform: scale(0.98);
     }
   </style>
 </head>
 <body>
+  <div class="ambient-grid"></div>
 
   <!-- ─── Top Floating Navigation ───────────────────────────────────────── -->
   <header class="top-nav">
     <div class="nav-inner">
-      <div class="brand-box">
-        <div class="brand-logo">30</div>
-        <div class="brand-name">Thirty</div>
-        <span class="badge-eco">30-ECO</span>
+      <div class="brand-group">
+        <div class="brand-mark">30</div>
+        <div class="brand-title">Thirty</div>
+        <span class="brand-pill">30-ECO</span>
       </div>
 
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-nav-install">
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-nav-download">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download APK
       </a>
@@ -703,26 +762,26 @@
 
   <!-- ─── Hero Section ──────────────────────────────────────────────────── -->
   <section class="hero-container">
-    <div class="pill-hero">
-      <div class="pulse-amber"></div>
+    <div class="hero-tagline-pill">
+      <div class="pulse-cyan"></div>
       Thirty 2.0.0 PRO · Official Release
     </div>
 
-    <h1 class="hero-title">
-      Your Complete<br />
-      <span class="text-gold">Life Operating System.</span>
+    <h1 class="hero-h1">
+      Stop balancing your life<br />
+      <span class="glow-ice">across five apps.</span>
     </h1>
 
-    <p class="hero-sub">
-      Unite precision tasks, atomic habits, scientific macros, hardware focus timers, and private transformation photos into one blazing-fast native Android app.
+    <p class="hero-p">
+      Thirty converges precision task execution, daily atomic routines, scientific macro calculations, deep work focus timers, and private transformation milestones into a unified, zero-latency Android engine.
     </p>
 
-    <a href="thirty-app.apk" download="Thirty-Pro.apk" class="hero-cta-btn">
+    <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-hero-primary">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Download Thirty APK (9.8 MB)
     </a>
 
-    <div class="trust-chips">
+    <div class="trust-row">
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg> 100% Offline Database</span>
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg> Zero Telemetry & Ads</span>
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free Forever</span>
@@ -730,107 +789,107 @@
   </section>
 
   <!-- ─── Swipeable Mobile App Screenshots Carousel ─────────────────────── -->
-  <section class="screenshots-section">
-    <div class="section-label-bar">
-      <span class="section-tag">Interactive App Tour</span>
-      <span class="swipe-hint">Swipe to explore 👉</span>
+  <section class="screenshots-deck-section">
+    <div class="section-bar-header">
+      <span class="section-kicker">Interactive Showcase</span>
+      <span class="swipe-label">Swipe to explore 👉</span>
     </div>
 
-    <div class="screenshot-scroll">
+    <div class="screenshot-scroller">
       <!-- 1. Today Agenda -->
-      <div class="app-screen-card">
+      <div class="shot-card">
         <img src="screenshots/today-agenda-dark.jpeg" alt="Today Agenda View" loading="lazy" />
-        <div class="card-footer-info">
-          <div class="card-footer-title">⚡ Horizon Today Agenda</div>
-          <div class="card-footer-sub">Unified daily timeline with gesture physics</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">⚡ Horizon Today Agenda</div>
+          <div class="shot-meta-desc">Unified daily timeline with gesture physics</div>
         </div>
       </div>
 
       <!-- 2. Tasks Inbox -->
-      <div class="app-screen-card">
+      <div class="shot-card">
         <img src="screenshots/tasks-overview-dark.jpeg" alt="Tasks Overview" loading="lazy" />
-        <div class="card-footer-info">
-          <div class="card-footer-title">🎯 Precision Tasks</div>
-          <div class="card-footer-sub">Atomic recurring items & nested subtasks</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">🎯 Precision Tasks</div>
+          <div class="shot-meta-desc">Atomic recurring items & nested subtasks</div>
         </div>
       </div>
 
       <!-- 3. Habits Tracker -->
-      <div class="app-screen-card">
+      <div class="shot-card">
         <img src="screenshots/habits-overview-dark.jpeg" alt="Habits Tracker" loading="lazy" />
-        <div class="card-footer-info">
-          <div class="card-footer-title">🔄 Atomic Habit Loops</div>
-          <div class="card-footer-sub">Rolling streaks & completion percentages</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">🔄 Atomic Habit Loops</div>
+          <div class="shot-meta-desc">Rolling streaks & completion percentages</div>
         </div>
       </div>
 
       <!-- 4. Macro & Calorie Diary -->
-      <div class="app-screen-card">
+      <div class="shot-card">
         <img src="screenshots/calories-overview-dark.jpeg" alt="Calories Overview" loading="lazy" />
-        <div class="card-footer-info">
-          <div class="card-footer-title">🥗 Scientific Macro Diary</div>
-          <div class="card-footer-sub">Dynamic P×4 + C×4 + F×9 caloric solver</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">🥗 Scientific Macro Diary</div>
+          <div class="shot-meta-desc">Dynamic P×4 + C×4 + F×9 caloric solver</div>
         </div>
       </div>
 
       <!-- 5. Food Multiplier Modal -->
-      <div class="app-screen-card">
+      <div class="shot-card">
         <img src="screenshots/calories-food-multiplier-modal.jpeg" alt="Food Multiplier" loading="lazy" />
-        <div class="card-footer-info">
-          <div class="card-footer-title">🍗 500+ Verified Foods</div>
-          <div class="card-footer-sub">Portion multipliers (0.5x, 1x, 1.5x, 2x)</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">🍗 500+ Verified Foods</div>
+          <div class="shot-meta-desc">Portion multipliers (0.5x, 1x, 1.5x, 2x)</div>
         </div>
       </div>
 
       <!-- 6. Focus Pomodoro -->
-      <div class="app-screen-card">
+      <div class="shot-card">
         <img src="screenshots/timer-pomodoro-active-dark.jpeg" alt="Focus Pomodoro" loading="lazy" />
-        <div class="card-footer-info">
-          <div class="card-footer-title">⏱️ Foreground Focus Engine</div>
-          <div class="card-footer-sub">Android 14+ Foreground Service notification</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">⏱️ Foreground Focus Engine</div>
+          <div class="shot-meta-desc">Android 14+ Foreground Service notification</div>
         </div>
       </div>
 
       <!-- 7. Progress Photo Gallery -->
-      <div class="app-screen-card">
+      <div class="shot-card">
         <img src="screenshots/photos-gallery-timeline-dark.jpeg" alt="Photo Gallery" loading="lazy" />
-        <div class="card-footer-info">
-          <div class="card-footer-title">📸 Private Photo Journal</div>
-          <div class="card-footer-sub">100% on-device transformation timeline</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">📸 Private Photo Journal</div>
+          <div class="shot-meta-desc">100% on-device transformation timeline</div>
         </div>
       </div>
 
       <!-- 8. Android Widgets -->
-      <div class="app-screen-card">
+      <div class="shot-card">
         <img src="screenshots/android-widget-tasks-habits.jpeg" alt="Android Widgets" loading="lazy" />
-        <div class="card-footer-info">
-          <div class="card-footer-title">📲 Home Screen Widgets</div>
-          <div class="card-footer-sub">Live SharedPreferences RemoteViews</div>
+        <div class="shot-meta">
+          <div class="shot-meta-title">📲 Home Screen Widgets</div>
+          <div class="shot-meta-desc">Live SharedPreferences RemoteViews</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── The 6 Superpowers ─────────────────────────────────────────────── -->
-  <section class="features-section">
-    <div class="section-heading-box">
-      <span class="section-tag">Engineered For Focus</span>
-      <h2 class="section-title">Built without compromise.</h2>
+  <!-- ─── The 5 Pillars ─────────────────────────────────────────────────── -->
+  <section class="features-container">
+    <div class="headline-block">
+      <span class="section-kicker">Unified Architecture</span>
+      <h2 class="headline-h2">Engineered for the disciplined.</h2>
     </div>
 
     <!-- 1. Horizon Today -->
-    <div class="feature-card">
-      <div class="feature-top">
-        <div class="feature-icon-badge">📅</div>
+    <div class="pillar-card">
+      <div class="pillar-top">
+        <div class="pillar-badge">⚡</div>
         <div>
-          <h3 class="feature-title">Horizon Today Agenda</h3>
-          <span style="font-size:12px; color:var(--amber); font-weight:700;">Zero Context Switching</span>
+          <h3 class="pillar-h3">Horizon Today Agenda</h3>
+          <span style="font-size:12px; color:var(--cyan); font-weight:700;">Wake up with complete clarity</span>
         </div>
       </div>
-      <p class="feature-desc">
+      <p class="pillar-p">
         Aggregates tasks, recurring items, habit routines, water logging, and progress photos into one intuitive daily timeline.
       </p>
-      <ul class="feature-points">
+      <ul class="pillar-checklist">
         <li>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           <span>Framer Motion reordering scoped to left handle strip</span>
@@ -843,18 +902,18 @@
     </div>
 
     <!-- 2. Scientific Macros -->
-    <div class="feature-card">
-      <div class="feature-top">
-        <div class="feature-icon-badge">🥗</div>
+    <div class="pillar-card">
+      <div class="pillar-top">
+        <div class="pillar-badge">🥗</div>
         <div>
-          <h3 class="feature-title">Scientific Macro Balancing</h3>
-          <span style="font-size:12px; color:var(--amber); font-weight:700;">Exact Mathematical Equilibrium</span>
+          <h3 class="pillar-h3">Scientific Nutrition Engine</h3>
+          <span style="font-size:12px; color:var(--cyan); font-weight:700;">Exact physics, zero guesswork</span>
         </div>
       </div>
-      <p class="feature-desc">
+      <p class="pillar-p">
         Enforces <code>(Protein × 4) + (Carbs × 4) + (Fats × 9) = Calories</code>. Adjusting protein dynamically solves carbs and fats to preserve your daily goal.
       </p>
-      <ul class="feature-points">
+      <ul class="pillar-checklist">
         <li>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           <span>Pre-loaded library of 500+ Indian staples & global items</span>
@@ -867,18 +926,18 @@
     </div>
 
     <!-- 3. Focus Timers -->
-    <div class="feature-card">
-      <div class="feature-top">
-        <div class="feature-icon-badge">⏱️</div>
+    <div class="pillar-card">
+      <div class="pillar-top">
+        <div class="pillar-badge">⏱️</div>
         <div>
-          <h3 class="feature-title">Hardware Foreground Timers</h3>
-          <span style="font-size:12px; color:var(--amber); font-weight:700;">Zero Drift · Android 14+ Ready</span>
+          <h3 class="pillar-h3">Hardware Foreground Timers</h3>
+          <span style="font-size:12px; color:var(--cyan); font-weight:700;">Zero drift · Android 14+ Ready</span>
         </div>
       </div>
-      <p class="feature-desc">
+      <p class="pillar-p">
         Stopwatch, Countdowns, and Pomodoro sessions stay live in your notification tray with zero OS background killing.
       </p>
-      <ul class="feature-points">
+      <ul class="pillar-checklist">
         <li>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           <span>Notification action buttons (Pause, Resume, Stop)</span>
@@ -891,44 +950,44 @@
     </div>
 
     <!-- 4. Transformation Photos -->
-    <div class="feature-card">
-      <div class="feature-top">
-        <div class="feature-icon-badge">📸</div>
+    <div class="pillar-card">
+      <div class="pillar-top">
+        <div class="pillar-badge">📸</div>
         <div>
-          <h3 class="feature-title">Private Photo Transformation</h3>
-          <span style="font-size:12px; color:var(--amber); font-weight:700;">100% On-Device IndexedDB</span>
+          <h3 class="pillar-h3">Private Transformation Diary</h3>
+          <span style="font-size:12px; color:var(--cyan); font-weight:700;">100% On-Device IndexedDB</span>
         </div>
       </div>
-      <p class="feature-desc">
+      <p class="pillar-p">
         Hardware camera integration with client-side canvas compression. Photos never touch external servers or telemetry systems.
       </p>
     </div>
   </section>
 
   <!-- ─── Interactive Mobile Macro Calculator ─────────────────────────── -->
-  <section class="calculator-section">
-    <div class="section-heading-box">
-      <span class="section-tag">Interactive Demo</span>
-      <h2 class="section-title">Test the Macro Solver</h2>
+  <section class="calculator-container">
+    <div class="headline-block">
+      <span class="section-kicker">Interactive Demo</span>
+      <h2 class="headline-h2">Test the Macro Solver</h2>
     </div>
 
-    <div class="calc-card">
-      <div class="calc-input-row">
-        <label class="calc-label">Target Calories (kcal)</label>
-        <input type="number" id="calNumber" value="2500" min="1000" max="6000" step="50" class="input-touch" oninput="recalcMacros()" />
+    <div class="calc-card-box">
+      <div class="calc-row">
+        <label class="calc-label-bar">Target Calories (kcal)</label>
+        <input type="number" id="calInputVal" value="2500" min="1000" max="6000" step="50" class="touch-input" oninput="solveNutrition()" />
       </div>
 
-      <div class="calc-input-row">
-        <div class="calc-label">
+      <div class="calc-row">
+        <div class="calc-label-bar">
           <span>Protein Target</span>
-          <span id="proteinGramsLabel" style="color:var(--amber); font-family:var(--font-mono);">150g</span>
+          <span id="proteinGramsTag" style="color:var(--cyan); font-family:var(--font-mono);">150g</span>
         </div>
-        <input type="range" id="proteinSlider" min="50" max="300" value="150" class="slider-touch" oninput="recalcMacros()" />
+        <input type="range" id="proteinInputSlider" min="50" max="300" value="150" class="touch-slider" oninput="solveNutrition()" />
       </div>
 
-      <div class="calc-input-row">
-        <label class="calc-label">Goal Preset</label>
-        <select id="goalDropdown" class="input-touch" style="font-size:14px;" onchange="handleGoalPreset()">
+      <div class="calc-row">
+        <label class="calc-label-bar">Goal Preset</label>
+        <select id="goalSelectBox" class="touch-input" style="font-size:14px;" onchange="handleGoalChange()">
           <option value="0">Maintenance (2,500 kcal)</option>
           <option value="-250">Lean Weight Loss (-250 kcal)</option>
           <option value="-500">Aggressive Cut (-500 kcal)</option>
@@ -937,34 +996,34 @@
         </select>
       </div>
 
-      <div class="macro-bars-card">
+      <div class="macro-feedback-card">
         <div>
-          <div class="bar-item-header">
-            <span style="color:#F59E0B;">Protein (4 kcal/g)</span>
-            <span id="proteinSummary" style="font-family:var(--font-mono);">150g · 600 kcal (24%)</span>
+          <div class="bar-line-top">
+            <span style="color:#00F2FE;">Protein (4 kcal/g)</span>
+            <span id="proteinStats" style="font-family:var(--font-mono);">150g · 600 kcal (24%)</span>
           </div>
-          <div class="bar-track">
-            <div class="bar-fill" id="proteinBar" style="background:#F59E0B; width:24%;"></div>
+          <div class="bar-track-bg">
+            <div class="bar-track-val" id="proteinTrack" style="background:#00F2FE; width:24%;"></div>
           </div>
         </div>
 
         <div>
-          <div class="bar-item-header">
-            <span style="color:#06B6D4;">Carbohydrates (4 kcal/g)</span>
-            <span id="carbsSummary" style="font-family:var(--font-mono);">285g · 1,140 kcal (46%)</span>
+          <div class="bar-line-top">
+            <span style="color:#38BDF8;">Carbohydrates (4 kcal/g)</span>
+            <span id="carbsStats" style="font-family:var(--font-mono);">285g · 1,140 kcal (46%)</span>
           </div>
-          <div class="bar-track">
-            <div class="bar-fill" id="carbsBar" style="background:#06B6D4; width:46%;"></div>
+          <div class="bar-track-bg">
+            <div class="bar-track-val" id="carbsTrack" style="background:#38BDF8; width:46%;"></div>
           </div>
         </div>
 
         <div>
-          <div class="bar-item-header">
+          <div class="bar-line-top">
             <span style="color:#8B5CF6;">Fats (9 kcal/g)</span>
-            <span id="fatsSummary" style="font-family:var(--font-mono);">84g · 760 kcal (30%)</span>
+            <span id="fatsStats" style="font-family:var(--font-mono);">84g · 760 kcal (30%)</span>
           </div>
-          <div class="bar-track">
-            <div class="bar-fill" id="fatsBar" style="background:#8B5CF6; width:30%;"></div>
+          <div class="bar-track-bg">
+            <div class="bar-track-val" id="fatsTrack" style="background:#8B5CF6; width:30%;"></div>
           </div>
         </div>
       </div>
@@ -972,82 +1031,82 @@
   </section>
 
   <!-- ─── Ambient Audio Soundscapes ─────────────────────────────────────── -->
-  <section class="audio-section">
-    <div class="section-heading-box">
-      <span class="section-tag">Focus Soundscapes</span>
-      <h2 class="section-title">Built-in Ambient Audio</h2>
+  <section class="audio-container">
+    <div class="headline-block">
+      <span class="section-kicker">Focus Soundscapes</span>
+      <h2 class="headline-h2">Built-in Ambient Audio</h2>
     </div>
 
-    <div class="audio-grid">
-      <div class="audio-btn" onclick="toggleAudio('rain', this)">
-        <div class="audio-btn-icon">🌧️</div>
-        <div class="audio-btn-title">Rainstorm</div>
-        <div class="audio-btn-sub">Brown noise</div>
+    <div class="sound-tiles-grid">
+      <div class="sound-action-tile" onclick="handleAudio('rain', this)">
+        <div class="sound-tile-emoji">🌧️</div>
+        <div class="sound-tile-head">Rainstorm</div>
+        <div class="sound-tile-desc">Brown noise</div>
       </div>
 
-      <div class="audio-btn" onclick="toggleAudio('alpha', this)">
-        <div class="audio-btn-icon">⚡</div>
-        <div class="audio-btn-title">40Hz Alpha</div>
-        <div class="audio-btn-sub">Binaural wave</div>
+      <div class="sound-action-tile" onclick="handleAudio('alpha', this)">
+        <div class="sound-tile-emoji">⚡</div>
+        <div class="sound-tile-head">40Hz Alpha</div>
+        <div class="sound-tile-desc">Binaural wave</div>
       </div>
 
-      <div class="audio-btn" onclick="toggleAudio('forest', this)">
-        <div class="audio-btn-icon">🌲</div>
-        <div class="audio-btn-title">Deep Forest</div>
-        <div class="audio-btn-sub">Stream audio</div>
+      <div class="sound-action-tile" onclick="handleAudio('forest', this)">
+        <div class="sound-tile-emoji">🌲</div>
+        <div class="sound-tile-head">Deep Forest</div>
+        <div class="sound-tile-desc">Stream audio</div>
       </div>
 
-      <div class="audio-btn" onclick="toggleAudio('space', this)">
-        <div class="audio-btn-icon">🌌</div>
-        <div class="audio-btn-title">Deep Space</div>
-        <div class="audio-btn-sub">White noise</div>
+      <div class="sound-action-tile" onclick="handleAudio('space', this)">
+        <div class="sound-tile-emoji">🌌</div>
+        <div class="sound-tile-head">Deep Space</div>
+        <div class="sound-tile-desc">White noise</div>
       </div>
     </div>
-    <div id="audioStatus" style="text-align:center; font-size:12.5px; color:var(--text-dim); margin-top:14px;">
-      Tap any button to preview live audio.
+    <div id="audioLiveStatus" style="text-align:center; font-size:12.5px; color:var(--text-dim); margin-top:14px;">
+      Tap any button to preview live synthesized audio.
     </div>
   </section>
 
   <!-- ─── Comparison Matrix ─────────────────────────────────────────────── -->
-  <section class="comparison-section">
-    <div class="section-heading-box">
-      <span class="section-tag">Why 30-ECO?</span>
-      <h2 class="section-title">Replace 5 fragmented apps.</h2>
+  <section class="comparison-container">
+    <div class="headline-block">
+      <span class="section-kicker">Why Thirty?</span>
+      <h2 class="headline-h2">Replace 5 fragmented apps.</h2>
     </div>
 
-    <div class="comp-card">
-      <div class="comp-row">
+    <div class="matrix-box">
+      <div class="matrix-item">
         <span>Monthly Subscriptions</span>
-        <span class="comp-val-thirty">\$0 (Free Forever)</span>
+        <span class="matrix-win">\$0 (Free Forever)</span>
       </div>
-      <div class="comp-row">
+      <div class="matrix-item">
         <span>Data Privacy</span>
-        <span class="comp-val-thirty">100% On-Device</span>
+        <span class="matrix-win">100% On-Device</span>
       </div>
-      <div class="comp-row">
+      <div class="matrix-item">
         <span>Offline Functionality</span>
-        <span class="comp-val-thirty">Full Offline Mode</span>
+        <span class="matrix-win">Full Offline Mode</span>
       </div>
-      <div class="comp-row">
+      <div class="matrix-item">
         <span>App Size</span>
-        <span class="comp-val-thirty">9.8 MB Native Binary</span>
+        <span class="matrix-win">9.8 MB Native Binary</span>
       </div>
-      <div class="comp-row">
+      <div class="matrix-item">
         <span>Integrated Modules</span>
-        <span class="comp-val-thirty">Tasks + Habits + Macros + Timers + Photos</span>
+        <span class="matrix-win">Tasks + Habits + Macros + Timers + Photos</span>
       </div>
     </div>
   </section>
 
   <!-- ─── Download Hub ──────────────────────────────────────────────────── -->
-  <section class="download-hub-section">
-    <div class="hub-box">
-      <h2 class="section-title" style="margin-bottom:10px;">Get Thirty on Android</h2>
+  <section class="download-section">
+    <div class="download-card-banner">
+      <h2 class="headline-h2" style="margin-bottom:10px;">Get Thirty on Android</h2>
       <p style="font-size:14.5px; color:var(--text-gray); margin-bottom:22px;">
         Direct standalone APK installation. No sign-up walls.
       </p>
 
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="hero-cta-btn" style="max-width:320px; font-size:16px;">
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-hero-primary" style="max-width:320px; font-size:16px;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download APK (v2.0.0)
       </a>
@@ -1059,37 +1118,37 @@
   </section>
 
   <!-- ─── FAQ ───────────────────────────────────────────────────────────── -->
-  <section class="faq-section">
-    <div class="section-heading-box">
-      <span class="section-tag">Help & Info</span>
-      <h2 class="section-title">FAQ</h2>
+  <section class="faq-container">
+    <div class="headline-block">
+      <span class="section-kicker">Help & Info</span>
+      <h2 class="headline-h2">FAQ</h2>
     </div>
 
-    <details class="faq-item">
+    <details class="faq-card-row">
       <summary>
         How do I install the APK?
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
       </summary>
-      <div class="faq-text">
+      <div class="faq-content">
         Tap the Download button. When the file finishes downloading, tap the notification and choose Install (allow "Install Unknown Apps" if prompted).
       </div>
     </details>
 
-    <details class="faq-item">
+    <details class="faq-card-row">
       <summary>
         Is my data really private?
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
       </summary>
-      <div class="faq-text">
+      <div class="faq-content">
         Yes! All tasks, routines, food logs, and transformation photos are stored exclusively in your device's private sandboxed IndexedDB storage.
       </div>
     </details>
   </section>
 
   <!-- ─── Mobile Sticky Bottom Floating Install Bar ─────────────────────── -->
-  <div class="sticky-mobile-bar">
-    <div class="sticky-bar-inner">
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="sticky-btn">
+  <div class="floating-bar">
+    <div class="floating-bar-inner">
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="floating-install-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Thirty APK (9.8 MB)
       </a>
@@ -1097,10 +1156,10 @@
   </div>
 
   <script>
-    function recalcMacros() {
-      const cal = Math.max(1000, parseInt(document.getElementById('calNumber').value) || 2500);
-      const proteinG = parseInt(document.getElementById('proteinSlider').value) || 150;
-      document.getElementById('proteinGramsLabel').innerText = proteinG + 'g';
+    function solveNutrition() {
+      const cal = Math.max(1000, parseInt(document.getElementById('calInputVal').value) || 2500);
+      const proteinG = parseInt(document.getElementById('proteinInputSlider').value) || 150;
+      document.getElementById('proteinGramsTag').innerText = proteinG + 'g';
 
       const proteinCal = proteinG * 4;
       const remainingCal = Math.max(0, cal - proteinCal);
@@ -1115,56 +1174,56 @@
       const cPct = Math.round((carbsCal / cal) * 100);
       const fPct = Math.round((fatsCal / cal) * 100);
 
-      document.getElementById('proteinSummary').innerText = `${proteinG}g · ${proteinCal} kcal (${pPct}%)`;
-      document.getElementById('proteinBar').style.width = pPct + '%';
+      document.getElementById('proteinStats').innerText = `${proteinG}g · ${proteinCal} kcal (${pPct}%)`;
+      document.getElementById('proteinTrack').style.width = pPct + '%';
 
-      document.getElementById('carbsSummary').innerText = `${carbsG}g · ${carbsCal} kcal (${cPct}%)`;
-      document.getElementById('carbsBar').style.width = cPct + '%';
+      document.getElementById('carbsStats').innerText = `${carbsG}g · ${carbsCal} kcal (${cPct}%)`;
+      document.getElementById('carbsTrack').style.width = cPct + '%';
 
-      document.getElementById('fatsSummary').innerText = `${fatsG}g · ${fatsCal} kcal (${fPct}%)`;
-      document.getElementById('fatsBar').style.width = fPct + '%';
+      document.getElementById('fatsStats').innerText = `${fatsG}g · ${fatsCal} kcal (${fPct}%)`;
+      document.getElementById('fatsTrack').style.width = fPct + '%';
     }
 
-    function handleGoalPreset() {
-      const offset = parseInt(document.getElementById('goalDropdown').value) || 0;
+    function handleGoalChange() {
+      const offset = parseInt(document.getElementById('goalSelectBox').value) || 0;
       const base = 2500;
-      document.getElementById('calNumber').value = base + offset;
-      recalcMacros();
+      document.getElementById('calInputVal').value = base + offset;
+      solveNutrition();
     }
 
-    // Ambient Synthesizer
+    // Ambient Audio Synthesizer
     let audioCtx = null;
-    let osc = null;
-    let gain = null;
-    let noise = null;
+    let oscNode = null;
+    let gainNode = null;
+    let noiseSrc = null;
 
-    function toggleAudio(type, btn) {
-      if (btn.classList.contains('active-audio')) {
-        stopAllAudio();
-        document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('active-audio'));
-        document.getElementById('audioStatus').innerText = 'Audio paused.';
+    function handleAudio(type, btn) {
+      if (btn.classList.contains('active-sound')) {
+        shutAudio();
+        document.querySelectorAll('.sound-action-tile').forEach(b => b.classList.remove('active-sound'));
+        document.getElementById('audioLiveStatus').innerText = 'Audio paused.';
         return;
       }
 
-      stopAllAudio();
-      document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('active-audio'));
-      btn.classList.add('active-audio');
+      shutAudio();
+      document.querySelectorAll('.sound-action-tile').forEach(b => b.classList.remove('active-sound'));
+      btn.classList.add('active-sound');
 
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
 
-      document.getElementById('audioStatus').innerText = `Playing ${type.toUpperCase()} ambient soundscape...`;
+      document.getElementById('audioLiveStatus').innerText = `Playing ${type.toUpperCase()} ambient soundscape...`;
 
       if (type === 'alpha') {
-        osc = audioCtx.createOscillator();
-        gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(40, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
+        oscNode = audioCtx.createOscillator();
+        gainNode = audioCtx.createGain();
+        oscNode.type = 'sine';
+        oscNode.frequency.setValueAtTime(40, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        oscNode.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscNode.start();
       } else {
         const bufferSize = audioCtx.sampleRate * 2;
         const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
@@ -1172,25 +1231,25 @@
         for (let i = 0; i < bufferSize; i++) {
           out[i] = (Math.random() * 2 - 1) * (type === 'rain' ? 0.05 : 0.02);
         }
-        noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
-        noise.loop = true;
-        gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        noise.connect(gain);
-        gain.connect(audioCtx.destination);
-        noise.start();
+        noiseSrc = audioCtx.createBufferSource();
+        noiseSrc.buffer = buffer;
+        noiseSrc.loop = true;
+        gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        noiseSrc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        noiseSrc.start();
       }
     }
 
-    function stopAllAudio() {
-      if (osc) {
-        try { osc.stop(); } catch(e) {}
-        osc = null;
+    function shutAudio() {
+      if (oscNode) {
+        try { oscNode.stop(); } catch(e) {}
+        oscNode = null;
       }
-      if (noise) {
-        try { noise.stop(); } catch(e) {}
-        noise = null;
+      if (noiseSrc) {
+        try { noiseSrc.stop(); } catch(e) {}
+        noiseSrc = null;
       }
     }
   </script>
