@@ -73,7 +73,6 @@
       background-attachment: fixed;
     }
 
-    /* Ambient noise */
     .ambient-noise {
       position: fixed;
       inset: 0;
@@ -87,7 +86,6 @@
       text-decoration: none;
     }
 
-    /* ─── Top Floating Glass Bar ────────────────────────────────────────── */
     .navbar-wrapper {
       position: fixed;
       top: 18px;
@@ -192,7 +190,6 @@
       box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
     }
 
-    /* ─── Hero Section ─────────────────────────────────────────────────── */
     .hero {
       position: relative;
       z-index: 1;
@@ -325,7 +322,6 @@
       gap: 6px;
     }
 
-    /* ─── Interactive 3D Showcase ───────────────────────────────────────── */
     .showcase-section {
       position: relative;
       margin: 60px auto 100px;
@@ -479,7 +475,6 @@
       margin-top: 3px;
     }
 
-    /* ─── Bento Architecture ────────────────────────────────────────────── */
     .section-wrap {
       max-width: var(--container);
       margin: 0 auto;
@@ -597,7 +592,6 @@
       color: var(--text-dim);
     }
 
-    /* ─── Live Macro Calculator Interactive Widget ──────────────────────── */
     .calculator-box {
       background: linear-gradient(180deg, rgba(14, 18, 27, 0.9) 0%, rgba(6, 8, 12, 0.95) 100%);
       border: 1px solid var(--border-focus);
@@ -704,7 +698,6 @@
       transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* ─── Gallery Showcase Carousel ─────────────────────────────────────── */
     .gallery-scroller {
       display: flex;
       gap: 18px;
@@ -741,7 +734,6 @@
       display: block;
     }
 
-    /* ─── Direct Download Center ────────────────────────────────────────── */
     .download-hub {
       background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.14) 0%, rgba(14, 18, 27, 0.95) 75%);
       border: 1px solid rgba(245, 158, 11, 0.3);
@@ -774,7 +766,6 @@
       display: block;
     }
 
-    /* ─── FAQ ───────────────────────────────────────────────────────────── */
     .faq-stack {
       max-width: 780px;
       margin: 0 auto;
@@ -814,7 +805,6 @@
       line-height: 1.65;
     }
 
-    /* ─── Footer ────────────────────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
       padding: 60px 24px 40px;
@@ -829,7 +819,6 @@
       font-size: 14px;
     }
 
-    /* ─── Media Queries ─────────────────────────────────────────────────── */
     @media (max-width: 900px) {
       .showcase-stage {
         grid-template-columns: 1fr;
@@ -926,7 +915,7 @@
         <div class="phone-container">
           <div class="phone-shell">
             <div class="phone-inner">
-              <img id="stageImg" src="screenshots/01-today-agenda-overview.jpeg" alt="Thirty Screen View" />
+              <img id="stageImg" src="screenshots/today-agenda-dark.jpeg" alt="Thirty Screen View" />
             </div>
           </div>
         </div>
@@ -1108,15 +1097,16 @@
     </div>
 
     <div class="gallery-scroller">
-      <div class="gallery-card"><img src="screenshots/03-today-timeline.jpeg" alt="Today Timeline" loading="lazy" /></div>
-      <div class="gallery-card"><img src="screenshots/06-tasks-subtasks-checklist.jpeg" alt="Tasks Checklist" loading="lazy" /></div>
-      <div class="gallery-card"><img src="screenshots/09-habits-streak-analytics.jpeg" alt="Habits Streak" loading="lazy" /></div>
-      <div class="gallery-card"><img src="screenshots/13-calories-macro-distribution.jpeg" alt="Macro Distribution" loading="lazy" /></div>
-      <div class="gallery-card"><img src="screenshots/15-calories-portion-multiplier.jpeg" alt="Food Search Modal" loading="lazy" /></div>
-      <div class="gallery-card"><img src="screenshots/17-timer-stopwatch-laps.jpeg" alt="Stopwatch Laps" loading="lazy" /></div>
-      <div class="gallery-card"><img src="screenshots/20-timer-pomodoro-flow.jpeg" alt="Pomodoro Flow" loading="lazy" /></div>
-      <div class="gallery-card"><img src="screenshots/23-photos-body-composition.jpeg" alt="Photo Composition" loading="lazy" /></div>
-      <div class="gallery-card"><img src="screenshots/27-rewards-unlocked-badges.jpeg" alt="Rewards Badges" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/today-agenda-light.jpeg" alt="Today Agenda Light Mode" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/tasks-recurring-dark.jpeg" alt="Tasks Recurring Dark" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/habits-overview-dark.jpeg" alt="Habits Overview Dark" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/calories-food-multiplier-modal.jpeg" alt="Food Multiplier Modal" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/calories-bmr-macro-calculator.jpeg" alt="BMR & Macro Calculator" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/timer-stopwatch-dark.jpeg" alt="Stopwatch Laps Dark" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/photos-gallery-timeline-dark.jpeg" alt="Progress Photo Timeline" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/weekly-insights-analytics-dark.jpeg" alt="Weekly Analytics" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/android-widget-tasks-habits.jpeg" alt="Android Widgets" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/settings-theme-customizer.jpeg" alt="Theme Customizer" loading="lazy" /></div>
     </div>
   </section>
 
@@ -1217,7 +1207,7 @@
   <script>
     const VIEWS = {
       today: {
-        img: 'screenshots/01-today-agenda-overview.jpeg',
+        img: 'screenshots/today-agenda-dark.jpeg',
         tag: 'Horizon Dashboard',
         title: 'Unified Daily Horizon',
         desc: 'Eliminates context switching by aggregating daily tasks, recurring items, habit routines, water logging, and progress photos into one intuitive daily timeline.',
@@ -1228,7 +1218,7 @@
         ]
       },
       tasks: {
-        img: 'screenshots/04-tasks-all-view.jpeg',
+        img: 'screenshots/tasks-overview-dark.jpeg',
         tag: 'Task Orchestration',
         title: 'Precision Task Management',
         desc: 'Organize high-priority action items with customizable tags, categories, subtask checklists, and robust trash & archive recovery states.',
@@ -1239,7 +1229,7 @@
         ]
       },
       habits: {
-        img: 'screenshots/08-habits-daily-tracker.jpeg',
+        img: 'screenshots/habits-overview-dark.jpeg',
         tag: 'Atomic Routines',
         title: 'Multi-Metric Habit Engine',
         desc: 'Build unbreakable streaks with boolean habits, numeric targets (e.g. 50 pushups), water trackers, and automated photo milestones.',
@@ -1250,7 +1240,7 @@
         ]
       },
       calories: {
-        img: 'screenshots/12-calories-diary-dashboard.jpeg',
+        img: 'screenshots/calories-overview-dark.jpeg',
         tag: 'Nutrition & Macros',
         title: 'Scientific Macro Diary',
         desc: 'Track protein, carbohydrates, fats, and water intake with dynamic macro balancing and a pre-loaded database of 500+ Indian and global foods.',
@@ -1261,7 +1251,7 @@
         ]
       },
       timer: {
-        img: 'screenshots/18-timer-countdown-focus.jpeg',
+        img: 'screenshots/timer-pomodoro-active-dark.jpeg',
         tag: 'Focus Cockpit',
         title: 'Foreground Focus Engine',
         desc: 'Deep work cockpit featuring Lap Stopwatch, Target Countdown, HIIT Interval circuits, Pomodoro sessions, and ambient focus soundscapes.',
@@ -1272,7 +1262,7 @@
         ]
       },
       photos: {
-        img: 'screenshots/22-photos-progress-gallery.jpeg',
+        img: 'screenshots/photos-gallery-timeline-dark.jpeg',
         tag: 'Visual Journey',
         title: 'Private Body Transformation Diary',
         desc: 'Chronicle your physical transformation with client-side compressed progress photos organized in a sleek Google Photos style month-by-month timeline.',

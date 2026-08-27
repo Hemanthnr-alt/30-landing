@@ -31,13 +31,13 @@
 
 | **⚡ Horizon Today Agenda** | **🎯 Precision Tasks** | **🔄 Atomic Habits** |
 | :---: | :---: | :---: |
-| <img src="screenshots/01-today-agenda-overview.jpeg" width="260" alt="Today Agenda" /> | <img src="screenshots/04-tasks-all-view.jpeg" width="260" alt="Tasks View" /> | <img src="screenshots/08-habits-daily-tracker.jpeg" width="260" alt="Habits Tracker" /> |
+| <img src="screenshots/today-agenda-dark.jpeg" width="260" alt="Today Agenda" /> | <img src="screenshots/tasks-overview-dark.jpeg" width="260" alt="Tasks View" /> | <img src="screenshots/habits-overview-dark.jpeg" width="260" alt="Habits Tracker" /> |
 
 <br />
 
 | **🥗 Scientific Macro Diary** | **⏱️ Focus Engine** | **📸 Private Photo Diary** |
 | :---: | :---: | :---: |
-| <img src="screenshots/12-calories-diary-dashboard.jpeg" width="260" alt="Calorie Diary" /> | <img src="screenshots/18-timer-countdown-focus.jpeg" width="260" alt="Focus Timers" /> | <img src="screenshots/22-photos-progress-gallery.jpeg" width="260" alt="Progress Photos" /> |
+| <img src="screenshots/calories-overview-dark.jpeg" width="260" alt="Calorie Diary" /> | <img src="screenshots/timer-pomodoro-active-dark.jpeg" width="260" alt="Focus Timers" /> | <img src="screenshots/photos-gallery-timeline-dark.jpeg" width="260" alt="Progress Photos" /> |
 
 </div>
 
@@ -115,7 +115,7 @@
 ├── index.html            # Luxury dark glassmorphic landing page
 ├── thirty-app.apk        # Standalone production Android binary (v2.0.0)
 ├── 30-app.apk            # Direct mirror APK binary
-├── screenshots/          # 52 Curated, high-resolution mobile screenshots
+├── screenshots/          # 52 Accurately named high-resolution screenshots
 └── README.md             # Advertisement showcase document
 ```
 
