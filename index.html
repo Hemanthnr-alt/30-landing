@@ -1,1875 +1,904 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Thirty — Stay on top of everything</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-<style>
-:root {
-  --teal:   #14B8A6;
-  --teal2:  #0D9488;
-  --teal3:  #0F766E;
-  --cream:  #F8F6F1;
-  --ink:    #0A0E0D;
-  --ink2:   #1A1F1E;
-  --muted:  #6B7876;
-  --border: rgba(20,184,166,0.15);
-  --card:   rgba(255,255,255,0.7);
-  --glow:   rgba(20,184,166,0.25);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
-}
-
-/* ── Nav ─────────────────────────────────────────────────────────── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 5vw;
-  height: 64px;
-  background: rgba(248,246,241,0.92);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(20,184,166,0.12);
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.logo-mark {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--teal), var(--teal3));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: -0.05em;
-  box-shadow: 0 4px 14px var(--glow);
-  flex-shrink: 0;
-}
-
-.nav-wordmark {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  list-style: none;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 400;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: var(--teal); }
-
-.nav-cta {
-  padding: 9px 20px;
-  border-radius: 99px;
-  background: var(--teal);
-  color: white !important;
-  font-weight: 500;
-  font-size: 14px !important;
-  transition: all 0.2s !important;
-  box-shadow: 0 4px 14px var(--glow);
-  white-space: nowrap;
-}
-.nav-cta:hover {
-  background: var(--teal2) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px var(--glow) !important;
-}
-
-/* Mobile nav CTA only */
-.nav-mobile-cta {
-  display: none;
-  padding: 8px 16px;
-  border-radius: 99px;
-  background: var(--teal);
-  color: white;
-  font-weight: 500;
-  font-size: 13px;
-  text-decoration: none;
-  box-shadow: 0 4px 14px var(--glow);
-  white-space: nowrap;
-}
-
-/* ── Hero ────────────────────────────────────────────────────────── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 100px 5vw 60px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%);
-  top: -100px;
-  right: -200px;
-  pointer-events: none;
-}
-
-.hero-blob2 {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%);
-  bottom: -100px;
-  left: -100px;
-  pointer-events: none;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 99px;
-  background: rgba(20,184,166,0.1);
-  border: 1px solid rgba(20,184,166,0.25);
-  color: var(--teal2);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  margin-bottom: 28px;
-  animation: fadeUp 0.6s ease both;
-  text-align: center;
-}
-
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  animation: pulse 2s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
-
-h1 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(44px, 10vw, 92px);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  text-align: center;
-  color: var(--ink);
-  max-width: 900px;
-  animation: fadeUp 0.7s 0.1s ease both;
-  position: relative;
-  z-index: 1;
-}
-
-h1 em {
-  font-style: normal;
-  color: var(--teal);
-  position: relative;
-}
-
-h1 em::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--teal), var(--teal2));
-  border-radius: 99px;
-  animation: expandLine 0.6s 0.9s ease both;
-  transform-origin: left;
-}
-
-@keyframes expandLine {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.hero-sub {
-  font-size: clamp(15px, 2.5vw, 20px);
-  color: var(--muted);
-  text-align: center;
-  max-width: 560px;
-  line-height: 1.6;
-  margin-top: 24px;
-  font-weight: 300;
-  animation: fadeUp 0.7s 0.2s ease both;
-  position: relative;
-  z-index: 1;
-  padding: 0 4px;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 36px;
-  flex-wrap: wrap;
-  justify-content: center;
-  animation: fadeUp 0.7s 0.3s ease both;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 420px;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 28px;
-  border-radius: 99px;
-  background: var(--teal);
-  color: white;
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s;
-  box-shadow: 0 6px 24px var(--glow);
-  flex: 1;
-  min-width: 160px;
-  white-space: nowrap;
-}
-
-.btn-primary:hover {
-  background: var(--teal2);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 32px rgba(20,184,166,0.35);
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 28px;
-  border-radius: 99px;
-  background: white;
-  color: var(--ink);
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  border: 1.5px solid rgba(0,0,0,0.1);
-  transition: all 0.2s;
-  flex: 1;
-  min-width: 160px;
-  white-space: nowrap;
-}
-
-.btn-secondary:hover {
-  border-color: var(--teal);
-  color: var(--teal);
-  transform: translateY(-1px);
-}
-
-/* ── Phone mockup ─────────────────────────────────────────────────── */
-.hero-phone-wrap {
-  margin-top: 56px;
-  position: relative;
-  animation: fadeUp 0.8s 0.4s ease both;
-  z-index: 1;
-}
-
-.phone-frame {
-  width: 260px;
-  height: 540px;
-  border-radius: 44px;
-  background: var(--ink2);
-  border: 6px solid #2A3330;
-  position: relative;
-  box-shadow:
-    0 40px 80px rgba(0,0,0,0.25),
-    0 0 0 1px rgba(255,255,255,0.05) inset,
-    inset 0 1px 0 rgba(255,255,255,0.1);
-  overflow: hidden;
-}
-
-.phone-notch {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90px;
-  height: 26px;
-  background: var(--ink2);
-  border-radius: 99px;
-  z-index: 10;
-}
-
-.phone-screen {
-  position: absolute;
-  inset: 0;
-  background: #F2F2F7;
-  border-radius: 38px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-status-bar {
-  height: 44px;
-  background: #F2F2F7;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 20px 6px;
-  justify-content: space-between;
-  font-size: 10px;
-  font-weight: 600;
-  color: #0A0E0D;
-  flex-shrink: 0;
-}
-
-.app-nav {
-  background: white;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.app-nav-logo {
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
-  background: linear-gradient(135deg, #14B8A6, #0F766E);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 9px;
-  font-weight: 800;
-  font-family: 'Syne', sans-serif;
-}
-
-.app-nav-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: #0A0E0D;
-  font-family: 'Syne', sans-serif;
-}
-
-.app-content {
-  flex: 1;
-  padding: 12px 14px;
-  overflow: hidden;
-}
-
-.app-date-strip {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 14px;
-  overflow: hidden;
-}
-
-.date-pill {
-  flex: 1;
-  padding: 6px 4px;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 8px;
-  font-weight: 600;
-  color: #6B7876;
-}
-
-.date-pill.active {
-  background: #14B8A6;
-  color: white;
-}
-
-.app-section-title {
-  font-size: 9px;
-  font-weight: 700;
-  color: #6B7876;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
-}
-
-.app-habit-card {
-  background: white;
-  border-radius: 12px;
-  padding: 9px 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-  border: 1px solid rgba(0,0,0,0.05);
-  position: relative;
-  overflow: hidden;
-}
-
-.app-habit-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-}
-
-.card-c1::before { background: #14B8A6; }
-.card-c2::before { background: #F5A623; }
-.card-c3::before { background: #8B5CF6; }
-.card-c4::before { background: #FF5A5F; }
-
-.habit-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-
-.habit-info { flex: 1; min-width: 0; }
-
-.habit-name {
-  font-size: 10px;
-  font-weight: 600;
-  color: #0A0E0D;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.habit-meta {
-  font-size: 8px;
-  color: #6B7876;
-  display: flex;
-  gap: 6px;
-  margin-top: 2px;
-}
-
-.habit-check {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 10px;
-}
-
-.checked { background: #14B8A6; color: white; }
-.unchecked { border: 2px solid rgba(0,0,0,0.15); }
-
-.app-bottom-nav {
-  background: white;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  display: flex;
-  justify-content: space-around;
-  padding: 8px 0 12px;
-  flex-shrink: 0;
-}
-
-.bottom-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  font-size: 7px;
-  color: #6B7876;
-  font-weight: 500;
-}
-
-.bottom-nav-item.active { color: #14B8A6; }
-
-.nav-icon {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Floating cards around phone */
-.float-card {
-  position: absolute;
-  background: white;
-  border-radius: 14px;
-  padding: 10px 14px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  border: 1px solid rgba(20,184,166,0.1);
-  white-space: nowrap;
-  animation: floatY 4s ease-in-out infinite;
-}
-
-.float-card:nth-child(2) { animation-delay: -1s; }
-.float-card:nth-child(3) { animation-delay: -2.5s; }
-.float-card:nth-child(4) { animation-delay: -1.8s; }
-
-@keyframes floatY {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-
-.fc-streak {
-  top: 60px;
-  left: -140px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.fc-notif {
-  top: 200px;
-  right: -150px;
-  font-size: 12px;
-}
-
-.fc-badge {
-  bottom: 200px;
-  left: -130px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.fc-timer {
-  bottom: 120px;
-  right: -140px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.fc-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.fc-sub {
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-.streak-num {
-  font-family: 'Syne', sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  color: #F5A623;
-}
-
-/* ── Stats row ─────────────────────────────────────────────────────── */
-.stats-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: clamp(20px, 4vw, 80px);
-  padding: 48px 5vw;
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid rgba(20,184,166,0.1);
-  border-bottom: 1px solid rgba(20,184,166,0.1);
-  background: rgba(255,255,255,0.4);
-}
-
-.stat-item { text-align: center; }
-
-.stat-num {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(32px, 7vw, 54px);
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-.stat-num span { color: var(--teal); }
-
-.stat-label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 4px;
-  font-weight: 400;
-}
-
-/* ── Section layout ─────────────────────────────────────────────────── */
-section {
-  padding: 80px 5vw;
-  position: relative;
-  z-index: 1;
-}
-
-.section-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--teal2);
-  background: rgba(20,184,166,0.08);
-  padding: 5px 12px;
-  border-radius: 99px;
-  margin-bottom: 16px;
-}
-
-h2 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(30px, 7vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-  max-width: 620px;
-}
-
-h2 em {
-  font-style: normal;
-  color: var(--teal);
-}
-
-.section-sub {
-  font-size: clamp(14px, 2.5vw, 17px);
-  color: var(--muted);
-  line-height: 1.65;
-  max-width: 500px;
-  margin-top: 16px;
-  font-weight: 300;
-}
-
-/* ── Feature grid ─────────────────────────────────────────────────── */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: 16px;
-  margin-top: 48px;
-}
-
-.feature-card {
-  background: var(--card);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(20,184,166,0.1);
-  border-radius: 24px;
-  padding: 28px 24px;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  background: linear-gradient(135deg, rgba(20,184,166,0.04) 0%, transparent 100%);
-}
-
-.feature-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(20,184,166,0.25);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(20,184,166,0.1);
-}
-
-.feature-card:hover::before { opacity: 1; }
-
-.feature-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(20,184,166,0.15), rgba(20,184,166,0.05));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  font-size: 22px;
-}
-
-.feature-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 10px;
-}
-
-.feature-desc {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.65;
-  font-weight: 300;
-}
-
-.feature-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 16px;
-}
-
-.feature-tag {
-  font-size: 11px;
-  font-weight: 500;
-  padding: 3px 10px;
-  border-radius: 99px;
-  background: rgba(20,184,166,0.08);
-  color: var(--teal2);
-  border: 1px solid rgba(20,184,166,0.15);
-}
-
-/* ── How it works ─────────────────────────────────────────────────── */
-.how-section {
-  background: white;
-}
-
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  gap: 0;
-  margin-top: 48px;
-  border: 1px solid rgba(20,184,166,0.12);
-  border-radius: 28px;
-  overflow: hidden;
-}
-
-.step {
-  padding: 32px 28px;
-  border-right: 1px solid rgba(20,184,166,0.12);
-  position: relative;
-  transition: background 0.3s;
-}
-
-.step:last-child { border-right: none; }
-.step:hover { background: rgba(20,184,166,0.03); }
-
-.step-num {
-  font-family: 'Syne', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--teal);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.step-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 12px;
-  line-height: 1.2;
-}
-
-.step-desc {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.6;
-  font-weight: 300;
-}
-
-/* ── Theme showcase ─────────────────────────────────────────────────── */
-.themes-row {
-  display: flex;
-  gap: 12px;
-  margin-top: 48px;
-  overflow-x: auto;
-  padding-bottom: 8px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.theme-chip {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  border-radius: 99px;
-  border: 1.5px solid rgba(0,0,0,0.08);
-  background: white;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: all 0.2s;
-  flex-shrink: 0;
-}
-
-.theme-chip:hover {
-  border-color: var(--teal);
-  transform: translateY(-2px);
-}
-
-.theme-dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-}
-
-.theme-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-/* ── Notification feature section ────────────────────────────────── */
-.notif-section {
-  background: var(--ink2);
-  color: white;
-}
-
-.notif-section h2 { color: white; }
-.notif-section h2 em { color: var(--teal); }
-.notif-section .section-tag {
-  background: rgba(20,184,166,0.15);
-  color: #5EEAD4;
-}
-
-.notif-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 32px;
-  max-width: 480px;
-}
-
-.notif-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px 18px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 16px;
-  transition: all 0.3s;
-}
-
-.notif-item:hover {
-  background: rgba(20,184,166,0.08);
-  border-color: rgba(20,184,166,0.2);
-  transform: translateX(4px);
-}
-
-.notif-icon-wrap {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: rgba(20,184,166,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.notif-content { flex: 1; min-width: 0; }
-
-.notif-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  color: white;
-  margin-bottom: 4px;
-}
-
-.notif-desc {
-  font-size: 13px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.5;
-  font-weight: 300;
-}
-
-.notif-right {
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.android-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 99px;
-  font-size: 10px;
-  font-weight: 600;
-  background: rgba(20,184,166,0.15);
-  color: #5EEAD4;
-  border: 1px solid rgba(20,184,166,0.25);
-  white-space: nowrap;
-}
-
-/* ── Badges / Rewards section ─────────────────────────────────────── */
-.badges-showcase {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 40px;
-}
-
-.badge-card {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  background: var(--card);
-  border: 1px solid rgba(20,184,166,0.1);
-  border-radius: 14px;
-  transition: all 0.2s;
-}
-
-.badge-card:hover {
-  border-color: var(--teal);
-  transform: scale(1.03);
-  box-shadow: 0 8px 24px rgba(20,184,166,0.1);
-}
-
-.badge-emoji { font-size: 22px; }
-
-.badge-info .badge-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.badge-info .badge-desc {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 1px;
-}
-
-/* ── CTA section ─────────────────────────────────────────────────── */
-.cta-section {
-  text-align: center;
-  padding: 100px 5vw;
-  background: linear-gradient(135deg, rgba(20,184,166,0.05) 0%, transparent 60%),
-              linear-gradient(225deg, rgba(20,184,166,0.05) 0%, transparent 60%);
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-section::before {
-  content: '30';
-  position: absolute;
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(160px, 40vw, 400px);
-  color: rgba(20,184,166,0.04);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  letter-spacing: -0.08em;
-  line-height: 1;
-}
-
-.cta-section h2 {
-  max-width: 100%;
-  text-align: center;
-  font-size: clamp(34px, 8vw, 72px);
-}
-
-.cta-section .section-sub {
-  margin: 20px auto 0;
-  text-align: center;
-  max-width: 480px;
-}
-
-.cta-section .hero-actions { margin-top: 40px; max-width: 420px; margin-left: auto; margin-right: auto; }
-
-.platform-badges {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
-
-.platform-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 99px;
-  border: 1.5px solid rgba(0,0,0,0.1);
-  background: white;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-
-.platform-badge:hover {
-  border-color: var(--teal);
-  color: var(--teal);
-  transform: translateY(-2px);
-}
-
-/* ── Footer ──────────────────────────────────────────────────────── */
-footer {
-  padding: 32px 5vw;
-  border-top: 1px solid rgba(20,184,166,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  position: relative;
-  z-index: 1;
-}
-
-.footer-copy {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
-
-.footer-links a {
-  font-size: 13px;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.footer-links a:hover { color: var(--teal); }
-
-/* ── Animations ──────────────────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-
-/* ── Layout helpers ─────────────────────────────────────────────── */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(20,184,166,0.2), transparent);
-  margin: 0 5vw;
-}
-
-/* ════════════════════════════════════════════════════
-   MOBILE FIXES — max-width: 768px
-   ════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-
-  /* Nav: hide desktop links, show mobile CTA */
-  .nav-links { display: none; }
-  .nav-mobile-cta { display: inline-flex; }
-
-  /* Hero: tighter padding */
-  .hero {
-    padding: 88px 6vw 52px;
-    min-height: auto;
-  }
-
-  /* Badge wraps nicely */
-  .badge {
-    font-size: 11px;
-    padding: 5px 12px;
-    text-align: center;
-    max-width: 90vw;
-  }
-
-  /* Buttons stack vertically on small screens */
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 320px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    text-align: center;
-    width: 100%;
-    padding: 15px 20px;
-    font-size: 15px;
-  }
-
-  /* Hide floating cards on mobile — they overflow */
-  .fc-streak, .fc-notif, .fc-badge, .fc-timer { display: none; }
-
-  /* Phone mockup: center, no overflow */
-  .hero-phone-wrap {
-    margin-top: 44px;
-  }
-
-  .phone-frame {
-    width: 240px;
-    height: 500px;
-  }
-
-  /* Stats: wrap into 2-col grid */
-  .stats-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    padding: 0;
-  }
-
-  .stat-item {
-    padding: 28px 16px;
-    border-right: 1px solid rgba(20,184,166,0.1);
-    border-bottom: 1px solid rgba(20,184,166,0.1);
-  }
-
-  .stat-item:nth-child(2n) { border-right: none; }
-  .stat-item:nth-last-child(-n+1):nth-child(odd) { border-bottom: none; grid-column: 1 / -1; }
-
-  /* Section padding */
-  section { padding: 64px 5vw; }
-
-  /* Two-col → single col */
-  .two-col {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  /* Steps: 2-col on tablet, 1-col on phone */
-  .steps-grid {
-    grid-template-columns: 1fr 1fr;
-    border-radius: 20px;
-  }
-
-  .step {
-    padding: 24px 20px;
-    border-right: 1px solid rgba(20,184,166,0.12);
-    border-bottom: 1px solid rgba(20,184,166,0.12);
-  }
-
-  .step:nth-child(2n) { border-right: none; }
-  .step:nth-last-child(-n+2):nth-child(odd):last-child { border-bottom: none; }
-  .step:last-child { border-bottom: none; }
-
-  /* Notification items: stack content, hide right badge on xs */
-  .notif-item {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .notif-right {
-    margin-left: 54px; /* align under title, after icon */
-  }
-
-  /* Badges showcase: smaller cards */
-  .badge-card {
-    padding: 9px 13px;
-  }
-
-  .badge-emoji { font-size: 20px; }
-
-  /* CTA section */
-  .cta-section {
-    padding: 80px 5vw;
-  }
-
-  .platform-badges {
-    gap: 8px;
-  }
-
-  .platform-badge {
-    font-size: 12px;
-    padding: 7px 14px;
-  }
-
-  /* Footer: stack */
-  footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .footer-links { gap: 16px; }
-}
-
-/* ════════════════════════════════════════════════════
-   EXTRA SMALL — max-width: 480px
-   ════════════════════════════════════════════════════ */
-@media (max-width: 480px) {
-
-  nav { padding: 0 4vw; }
-
-  h1 { font-size: clamp(38px, 11vw, 56px); letter-spacing: -0.03em; }
-
-  .hero { padding: 80px 4vw 44px; }
-
-  .hero-sub { font-size: 15px; }
-
-  /* Stats: stay 2-col but tighter */
-  .stat-item { padding: 22px 12px; }
-
-  /* Steps: single column */
-  .steps-grid { grid-template-columns: 1fr; }
-  .step { border-right: none !important; }
-  .step:last-child { border-bottom: none; }
-
-  /* Themes: horizontal scroll still works */
-  .themes-row { gap: 8px; margin-top: 24px; }
-
-  /* Notif items: fully stacked */
-  .notif-right { margin-left: 0; }
-
-  .notif-item { flex-direction: row; flex-wrap: wrap; }
-
-  /* Android badge wraps under */
-  .android-badge { font-size: 9px; }
-
-  /* Rewards */
-  .badges-showcase { gap: 8px; }
-  .badge-card { padding: 8px 12px; }
-  .badge-info .badge-name { font-size: 12px; }
-  .badge-info .badge-desc { font-size: 10px; }
-
-  /* Button shapes demo */
-  section .two-col > div:last-child { gap: 10px; }
-
-  /* Accent swatches */
-  #themes .two-col > div:first-child > div { gap: 6px; }
-  #themes .two-col > div:first-child > div > div { width: 28px; height: 28px; }
-
-  /* Footer */
-  footer { padding: 24px 4vw; }
-  .footer-links { gap: 12px; }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thirty — The All-in-One Life Operating System</title>
+  <meta name="description" content="Thirty is the premier Android productivity suite uniting precision task management, atomic habits, calorie & macro tracking, focus timers, and progress photos." />
+  <meta name="theme-color" content="#090A0F" />
+  
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Thirty — The All-in-One Life Operating System" />
+  <meta property="og:description" content="Precision tasks, atomic habits, calorie diary, focus timers, and progress gallery in one native Android app." />
+  <meta property="og:url" content="https://30-landing.vercel.app/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #07090E;
+      --bg-elevated: #0E121B;
+      --surface: rgba(255, 255, 255, 0.035);
+      --surface-hover: rgba(255, 255, 255, 0.06);
+      --surface-border: rgba(255, 255, 255, 0.09);
+      --accent: #F59E0B;
+      --accent-glow: rgba(245, 158, 11, 0.28);
+      --accent-emerald: #10B981;
+      --text-main: #FFFFFF;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --font-heading: 'Syne', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --container-max: 1200px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 65%),
+        radial-gradient(circle at 10% 30%, rgba(16, 185, 129, 0.07) 0%, transparent 50%),
+        radial-gradient(circle at 90% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    .noise-layer {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(24px, 5vw);
+      background: rgba(7, 9, 14, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+      color: #000;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .brand-name {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-pill {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      font-family: var(--font-body);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-download-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #000 !important;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .btn-download-nav:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.45);
+      background: #FBBF24;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 140px max(20px, 4vw) 60px;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: var(--accent);
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      backdrop-filter: blur(12px);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(38px, 6.5vw, 76px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+      margin-bottom: 22px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #FFF 30%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #F59E0B 20%, #FDE047 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: clamp(16px, 2.2vw, 19px);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #F59E0B, #EAB308);
+      color: #000;
+      font-weight: 800;
+      font-size: 16px;
+      transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(245, 158, 11, 0.5);
+      background: #FBBF24;
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 28px;
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 15px;
+      backdrop-filter: blur(12px);
+      transition: all 0.2s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      background: var(--surface-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-specs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+    }
+
+    .hero-specs span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .showcase-container {
+      position: relative;
+      margin: 50px auto 40px;
+      max-width: 960px;
+      z-index: 2;
+    }
+
+    .showcase-tabs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--surface-border);
+      backdrop-filter: blur(16px);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .showcase-tab {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .showcase-tab:hover {
+      color: var(--text-main);
+    }
+
+    .showcase-tab.active {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      box-shadow: 0 2px 12px var(--accent-glow);
+    }
+
+    .phone-mockup-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-frame {
+      width: min(340px, 90vw);
+      height: 680px;
+      border-radius: 46px;
+      background: #0E121B;
+      padding: 10px;
+      border: 4px solid #232A3B;
+      box-shadow: 
+        0 25px 80px rgba(0,0,0,0.85),
+        0 0 80px rgba(245, 158, 11, 0.15),
+        inset 0 0 0 2px rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 38px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+
+    .section {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 80px max(20px, 4vw);
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 54px;
+    }
+
+    .section-tag {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(30px, 4.5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .bento-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 158, 11, 0.35);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(245, 158, 11, 0.08);
+    }
+
+    .bento-card.col-2 {
+      grid-column: span 2;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    .card-metric {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .metric-value {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .metric-label {
+      font-size: 12.5px;
+      color: var(--text-dim);
+    }
+
+    .screenshots-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 20px 0 40px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .screenshots-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gallery-item {
+      flex: 0 0 240px;
+      scroll-snap-align: center;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid var(--surface-border);
+      background: var(--bg-elevated);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+      border-color: var(--accent);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .download-section {
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.08) 0%, rgba(7, 9, 14, 1) 100%);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 60px max(24px, 5vw);
+      text-align: center;
+      margin: 40px auto 60px;
+      max-width: 900px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .faq-item summary {
+      padding: 20px 24px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      user-select: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-content {
+      padding: 0 24px 22px;
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    footer {
+      border-top: 1px solid var(--surface-border);
+      padding: 50px max(24px, 5vw) 40px;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-dim);
+      font-size: 13.5px;
+    }
+
+    @media (max-width: 900px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+      .bento-card.col-2 {
+        grid-column: span 1;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="noise-layer"></div>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <div class="logo-mark">30</div>
-    <span class="nav-wordmark">Thirty</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#how">How it works</a></li>
-    <li><a href="#themes">Themes</a></li>
-    <li><a href="#notifications">Notifications</a></li>
-    <li><a href="https://todo-app-five-chi-14.vercel.app/" class="nav-cta">Get started</a></li>
-  </ul>
-  <!-- Shown only on mobile -->
-  <a href="https://todo-app-five-chi-14.vercel.app/" class="nav-mobile-cta">Get started</a>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-blob2"></div>
-
-  <div class="badge">
-    <div class="badge-dot"></div>
-    Now with Android native notifications
-  </div>
-
-  <h1>Stay on top<br/>of <em>everything</em></h1>
-
-  <p class="hero-sub">Tasks, habits, timers and rewards — all in one beautifully designed app that works on Android, iOS and the web.</p>
-
-  <div class="hero-actions">
-    <a href="thirty-app.apk" class="btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      Download APK
+  <nav>
+    <a href="#" class="brand">
+      <div class="brand-icon">30</div>
+      <div class="brand-name">
+        Thirty <span class="brand-pill">PRO</span>
+      </div>
     </a>
-    <a href="#features" class="btn-secondary">See all features →</a>
-  </div>
 
-  <!-- Phone mockup -->
-  <div class="hero-phone-wrap">
-    <!-- Floating cards (hidden on mobile via CSS) -->
-    <div class="float-card fc-streak">
-      <div class="streak-num">🔥 14</div>
-      <div>
-        <div class="fc-label">Day streak</div>
-        <div class="fc-sub">Keep it up!</div>
-      </div>
-    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#showcase">Gallery</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
 
-    <div class="float-card fc-notif">
-      <div style="font-size:13px; color:#0A0E0D; font-weight:600; margin-bottom:2px;">⏰ Morning Run</div>
-      <div style="font-size:11px; color:#6B7876;">Habit reminder · 7:00 AM</div>
-    </div>
-
-    <div class="float-card fc-badge">
-      <div style="font-size:22px;">🏆</div>
-      <div>
-        <div class="fc-label">Habit Hero</div>
-        <div class="fc-sub">30-day streak!</div>
-      </div>
-    </div>
-
-    <div class="float-card fc-timer">
-      <div style="font-size:20px;">⏱</div>
-      <div>
-        <div class="fc-label">25:00</div>
-        <div class="fc-sub">Pomodoro running</div>
-      </div>
-    </div>
-
-    <div class="phone-frame">
-      <div class="phone-notch"></div>
-      <div class="phone-screen">
-        <div class="app-status-bar">
-          <span>9:41</span>
-          <span style="display:flex;gap:4px;align-items:center;">
-            <svg width="12" height="10" viewBox="0 0 24 18" fill="currentColor"><rect x="0" y="6" width="4" height="12" rx="1"/><rect x="7" y="3" width="4" height="15" rx="1"/><rect x="14" y="0" width="4" height="18" rx="1"/><rect x="21" y="0" width="3" height="18" rx="1"/></svg>
-            <svg width="14" height="10" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 9a10 7 0 0 1 14 0"/><path d="M8.5 12.5a5 4 0 0 1 7 0"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg>
-          </span>
-        </div>
-
-        <div class="app-nav">
-          <div class="app-nav-logo">30</div>
-          <span class="app-nav-title">Today</span>
-          <div style="margin-left:auto;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#14B8A6,#0F766E);display:flex;align-items:center;justify-content:center;">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-        </div>
-
-        <div class="app-content">
-          <div class="app-date-strip">
-            <div class="date-pill"><div>Mon</div><div style="font-size:10px;font-weight:700;color:inherit;margin-top:1px;">14</div></div>
-            <div class="date-pill active"><div>Tue</div><div style="font-size:10px;font-weight:700;color:inherit;margin-top:1px;">15</div></div>
-            <div class="date-pill"><div>Wed</div><div style="font-size:10px;font-weight:700;color:inherit;margin-top:1px;">16</div></div>
-            <div class="date-pill"><div>Thu</div><div style="font-size:10px;font-weight:700;color:inherit;margin-top:1px;">17</div></div>
-            <div class="date-pill"><div>Fri</div><div style="font-size:10px;font-weight:700;color:inherit;margin-top:1px;">18</div></div>
-          </div>
-
-          <div class="app-section-title">Habits · 2/4 done</div>
-
-          <div class="app-habit-card card-c1">
-            <div class="habit-icon" style="background:rgba(20,184,166,0.1);">🏃</div>
-            <div class="habit-info">
-              <div class="habit-name">Morning Run</div>
-              <div class="habit-meta"><span>🔥 14</span><span style="color:#3DD68C;">100%</span></div>
-            </div>
-            <div class="habit-check checked">✓</div>
-          </div>
-
-          <div class="app-habit-card card-c2">
-            <div class="habit-icon" style="background:rgba(245,166,35,0.1);">📚</div>
-            <div class="habit-info">
-              <div class="habit-name">Read 30 min</div>
-              <div class="habit-meta"><span>🔥 6</span><span style="color:#F5A623;">71%</span></div>
-            </div>
-            <div class="habit-check checked" style="background:#F5A623;">✓</div>
-          </div>
-
-          <div class="app-habit-card card-c3">
-            <div class="habit-icon" style="background:rgba(139,92,246,0.1);">🧘</div>
-            <div class="habit-info">
-              <div class="habit-name">Meditation</div>
-              <div class="habit-meta"><span>Everyday</span><span style="color:#FF5A5F;">0%</span></div>
-            </div>
-            <div class="habit-check unchecked"></div>
-          </div>
-
-          <div class="app-section-title" style="margin-top:10px;">Tasks · Today</div>
-          <div class="app-habit-card card-c4" style="opacity:0.6;">
-            <div class="habit-icon" style="background:rgba(255,90,95,0.1);">✅</div>
-            <div class="habit-info">
-              <div class="habit-name" style="text-decoration:line-through;opacity:0.5;">Design review</div>
-              <div class="habit-meta"><span>High</span></div>
-            </div>
-            <div class="habit-check checked" style="background:#3DD68C;">✓</div>
-          </div>
-        </div>
-
-        <div class="app-bottom-nav">
-          <div class="bottom-nav-item active">
-            <div class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-            Today
-          </div>
-          <div class="bottom-nav-item">
-            <div class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l2.5 2.5"/></svg></div>
-            Habits
-          </div>
-          <div class="bottom-nav-item">
-            <div class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-            Tasks
-          </div>
-          <div class="bottom-nav-item">
-            <div class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            Insights
-          </div>
-          <div class="bottom-nav-item">
-            <div class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9.5 3.5h5"/></svg></div>
-            Timer
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats-row reveal">
-  <div class="stat-item">
-    <div class="stat-num">5<span>+</span></div>
-    <div class="stat-label">App sections</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">17<span>+</span></div>
-    <div class="stat-label">Reward badges</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">4</div>
-    <div class="stat-label">Timer modes</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">3</div>
-    <div class="stat-label">App themes</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">Streak potential</div>
-  </div>
-</div>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="reveal">
-    <div class="section-tag">Core features</div>
-    <h2>Everything you need,<br/><em>nothing you don't</em></h2>
-    <p class="section-sub">Six tightly integrated sections that cover every aspect of your productivity — all synced, all offline-first.</p>
-  </div>
-
-  <div class="features-grid">
-    <div class="feature-card reveal reveal-delay-1">
-      <div class="feature-icon">📋</div>
-      <div class="feature-title">Smart Tasks</div>
-      <div class="feature-desc">Single and recurring tasks with priority levels, categories, due dates, and SVG icon tiles. Recurring tasks work exactly like habits — with streak tracking and completion history.</div>
-      <div class="feature-tags">
-        <span class="feature-tag">Recurring</span>
-        <span class="feature-tag">Categories</span>
-        <span class="feature-tag">Priority</span>
-        <span class="feature-tag">Archive</span>
-      </div>
-    </div>
-
-    <div class="feature-card reveal reveal-delay-2">
-      <div class="feature-icon">🔁</div>
-      <div class="feature-title">Habit Tracking</div>
-      <div class="feature-desc">Build daily, weekly, or custom-interval habits with streak counters, 7-day completion trays, stats modals, and calendar views. Set exact-time reminders that fire natively on Android.</div>
-      <div class="feature-tags">
-        <span class="feature-tag">Streaks</span>
-        <span class="feature-tag">Reminders</span>
-        <span class="feature-tag">Stats</span>
-        <span class="feature-tag">Calendar</span>
-      </div>
-    </div>
-
-    <div class="feature-card reveal reveal-delay-3">
-      <div class="feature-icon">⏱</div>
-      <div class="feature-title">4-Mode Timer</div>
-      <div class="feature-desc">Stopwatch, Countdown, Intervals (workout rounds), and Pomodoro with task linking. Shows a live countdown in the Android notification bar even when the app is backgrounded.</div>
-      <div class="feature-tags">
-        <span class="feature-tag">Stopwatch</span>
-        <span class="feature-tag">Pomodoro</span>
-        <span class="feature-tag">Intervals</span>
-        <span class="feature-tag">Background</span>
-      </div>
-    </div>
-
-    <div class="feature-card reveal reveal-delay-1">
-      <div class="feature-icon">📊</div>
-      <div class="feature-title">Insights & Summary</div>
-      <div class="feature-desc">Weekly summary with completion rates, overdue tracking, habit consistency charts and progress over time. See exactly where your productivity is thriving and where it needs attention.</div>
-      <div class="feature-tags">
-        <span class="feature-tag">Weekly view</span>
-        <span class="feature-tag">Charts</span>
-        <span class="feature-tag">Progress</span>
-      </div>
-    </div>
-
-    <div class="feature-card reveal reveal-delay-2">
-      <div class="feature-icon">🗂</div>
-      <div class="feature-title">Categories</div>
-      <div class="feature-desc">Organize tasks into color-coded, icon-tagged categories. The same categories and SVG icons are shared between the Tasks and Categories pages — create once, use everywhere.</div>
-      <div class="feature-tags">
-        <span class="feature-tag">Synced</span>
-        <span class="feature-tag">SVG icons</span>
-        <span class="feature-tag">Colors</span>
-      </div>
-    </div>
-
-    <div class="feature-card reveal reveal-delay-3">
-      <div class="feature-icon">🏆</div>
-      <div class="feature-title">Rewards & Badges</div>
-      <div class="feature-desc">17+ achievement badges across tasks, habits, organisation, and special categories. Unlock accent color themes at streak milestones — 3 days, 7 days, and 30 days.</div>
-      <div class="feature-tags">
-        <span class="feature-tag">17+ badges</span>
-        <span class="feature-tag">Streaks</span>
-        <span class="feature-tag">Unlockables</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="how-section">
-  <div class="reveal">
-    <div class="section-tag">How it works</div>
-    <h2>Built for how<br/>real people <em>actually work</em></h2>
-    <p class="section-sub">Designed from the ground up to be offline-first, instantly responsive, and genuinely satisfying to use every day.</p>
-  </div>
-
-  <div class="steps-grid reveal">
-    <div class="step">
-      <div class="step-num">Step 01</div>
-      <div class="step-title">Add your tasks & habits</div>
-      <div class="step-desc">Create tasks with priorities, due dates, and icons. Set up recurring habits with exact reminder times — daily, weekly, or on a custom interval.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">Step 02</div>
-      <div class="step-title">Get notified at the right time</div>
-      <div class="step-desc">Android native notifications fire at exactly the time you set — even in Doze mode, even after a reboot. Task due reminders batch at 9 AM automatically.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">Step 03</div>
-      <div class="step-title">Check off your day</div>
-      <div class="step-desc">Tap the Today page each morning to see your habits and tasks for the day. Lock future dates, review past completions, and maintain your streaks.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">Step 04</div>
-      <div class="step-title">Earn rewards as you grow</div>
-      <div class="step-desc">Unlock badges and new accent colors as you hit streak milestones. The app gamifies consistency without feeling gimmicky or distracting.</div>
-    </div>
-  </div>
-</section>
-
-<!-- THEMES -->
-<section id="themes">
-  <div class="two-col">
-    <div class="reveal">
-      <div class="section-tag">Personalisation</div>
-      <h2>Make it<br/><em>yours</em></h2>
-      <p class="section-sub">Three app themes, 12 accent color presets, a custom color picker, and three button shapes — Sharp, Rounded, or Pill. Changes apply instantly across the whole app.</p>
-
-      <div class="themes-row">
-        <div class="theme-chip">
-          <div class="theme-dot" style="background:#F2F2F7;border:1.5px solid rgba(0,0,0,0.15);"></div>
-          <span class="theme-name">Light</span>
-        </div>
-        <div class="theme-chip">
-          <div class="theme-dot" style="background:#111111;"></div>
-          <span class="theme-name">Dark</span>
-        </div>
-        <div class="theme-chip">
-          <div class="theme-dot" style="background:#000000;border:1.5px solid rgba(255,255,255,0.1);"></div>
-          <span class="theme-name">Ultra Dark</span>
-        </div>
-      </div>
-
-      <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <div style="width:32px;height:32px;border-radius:50%;background:#FF7A59;box-shadow:0 2px 8px rgba(255,122,89,0.4);"></div>
-          <div style="width:32px;height:32px;border-radius:50%;background:#FF5A5F;box-shadow:0 2px 8px rgba(255,90,95,0.4);"></div>
-          <div style="width:32px;height:32px;border-radius:50%;background:#F5A623;box-shadow:0 2px 8px rgba(245,166,35,0.4);"></div>
-          <div style="width:32px;height:32px;border-radius:50%;background:#3DD68C;box-shadow:0 2px 8px rgba(61,214,140,0.4);"></div>
-          <div style="width:32px;height:32px;border-radius:50%;background:#49B9FF;box-shadow:0 2px 8px rgba(73,185,255,0.4);"></div>
-          <div style="width:32px;height:32px;border-radius:50%;background:#14B8A6;box-shadow:0 2px 8px rgba(20,184,166,0.5);border:2px solid white;outline:2px solid #14B8A6;"></div>
-          <div style="width:32px;height:32px;border-radius:50%;background:#8B5CF6;box-shadow:0 2px 8px rgba(139,92,246,0.4);"></div>
-          <div style="width:32px;height:32px;border-radius:50%;background:#EC4899;box-shadow:0 2px 8px rgba(236,72,153,0.4);"></div>
-          <div style="width:32px;height:32px;border-radius:50%;background:conic-gradient(red,yellow,lime,cyan,blue,magenta,red);box-shadow:0 2px 8px rgba(0,0,0,0.2);"></div>
-        </div>
-      </div>
-      <p style="font-size:13px;color:var(--muted);margin-top:10px;">12 presets + custom color picker</p>
-    </div>
-
-    <div class="reveal reveal-delay-2" style="display:flex;flex-direction:column;gap:14px;">
-      <div style="background:white;border-radius:20px;padding:24px;border:1px solid rgba(20,184,166,0.1);">
-        <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em;">Sharp style</div>
-        <div style="display:flex;gap:10px;">
-          <div style="flex:1;height:38px;border-radius:4px;background:linear-gradient(135deg,#14B8A6,#0F766E);display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:600;">Save changes</div>
-          <div style="flex:1;height:38px;border-radius:4px;border:1.5px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--muted);">Cancel</div>
-        </div>
-      </div>
-      <div style="background:white;border-radius:20px;padding:24px;border:2px solid rgba(20,184,166,0.25);box-shadow:0 4px 20px rgba(20,184,166,0.08);">
-        <div style="font-size:12px;font-weight:600;color:var(--teal);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em;">Rounded style ✓</div>
-        <div style="display:flex;gap:10px;">
-          <div style="flex:1;height:38px;border-radius:14px;background:linear-gradient(135deg,#14B8A6,#0F766E);display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:600;">Save changes</div>
-          <div style="flex:1;height:38px;border-radius:14px;border:1.5px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--muted);">Cancel</div>
-        </div>
-      </div>
-      <div style="background:white;border-radius:20px;padding:24px;border:1px solid rgba(20,184,166,0.1);">
-        <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em;">Pill style</div>
-        <div style="display:flex;gap:10px;">
-          <div style="flex:1;height:38px;border-radius:999px;background:linear-gradient(135deg,#14B8A6,#0F766E);display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:600;">Save changes</div>
-          <div style="flex:1;height:38px;border-radius:999px;border:1.5px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--muted);">Cancel</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NOTIFICATIONS -->
-<section id="notifications" class="notif-section">
-  <div class="two-col">
-    <div class="reveal">
-      <div class="section-tag">Notifications</div>
-      <h2>Real Android<br/><em>system alerts</em></h2>
-      <p class="section-sub" style="color:rgba(255,255,255,0.5);">Not just in-app banners — proper Android notifications that show in your status bar, survive Doze mode, and survive device reboots.</p>
-
-      <div class="notif-list">
-        <div class="notif-item">
-          <div class="notif-icon-wrap">⏰</div>
-          <div class="notif-content">
-            <div class="notif-title">Habit reminders</div>
-            <div class="notif-desc">Fires at the exact time you set, every day. Uses SCHEDULE_EXACT_ALARM so it works even when the device is asleep.</div>
-          </div>
-          <div class="notif-right"><span class="android-badge">Exact alarm</span></div>
-        </div>
-
-        <div class="notif-item">
-          <div class="notif-icon-wrap">📋</div>
-          <div class="notif-content">
-            <div class="notif-title">Task due reminders</div>
-            <div class="notif-desc">A batched notification at 9 AM for all tasks due today. Overdue tasks surface immediately when you open the app.</div>
-          </div>
-          <div class="notif-right"><span class="android-badge">9 AM daily</span></div>
-        </div>
-
-        <div class="notif-item">
-          <div class="notif-icon-wrap">⏱</div>
-          <div class="notif-content">
-            <div class="notif-title">Live timer in status bar</div>
-            <div class="notif-desc">The countdown shows as "⏱ 2:35 left" in your notification bar when you leave the app. Updates every 5 seconds.</div>
-          </div>
-          <div class="notif-right"><span class="android-badge">Live update</span></div>
-        </div>
-
-        <div class="notif-item">
-          <div class="notif-icon-wrap">🔄</div>
-          <div class="notif-content">
-            <div class="notif-title">Survives reboots</div>
-            <div class="notif-desc">The BOOT_COMPLETED receiver reschedules all your reminders automatically after a phone restart — no setup needed again.</div>
-          </div>
-          <div class="notif-right"><span class="android-badge">Boot receiver</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal reveal-delay-2" style="display:flex;flex-direction:column;gap:12px;">
-      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:18px 20px;backdrop-filter:blur(10px);">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#14B8A6,#0F766E);display:flex;align-items:center;justify-content:center;font-size:9px;color:white;font-weight:800;font-family:'Syne',sans-serif;">30</div>
-          <span style="font-size:11px;color:rgba(255,255,255,0.5);flex:1;">Thirty · now</span>
-        </div>
-        <div style="font-size:14px;font-weight:600;color:white;margin-bottom:3px;">⏰ Morning Run</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.55);">Time for your habit · 🔥 14 day streak</div>
-      </div>
-
-      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:18px 20px;backdrop-filter:blur(10px);">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#14B8A6,#0F766E);display:flex;align-items:center;justify-content:center;font-size:9px;color:white;font-weight:800;font-family:'Syne',sans-serif;">30</div>
-          <span style="font-size:11px;color:rgba(255,255,255,0.5);flex:1;">Thirty · 9:00 AM</span>
-        </div>
-        <div style="font-size:14px;font-weight:600;color:white;margin-bottom:3px;">📋 3 tasks due today</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.55);">• Design review<br/>• Push notification fix<br/>• Weekly report</div>
-      </div>
-
-      <div style="background:rgba(20,184,166,0.12);border:1px solid rgba(20,184,166,0.25);border-radius:18px;padding:18px 20px;backdrop-filter:blur(10px);">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#14B8A6,#0F766E);display:flex;align-items:center;justify-content:center;font-size:9px;color:white;font-weight:800;font-family:'Syne',sans-serif;">30</div>
-          <span style="font-size:11px;color:rgba(255,255,255,0.5);flex:1;">Thirty · ongoing</span>
-          <span style="font-size:10px;padding:2px 8px;border-radius:99px;background:rgba(20,184,166,0.2);color:#5EEAD4;font-weight:600;">ONGOING</span>
-        </div>
-        <div style="font-size:14px;font-weight:600;color:white;margin-bottom:3px;">⏱ Countdown — 12:47 left</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.55);">Tap to return to the app</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- REWARDS -->
-<section id="rewards">
-  <div class="reveal">
-    <div class="section-tag">Rewards</div>
-    <h2>Earn badges,<br/><em>unlock themes</em></h2>
-    <p class="section-sub">17+ achievement badges across four categories. Hit streak milestones to unlock exclusive accent colors that carry across the whole app.</p>
-  </div>
-
-  <div class="badges-showcase reveal">
-    <div class="badge-card"><span class="badge-emoji">🎯</span><div class="badge-info"><div class="badge-name">First Step</div><div class="badge-desc">Complete first task</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">💯</span><div class="badge-info"><div class="badge-name">Century Club</div><div class="badge-desc">Complete 100 tasks</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">🔥</span><div class="badge-info"><div class="badge-name">High Achiever</div><div class="badge-desc">10 high-priority tasks</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">⚡</span><div class="badge-info"><div class="badge-name">Always On Time</div><div class="badge-desc">0 overdue today</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">🌟</span><div class="badge-info"><div class="badge-name">Perfect Day</div><div class="badge-desc">All tasks done today</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">🌱</span><div class="badge-info"><div class="badge-name">Habit Sprout</div><div class="badge-desc">Create first habit</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">💫</span><div class="badge-info"><div class="badge-name">Week Warrior</div><div class="badge-desc">7-day habit streak</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">🏆</span><div class="badge-info"><div class="badge-name">Habit Hero</div><div class="badge-desc">30-day habit streak</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">📅</span><div class="badge-info"><div class="badge-name">Perfect Week</div><div class="badge-desc">All habits, 7 days</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">🌅</span><div class="badge-info"><div class="badge-name">Early Bird</div><div class="badge-desc">Task before 9 AM</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">🦉</span><div class="badge-info"><div class="badge-name">Night Owl</div><div class="badge-desc">Task after 10 PM</div></div></div>
-    <div class="badge-card"><span class="badge-emoji">💪</span><div class="badge-info"><div class="badge-name">Comeback</div><div class="badge-desc">Return after 3+ days</div></div></div>
-  </div>
-
-  <div class="reveal" style="margin-top:32px;padding:24px 28px;background:linear-gradient(135deg,rgba(20,184,166,0.08),rgba(20,184,166,0.02));border:1px solid rgba(20,184,166,0.2);border-radius:20px;max-width:560px;">
-    <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--ink);margin-bottom:8px;">🎨 Streak color unlocks</div>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;">
-      <div style="display:flex;align-items:center;gap:8px;"><div style="width:20px;height:20px;border-radius:50%;background:#FF5A5F;flex-shrink:0;"></div><span style="font-size:13px;color:var(--muted);">3-day streak</span></div>
-      <div style="display:flex;align-items:center;gap:8px;"><div style="width:20px;height:20px;border-radius:50%;background:#8B5CF6;flex-shrink:0;"></div><span style="font-size:13px;color:var(--muted);">7-day streak</span></div>
-      <div style="display:flex;align-items:center;gap:8px;"><div style="width:20px;height:20px;border-radius:50%;background:#EAB308;flex-shrink:0;"></div><span style="font-size:13px;color:var(--muted);">30-day streak</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta" class="cta-section">
-  <div class="reveal">
-    <div class="section-tag">Get Thirty</div>
-    <h2>Start your<br/><em>best year</em> today</h2>
-    <p class="section-sub">Free to download. Works offline. Syncs when connected. Available as an Android APK and a progressive web app.</p>
-
-    <div class="hero-actions">
-      <a href="thirty-app.apk" class="btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        Download Android APK
-      </a>
-      <a href="https://todo-app-five-chi-14.vercel.app/" class="btn-secondary">Open Web App →</a>
-    </div>
-
-    <div class="platform-badges">
-      <a href="#" class="platform-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        Works offline
-      </a>
-      <a href="#" class="platform-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        JWT auth
-      </a>
-      <a href="#" class="platform-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        Cloud sync
-      </a>
-      <a href="thirty-app.apk" class="platform-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        Android APK
+    <div class="nav-actions">
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-download-nav">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download APK
       </a>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- FOOTER -->
-<footer>
-  <div class="nav-logo" style="text-decoration:none;">
-    <div class="logo-mark">30</div>
-    <span class="nav-wordmark">Thirty</span>
-  </div>
-  <p class="footer-copy">© 2026 Thirty. Stay on top of everything.</p>
-  <ul class="footer-links">
-    <li><a href="#">Privacy</a></li>
-    <li><a href="#">Terms</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</footer>
+  <header class="hero">
+    <div class="hero-badge">
+      <div class="status-dot"></div>
+      Thirty 2.0.0 Now Available · Native Android Release
+    </div>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
+    <h1 class="hero-title">
+      <span>The Ultimate</span><br />
+      <span class="gradient-text">Life Operating System.</span>
+    </h1>
+
+    <p class="hero-desc">
+      A single, blazing-fast native workspace uniting precision task scheduling, atomic habit loops, calorie & macro diary, hardware focus timers, and visual progress photos.
+    </p>
+
+    <div class="hero-cta-group">
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-hero-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Android APK (v2.0)
+      </a>
+      <a href="#showcase" class="btn-hero-secondary">
+        Explore App Views
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-specs">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> 9.8 MB Native APK</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> 100% Offline IndexedDB</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> Zero Ads & Tracking</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> Android 8.0 to 14+</span>
+    </div>
+
+    <div class="showcase-container" id="showcase">
+      <div class="showcase-tabs">
+        <button class="showcase-tab active" onclick="switchScreenshot('screenshots/shot-01.jpeg', this)">Today Agenda</button>
+        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-04.jpeg', this)">Tasks</button>
+        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-09.jpeg', this)">Habits</button>
+        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-15.jpeg', this)">Nutrition & Calories</button>
+        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-17.jpeg', this)">Timers</button>
+        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-25.jpeg', this)">Progress Photos</button>
+      </div>
+
+      <div class="phone-mockup-wrapper">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <img id="mainPhoneImg" src="screenshots/shot-01.jpeg" alt="Thirty App Interface" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="features">
+    <div class="section-header">
+      <span class="section-tag">Core Ecosystem</span>
+      <h2 class="section-title">Engineered to eliminate friction and maximize output.</h2>
+      <p class="section-sub">Every module is interconnected so completing your physical goals automatically checks your daily agenda.</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="bento-card col-2">
+        <div>
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3 class="card-title">Unified Today Timeline & Action Agenda</h3>
+          <p class="card-desc">Experience a zero-clutter horizon view of tasks, recurring routines, water logs, and photo habits. Powered by hardware-accelerated Framer Motion with drag-handle reordering and instant strike-through animations.</p>
+        </div>
+        <div class="card-metric">
+          <span class="metric-value">60 FPS</span>
+          <span class="metric-label">Fluid hardware-rendered gesture interactions</span>
+        </div>
+      </div>
+
+      <div class="bento-card">
+        <div>
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          </div>
+          <h3 class="card-title">Dynamic Macro Calculation</h3>
+          <p class="card-desc">Enforces strict scientific macro balance (P×4 + C×4 + F×9 = Calories). Tailor goals for Lean Bulk, Lean Cut, or Maintenance.</p>
+        </div>
+        <div class="card-metric">
+          <span class="metric-value">500+</span>
+          <span class="metric-label">Pre-loaded Indian & global items</span>
+        </div>
+      </div>
+
+      <div class="bento-card">
+        <div>
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="card-title">Native Foreground Timers</h3>
+          <p class="card-desc">Never miss a tick. Android 14+ Foreground Service ensures your Stopwatch, Interval circuits, and Pomodoro sessions stay live in your notification tray without OS killing.</p>
+        </div>
+        <div class="card-metric">
+          <span class="metric-value">0ms</span>
+          <span class="metric-label">Background drift or OS throttling</span>
+        </div>
+      </div>
+
+      <div class="bento-card col-2">
+        <div>
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <h3 class="card-title">Private Visual Transformation Diary</h3>
+          <p class="card-desc">Capture and compress daily body composition photos right in your device. Auto-linked to your Daily Progress Photo habit so saving a picture automatically completes your daily checklist.</p>
+        </div>
+        <div class="card-metric">
+          <span class="metric-value">100% On-Device</span>
+          <span class="metric-label">Private IndexedDB storage — zero cloud exposure</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="section-header">
+      <span class="section-tag">Visual Showcase</span>
+      <h2 class="section-title">Pixel-perfect craftsmanship across all pages.</h2>
+      <p class="section-sub">Swipe through the gallery to see Thirty in action.</p>
+    </div>
+
+    <div class="screenshots-scroll">
+      <div class="gallery-item"><img src="screenshots/shot-02.jpeg" alt="Screen" loading="lazy" /></div>
+      <div class="gallery-item"><img src="screenshots/shot-05.jpeg" alt="Screen" loading="lazy" /></div>
+      <div class="gallery-item"><img src="screenshots/shot-07.jpeg" alt="Screen" loading="lazy" /></div>
+      <div class="gallery-item"><img src="screenshots/shot-10.jpeg" alt="Screen" loading="lazy" /></div>
+      <div class="gallery-item"><img src="screenshots/shot-13.jpeg" alt="Screen" loading="lazy" /></div>
+      <div class="gallery-item"><img src="screenshots/shot-18.jpeg" alt="Screen" loading="lazy" /></div>
+      <div class="gallery-item"><img src="screenshots/shot-22.jpeg" alt="Screen" loading="lazy" /></div>
+      <div class="gallery-item"><img src="screenshots/shot-28.jpeg" alt="Screen" loading="lazy" /></div>
+      <div class="gallery-item"><img src="screenshots/shot-35.jpeg" alt="Screen" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="download-section">
+      <div class="download-box">
+        <h2 class="section-title">Ready to take control of your day?</h2>
+        <p class="section-sub">Directly install Thirty on your Android device without Play Store restrictions or bloatware.</p>
+        
+        <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-hero-primary" style="font-size: 18px; padding: 18px 44px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Thirty APK (v2.0.0)
+        </a>
+
+        <div style="font-size: 13px; color: var(--text-dim); margin-top: 6px;">
+          Direct download link: <code>https://30-landing.vercel.app/thirty-app.apk</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-header">
+      <span class="section-tag">Frequently Asked Questions</span>
+      <h2 class="section-title">Everything you need to know.</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>
+          How do I install Thirty APK on Android?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-content">
+          Tap the "Download APK" button. Once downloaded, tap the notification or open your Downloads folder, click <code>Thirty-Pro.apk</code>, and allow "Install Unknown Apps" when prompted.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Does Thirty work without internet connection?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-content">
+          Yes! Thirty is built on a 100% local-first IndexedDB and Capacitor architecture. All your habits, tasks, nutrition logs, and photos remain on your hardware even in airplane mode.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Are my photos and fitness data private?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-content">
+          Completely private. Photos and daily logs never leave your phone and are never sent to external servers or ad networks.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Do the home screen widgets work on modern Android?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-content">
+          Yes, Thirty provides native RemoteViews AppWidgets for Tasks and Habits designed specifically for Android 12 through Android 14+ with theme synchronization.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brand">
+      <div class="brand-icon" style="width: 30px; height: 30px; font-size: 14px;">30</div>
+      <div class="brand-name" style="font-size: 16px;">Thirty Pro</div>
+    </div>
+
+    <div>
+      Official Download: <a href="https://30-landing.vercel.app/" target="_blank" style="color: var(--accent); font-weight: 600;">30-landing.vercel.app</a>
+    </div>
+
+    <div>
+      Crafted with precision by Hemanth NR · 2026
+    </div>
+  </footer>
+
+  <script>
+    function switchScreenshot(src, btn) {
+      const img = document.getElementById('mainPhoneImg');
+      if (!img) return;
+      img.style.opacity = '0.3';
+      setTimeout(() => {
+        img.src = src;
+        img.style.opacity = '1';
+      }, 150);
+
+      document.querySelectorAll('.showcase-tab').forEach(t => t.classList.remove('active'));
+      if (btn) btn.classList.add('active');
     }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-const sections = document.querySelectorAll('section[id], div[id]');
-const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      navLinks.forEach(a => a.classList.remove('active'));
-      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
-  });
-}, { threshold: 0.4 });
-
-sections.forEach(s => navObserver.observe(s));
-</script>
+  </script>
 </body>
 </html>
