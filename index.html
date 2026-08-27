@@ -1,43 +1,51 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thirty — The All-in-One Life Operating System</title>
-  <meta name="description" content="Thirty is the premier Android productivity suite uniting precision task management, atomic habits, calorie & macro tracking, focus timers, and progress photos." />
-  <meta name="theme-color" content="#090A0F" />
-  
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Thirty — The All-in-One Life Operating System" />
-  <meta property="og:description" content="Precision tasks, atomic habits, calorie diary, focus timers, and progress gallery in one native Android app." />
+  <title>30-ECO — The Premier Life Operating System for Android</title>
+  <meta name="description" content="30-ECO unites precision task scheduling, atomic habit loops, scientific macro & calorie tracking, foreground focus timers, and private transformation photos in one native Android app." />
+  <meta name="theme-color" content="#06080C" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="30-ECO — The Premier Life Operating System" />
+  <meta property="og:description" content="Precision tasks, habits, scientific macro balance, focus timers, and transformation gallery in one native Android app." />
   <meta property="og:url" content="https://30-landing.vercel.app/" />
   <meta property="og:type" content="website" />
 
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg: #07090E;
-      --bg-elevated: #0E121B;
-      --surface: rgba(255, 255, 255, 0.035);
-      --surface-hover: rgba(255, 255, 255, 0.06);
-      --surface-border: rgba(255, 255, 255, 0.09);
+      --bg: #06080C;
+      --bg-card: rgba(14, 18, 27, 0.75);
+      --bg-glass: rgba(255, 255, 255, 0.035);
+      --bg-glass-hover: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(245, 158, 11, 0.45);
+      
       --accent: #F59E0B;
       --accent-glow: rgba(245, 158, 11, 0.28);
+      --accent-cyan: #06B6D4;
       --accent-emerald: #10B981;
-      --text-main: #FFFFFF;
+      --accent-violet: #8B5CF6;
+      
+      --text-white: #FFFFFF;
       --text-muted: #94A3B8;
       --text-dim: #64748B;
-      --font-heading: 'Syne', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
+      
+      --font-display: 'Syne', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
       --radius-sm: 10px;
       --radius-md: 16px;
       --radius-lg: 24px;
-      --radius-xl: 32px;
-      --container-max: 1200px;
+      --radius-xl: 36px;
+      --container: 1200px;
     }
 
     *, *::before, *::after {
@@ -49,25 +57,27 @@
     html {
       scroll-behavior: smooth;
       background: var(--bg);
-      color: var(--text-main);
-      font-family: var(--font-body);
+      color: var(--text-white);
+      font-family: var(--font-sans);
     }
 
     body {
       overflow-x: hidden;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 65%),
-        radial-gradient(circle at 10% 30%, rgba(16, 185, 129, 0.07) 0%, transparent 50%),
-        radial-gradient(circle at 90% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245, 158, 11, 0.15), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 90% 40%, rgba(6, 182, 212, 0.08), transparent 60%),
+        radial-gradient(ellipse 50% 30% at 10% 75%, rgba(139, 92, 246, 0.06), transparent 60%),
+        #06080C;
       background-attachment: fixed;
     }
 
-    .noise-layer {
+    /* Ambient noise */
+    .ambient-noise {
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
     }
@@ -77,187 +87,189 @@
       text-decoration: none;
     }
 
-    nav {
+    /* ─── Top Floating Glass Bar ────────────────────────────────────────── */
+    .navbar-wrapper {
       position: fixed;
-      top: 0;
+      top: 18px;
       left: 0;
       right: 0;
       z-index: 1000;
-      height: 72px;
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 max(24px, 5vw);
-      background: rgba(7, 9, 14, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--surface-border);
+      gap: 32px;
+      padding: 8px 12px 8px 18px;
+      border-radius: 999px;
+      background: rgba(14, 18, 27, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+      max-width: 900px;
+      width: 100%;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #000;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-heading);
+      box-shadow: 0 2px 10px var(--accent-glow);
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
       font-weight: 800;
       font-size: 18px;
-      color: #000;
-      box-shadow: 0 4px 16px var(--accent-glow);
-    }
-
-    .brand-name {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 20px;
       letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .brand-pill {
-      font-size: 10px;
-      padding: 2px 7px;
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
       border-radius: 6px;
       background: rgba(245, 158, 11, 0.15);
       color: var(--accent);
       border: 1px solid rgba(245, 158, 11, 0.3);
-      font-family: var(--font-body);
-      font-weight: 700;
-      letter-spacing: 0.05em;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 22px;
       list-style: none;
     }
 
     .nav-links a {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 500;
       color: var(--text-muted);
       transition: color 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: var(--text-main);
+      color: var(--text-white);
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .btn-download-nav {
+    .btn-nav-download {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 18px;
+      padding: 8px 18px;
       border-radius: 999px;
       background: var(--accent);
       color: #000 !important;
       font-weight: 700;
-      font-size: 13.5px;
+      font-size: 13px;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 16px var(--accent-glow);
+      box-shadow: 0 4px 14px var(--accent-glow);
     }
 
-    .btn-download-nav:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.45);
+    .btn-nav-download:hover {
       background: #FBBF24;
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
     }
 
+    /* ─── Hero Section ─────────────────────────────────────────────────── */
     .hero {
       position: relative;
       z-index: 1;
-      padding: 140px max(20px, 4vw) 60px;
-      max-width: var(--container-max);
+      padding: 160px 24px 80px;
+      max-width: var(--container);
       margin: 0 auto;
       text-align: center;
     }
 
-    .hero-badge {
+    .hero-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 6px 16px;
       border-radius: 999px;
-      background: rgba(245, 158, 11, 0.1);
+      background: rgba(245, 158, 11, 0.08);
       border: 1px solid rgba(245, 158, 11, 0.25);
       color: var(--accent);
       font-size: 12.5px;
       font-weight: 600;
       margin-bottom: 28px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
     }
 
-    .status-dot {
+    .status-pulse {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: var(--accent);
       box-shadow: 0 0 10px var(--accent);
-      animation: pulseDot 2s infinite ease-in-out;
+      animation: pulseGlow 2s infinite ease-in-out;
     }
 
-    @keyframes pulseDot {
+    @keyframes pulseGlow {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 0.35; transform: scale(0.85); }
     }
 
-    .hero-title {
-      font-family: var(--font-heading);
-      font-size: clamp(38px, 6.5vw, 76px);
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 7vw, 84px);
       font-weight: 800;
-      line-height: 1.04;
-      letter-spacing: -0.035em;
-      margin-bottom: 22px;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
     }
 
-    .hero-title span {
-      background: linear-gradient(135deg, #FFF 30%, #94A3B8 100%);
+    .hero-h1 span.title-white {
+      background: linear-gradient(180deg, #FFFFFF 20%, #CBD5E1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero-title .gradient-text {
-      background: linear-gradient(135deg, #F59E0B 20%, #FDE047 100%);
+    .hero-h1 span.title-accent {
+      background: linear-gradient(135deg, #F59E0B 10%, #FBBF24 50%, #FCD34D 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero-desc {
+    .hero-p {
       font-size: clamp(16px, 2.2vw, 19px);
       color: var(--text-muted);
-      max-width: 680px;
+      max-width: 660px;
       margin: 0 auto 36px;
       line-height: 1.6;
     }
 
-    .hero-cta-group {
+    .hero-cta {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
-    .btn-hero-primary {
+    .btn-main-download {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -268,82 +280,83 @@
       font-weight: 800;
       font-size: 16px;
       transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 30px var(--accent-glow);
+      box-shadow: 0 8px 32px var(--accent-glow);
     }
 
-    .btn-hero-primary:hover {
+    .btn-main-download:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(245, 158, 11, 0.5);
+      box-shadow: 0 12px 42px rgba(245, 158, 11, 0.45);
       background: #FBBF24;
     }
 
-    .btn-hero-secondary {
+    .btn-showcase-jump {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 16px 28px;
       border-radius: var(--radius-md);
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      color: var(--text-main);
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      color: var(--text-white);
       font-weight: 600;
       font-size: 15px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       transition: all 0.2s ease;
     }
 
-    .btn-hero-secondary:hover {
-      background: var(--surface-hover);
-      border-color: rgba(255, 255, 255, 0.2);
+    .btn-showcase-jump:hover {
+      background: var(--bg-glass-hover);
+      border-color: rgba(255, 255, 255, 0.18);
     }
 
-    .hero-specs {
+    .hero-badges-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 24px;
       font-size: 13px;
       color: var(--text-dim);
       flex-wrap: wrap;
     }
 
-    .hero-specs span {
+    .hero-badges-row span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .showcase-container {
+    /* ─── Interactive 3D Showcase ───────────────────────────────────────── */
+    .showcase-section {
       position: relative;
-      margin: 50px auto 40px;
-      max-width: 960px;
+      margin: 60px auto 100px;
+      max-width: 1040px;
       z-index: 2;
     }
 
-    .showcase-tabs {
+    .showcase-nav-pills {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 28px;
+      margin-bottom: 34px;
       padding: 6px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--surface-border);
-      backdrop-filter: blur(16px);
-      max-width: 800px;
+      background: rgba(14, 18, 27, 0.6);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      max-width: 820px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .showcase-tab {
-      padding: 8px 16px;
+    .pill-tab {
+      padding: 8px 18px;
       border-radius: 999px;
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-family: var(--font-body);
+      font-family: var(--font-sans);
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
@@ -353,49 +366,60 @@
       gap: 6px;
     }
 
-    .showcase-tab:hover {
-      color: var(--text-main);
+    .pill-tab:hover {
+      color: var(--text-white);
     }
 
-    .showcase-tab.active {
+    .pill-tab.active {
       background: var(--accent);
       color: #000;
       font-weight: 700;
-      box-shadow: 0 2px 12px var(--accent-glow);
+      box-shadow: 0 2px 14px var(--accent-glow);
     }
 
-    .phone-mockup-wrapper {
-      position: relative;
+    .showcase-stage {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+    }
+
+    .phone-container {
       display: flex;
       justify-content: center;
     }
 
-    .phone-frame {
-      width: min(340px, 90vw);
-      height: 680px;
-      border-radius: 46px;
+    .phone-shell {
+      width: min(310px, 85vw);
+      height: 640px;
+      border-radius: 44px;
       background: #0E121B;
-      padding: 10px;
-      border: 4px solid #232A3B;
+      padding: 9px;
+      border: 3.5px solid #283042;
       box-shadow: 
-        0 25px 80px rgba(0,0,0,0.85),
-        0 0 80px rgba(245, 158, 11, 0.15),
-        inset 0 0 0 2px rgba(255,255,255,0.1);
+        0 20px 60px rgba(0,0,0,0.9),
+        0 0 60px rgba(245, 158, 11, 0.12),
+        inset 0 0 0 1.5px rgba(255,255,255,0.1);
       position: relative;
       overflow: hidden;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .phone-screen {
+    .phone-inner {
       width: 100%;
       height: 100%;
-      border-radius: 38px;
+      border-radius: 36px;
       overflow: hidden;
       background: #000;
       position: relative;
     }
 
-    .phone-screen img {
+    .phone-inner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -403,80 +427,134 @@
       transition: opacity 0.25s ease;
     }
 
-    .section {
-      max-width: var(--container-max);
-      margin: 0 auto;
-      padding: 80px max(20px, 4vw);
-      position: relative;
-      z-index: 1;
+    .stage-info {
+      text-align: left;
     }
 
-    .section-header {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 54px;
-    }
-
-    .section-tag {
-      font-size: 12px;
-      font-weight: 800;
+    .stage-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 12px;
+      display: block;
+    }
+
+    .stage-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 38px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .stage-desc {
+      color: var(--text-muted);
+      font-size: 15.5px;
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .stage-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stage-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #E2E8F0;
+    }
+
+    .stage-item svg {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* ─── Bento Architecture ────────────────────────────────────────────── */
+    .section-wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 90px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-headline {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 56px;
+    }
+
+    .section-chip {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
       display: inline-block;
     }
 
-    .section-title {
-      font-family: var(--font-heading);
-      font-size: clamp(30px, 4.5vw, 48px);
+    .section-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.5vw, 50px);
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.12;
+      line-height: 1.1;
       margin-bottom: 16px;
     }
 
-    .section-sub {
+    .section-lead {
       color: var(--text-muted);
-      font-size: 16px;
+      font-size: 16.5px;
     }
 
-    .bento-grid {
+    .bento-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
-    .bento-card {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
+    .bento-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 32px 28px;
-      backdrop-filter: blur(16px);
+      padding: 34px 28px;
+      backdrop-filter: blur(18px);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
+      overflow: hidden;
     }
 
-    .bento-card:hover {
+    .bento-tile:hover {
       transform: translateY(-4px);
-      border-color: rgba(245, 158, 11, 0.35);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(245, 158, 11, 0.06);
     }
 
-    .bento-card.col-2 {
+    .bento-tile.span-2 {
       grid-column: span 2;
     }
 
-    .card-icon {
+    .tile-icon {
       width: 48px;
       height: 48px;
       border-radius: 14px;
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.25);
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.22);
       color: var(--accent);
       display: flex;
       align-items: center;
@@ -484,21 +562,21 @@
       margin-bottom: 22px;
     }
 
-    .card-title {
-      font-family: var(--font-heading);
-      font-size: 20px;
+    .tile-h3 {
+      font-family: var(--font-display);
+      font-size: 21px;
       font-weight: 700;
       margin-bottom: 10px;
       letter-spacing: -0.02em;
     }
 
-    .card-desc {
+    .tile-text {
       color: var(--text-muted);
       font-size: 14.5px;
       line-height: 1.6;
     }
 
-    .card-metric {
+    .tile-stat {
       margin-top: 24px;
       padding-top: 18px;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -507,93 +585,216 @@
       gap: 8px;
     }
 
-    .metric-value {
-      font-family: var(--font-heading);
-      font-size: 24px;
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 26px;
       font-weight: 800;
       color: var(--accent);
     }
 
-    .metric-label {
+    .stat-label {
       font-size: 12.5px;
       color: var(--text-dim);
     }
 
-    .screenshots-scroll {
+    /* ─── Live Macro Calculator Interactive Widget ──────────────────────── */
+    .calculator-box {
+      background: linear-gradient(180deg, rgba(14, 18, 27, 0.9) 0%, rgba(6, 8, 12, 0.95) 100%);
+      border: 1px solid var(--border-focus);
+      border-radius: var(--radius-xl);
+      padding: 44px max(24px, 4vw);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      margin: 40px 0;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .calc-controls {
       display: flex;
-      gap: 16px;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .calc-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .calc-input-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .calc-input {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: #FFF;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .calc-input:focus {
+      border-color: var(--accent);
+    }
+
+    .calc-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+    }
+
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .calc-results {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .macro-bar-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .macro-bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .macro-track {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .macro-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ─── Gallery Showcase Carousel ─────────────────────────────────────── */
+    .gallery-scroller {
+      display: flex;
+      gap: 18px;
       overflow-x: auto;
       padding: 20px 0 40px;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
     }
 
-    .screenshots-scroll::-webkit-scrollbar {
+    .gallery-scroller::-webkit-scrollbar {
       display: none;
     }
 
-    .gallery-item {
+    .gallery-card {
       flex: 0 0 240px;
       scroll-snap-align: center;
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
-      border: 2px solid var(--surface-border);
-      background: var(--bg-elevated);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1.5px solid var(--border);
+      background: #0E121B;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
-    .gallery-item:hover {
-      transform: scale(1.03);
+    .gallery-card:hover {
+      transform: translateY(-6px) scale(1.02);
       border-color: var(--accent);
     }
 
-    .gallery-item img {
+    .gallery-card img {
       width: 100%;
       height: 480px;
       object-fit: cover;
       display: block;
     }
 
-    .download-section {
-      background: linear-gradient(180deg, rgba(245, 158, 11, 0.08) 0%, rgba(7, 9, 14, 1) 100%);
+    /* ─── Direct Download Center ────────────────────────────────────────── */
+    .download-hub {
+      background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.14) 0%, rgba(14, 18, 27, 0.95) 75%);
+      border: 1px solid rgba(245, 158, 11, 0.3);
       border-radius: var(--radius-xl);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      padding: 60px max(24px, 5vw);
+      padding: 60px 30px;
       text-align: center;
-      margin: 40px auto 60px;
-      max-width: 900px;
+      max-width: 920px;
+      margin: 40px auto;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.8);
       position: relative;
-      overflow: hidden;
     }
 
-    .download-box {
+    .download-options {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 20px;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 32px;
     }
 
-    .faq-list {
-      max-width: 760px;
+    .qr-card {
+      background: #FFFFFF;
+      padding: 14px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .qr-card svg {
+      display: block;
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────────────── */
+    .faq-stack {
+      max-width: 780px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    .faq-item {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
+    .faq-row {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
       overflow: hidden;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s;
     }
 
-    .faq-item summary {
-      padding: 20px 24px;
+    .faq-row summary {
+      padding: 22px 26px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 16.5px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -602,21 +803,22 @@
       user-select: none;
     }
 
-    .faq-item summary::-webkit-details-marker {
+    .faq-row summary::-webkit-details-marker {
       display: none;
     }
 
-    .faq-content {
-      padding: 0 24px 22px;
+    .faq-answer {
+      padding: 0 26px 24px;
       color: var(--text-muted);
-      font-size: 14.5px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.65;
     }
 
+    /* ─── Footer ────────────────────────────────────────────────────────── */
     footer {
-      border-top: 1px solid var(--surface-border);
-      padding: 50px max(24px, 5vw) 40px;
-      max-width: var(--container-max);
+      border-top: 1px solid var(--border);
+      padding: 60px 24px 40px;
+      max-width: var(--container);
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -624,14 +826,22 @@
       flex-wrap: wrap;
       gap: 20px;
       color: var(--text-dim);
-      font-size: 13.5px;
+      font-size: 14px;
     }
 
+    /* ─── Media Queries ─────────────────────────────────────────────────── */
     @media (max-width: 900px) {
-      .bento-grid {
+      .showcase-stage {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+      .calc-grid {
         grid-template-columns: 1fr;
       }
-      .bento-card.col-2 {
+      .bento-container {
+        grid-template-columns: 1fr;
+      }
+      .bento-tile.span-2 {
         grid-column: span 1;
       }
       .nav-links {
@@ -641,263 +851,502 @@
   </style>
 </head>
 <body>
-  <div class="noise-layer"></div>
+  <div class="ambient-noise"></div>
 
-  <nav>
-    <a href="#" class="brand">
-      <div class="brand-icon">30</div>
-      <div class="brand-name">
-        Thirty <span class="brand-pill">PRO</span>
-      </div>
-    </a>
+  <!-- ─── Floating Top Navigation ───────────────────────────────────────── -->
+  <div class="navbar-wrapper">
+    <nav>
+      <a href="#" class="brand">
+        <div class="brand-mark">30</div>
+        <div class="brand-title">Thirty</div>
+        <span class="brand-badge">30-ECO</span>
+      </a>
 
-    <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#showcase">Gallery</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
+      <ul class="nav-links">
+        <li><a href="#showcase">Showcase</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#calculator">Macro Engine</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
 
-    <div class="nav-actions">
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-download-nav">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-nav-download">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download APK
       </a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 
+  <!-- ─── Hero Section ──────────────────────────────────────────────────── -->
   <header class="hero">
-    <div class="hero-badge">
-      <div class="status-dot"></div>
-      Thirty 2.0.0 Now Available · Native Android Release
+    <div class="hero-pill">
+      <div class="status-pulse"></div>
+      Thirty Ecosystem 2.0.0 Now Live · Production Android Release
     </div>
 
-    <h1 class="hero-title">
-      <span>The Ultimate</span><br />
-      <span class="gradient-text">Life Operating System.</span>
+    <h1 class="hero-h1">
+      <span class="title-white">Master your routines.</span><br />
+      <span class="title-accent">Command your life.</span>
     </h1>
 
-    <p class="hero-desc">
-      A single, blazing-fast native workspace uniting precision task scheduling, atomic habit loops, calorie & macro diary, hardware focus timers, and visual progress photos.
+    <p class="hero-p">
+      Thirty (30-ECO) integrates precision task scheduling, atomic habit loops, scientific macro calculations, native foreground focus timers, and private visual body transformation diaries into one seamless native experience.
     </p>
 
-    <div class="hero-cta-group">
-      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-hero-primary">
+    <div class="hero-cta">
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-main-download">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Android APK (v2.0)
+        Download Android APK (v2.0.0)
       </a>
-      <a href="#showcase" class="btn-hero-secondary">
-        Explore App Views
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <a href="#showcase" class="btn-showcase-jump">
+        Explore Live Views
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </div>
 
-    <div class="hero-specs">
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> 9.8 MB Native APK</span>
+    <div class="hero-badges-row">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> 9.8 MB Native Binary</span>
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> 100% Offline IndexedDB</span>
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> Zero Ads & Tracking</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> Zero Ads or Telemetry</span>
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> Android 8.0 to 14+</span>
     </div>
 
-    <div class="showcase-container" id="showcase">
-      <div class="showcase-tabs">
-        <button class="showcase-tab active" onclick="switchScreenshot('screenshots/shot-01.jpeg', this)">Today Agenda</button>
-        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-04.jpeg', this)">Tasks</button>
-        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-09.jpeg', this)">Habits</button>
-        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-15.jpeg', this)">Nutrition & Calories</button>
-        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-17.jpeg', this)">Timers</button>
-        <button class="showcase-tab" onclick="switchScreenshot('screenshots/shot-25.jpeg', this)">Progress Photos</button>
+    <!-- ─── Interactive Live App Showcase ───────────────────────────────── -->
+    <div class="showcase-section" id="showcase">
+      <div class="showcase-nav-pills">
+        <button class="pill-tab active" onclick="setAppView('today', this)">⚡ Today Agenda</button>
+        <button class="pill-tab" onclick="setAppView('tasks', this)">🎯 Tasks</button>
+        <button class="pill-tab" onclick="setAppView('habits', this)">🔄 Habits</button>
+        <button class="pill-tab" onclick="setAppView('calories', this)">🥗 Calories & Macros</button>
+        <button class="pill-tab" onclick="setAppView('timer', this)">⏱️ Focus Engine</button>
+        <button class="pill-tab" onclick="setAppView('photos', this)">📸 Photo Gallery</button>
       </div>
 
-      <div class="phone-mockup-wrapper">
-        <div class="phone-frame">
-          <div class="phone-screen">
-            <img id="mainPhoneImg" src="screenshots/shot-01.jpeg" alt="Thirty App Interface" />
+      <div class="showcase-stage">
+        <div class="phone-container">
+          <div class="phone-shell">
+            <div class="phone-inner">
+              <img id="stageImg" src="screenshots/01-today-agenda-overview.jpeg" alt="Thirty Screen View" />
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-info">
+          <span class="stage-tag" id="stageTag">Horizon Dashboard</span>
+          <h2 class="stage-title" id="stageTitle">Unified Daily Horizon</h2>
+          <p class="stage-desc" id="stageDesc">
+            Eliminates context switching by aggregating daily tasks, recurring items, habit routines, water logging, and progress photos into one intuitive daily timeline.
+          </p>
+
+          <div class="stage-highlights" id="stageHighlights">
+            <div class="stage-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Framer Motion drag-handle reordering bound to left color strip.</span>
+            </div>
+            <div class="stage-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Bi-directional auto-completion with nutrition & camera uploads.</span>
+            </div>
+            <div class="stage-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Live focus banner displaying active Pomodoro & Countdown sessions.</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <section class="section" id="features">
-    <div class="section-header">
-      <span class="section-tag">Core Ecosystem</span>
-      <h2 class="section-title">Engineered to eliminate friction and maximize output.</h2>
-      <p class="section-sub">Every module is interconnected so completing your physical goals automatically checks your daily agenda.</p>
+  <!-- ─── Core Architecture (Bento) ────────────────────────────────────── -->
+  <section class="section-wrap" id="architecture">
+    <div class="section-headline">
+      <span class="section-chip">System Design</span>
+      <h2 class="section-h2">Architected for speed, precision, and complete autonomy.</h2>
+      <p class="section-lead">Every component is engineered with high-performance local-first primitives to guarantee sub-millisecond response times.</p>
     </div>
 
-    <div class="bento-grid">
-      <div class="bento-card col-2">
+    <div class="bento-container">
+      <div class="bento-tile span-2">
         <div>
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div class="tile-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           </div>
-          <h3 class="card-title">Unified Today Timeline & Action Agenda</h3>
-          <p class="card-desc">Experience a zero-clutter horizon view of tasks, recurring routines, water logs, and photo habits. Powered by hardware-accelerated Framer Motion with drag-handle reordering and instant strike-through animations.</p>
+          <h3 class="tile-h3">Atomic Recurring Task Engine</h3>
+          <p class="tile-text">Recurring tasks preserve exact historical execution records using atomic date tracking (`completedDates[]`). Completing a task today never clobbers yesterday's record, while smoothly updating next scheduled dates.</p>
         </div>
-        <div class="card-metric">
-          <span class="metric-value">60 FPS</span>
-          <span class="metric-label">Fluid hardware-rendered gesture interactions</span>
+        <div class="tile-stat">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Atomic record fidelity across historical views</span>
         </div>
       </div>
 
-      <div class="bento-card">
+      <div class="bento-tile">
         <div>
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          <div class="tile-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <h3 class="card-title">Dynamic Macro Calculation</h3>
-          <p class="card-desc">Enforces strict scientific macro balance (P×4 + C×4 + F×9 = Calories). Tailor goals for Lean Bulk, Lean Cut, or Maintenance.</p>
+          <h3 class="tile-h3">Native Foreground Timers</h3>
+          <p class="tile-text">Android 14+ Foreground Service ensures your Stopwatch, Interval circuits, and Pomodoro sessions stay live in your notification tray with zero OS killing.</p>
         </div>
-        <div class="card-metric">
-          <span class="metric-value">500+</span>
-          <span class="metric-label">Pre-loaded Indian & global items</span>
+        <div class="tile-stat">
+          <span class="stat-number">0 ms</span>
+          <span class="stat-label">Timer drift during device sleep</span>
         </div>
       </div>
 
-      <div class="bento-card">
+      <div class="bento-tile">
         <div>
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="tile-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
           </div>
-          <h3 class="card-title">Native Foreground Timers</h3>
-          <p class="card-desc">Never miss a tick. Android 14+ Foreground Service ensures your Stopwatch, Interval circuits, and Pomodoro sessions stay live in your notification tray without OS killing.</p>
+          <h3 class="tile-h3">Exact Scientific Macros</h3>
+          <p class="tile-text">Enforces strict <code>P×4 + C×4 + F×9 = Calories</code> equilibrium. Adjusting protein dynamically recalculates carbs and fats to preserve target caloric goals.</p>
         </div>
-        <div class="card-metric">
-          <span class="metric-value">0ms</span>
-          <span class="metric-label">Background drift or OS throttling</span>
+        <div class="tile-stat">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Built-in verified foods & Indian staples</span>
         </div>
       </div>
 
-      <div class="bento-card col-2">
+      <div class="bento-tile span-2">
         <div>
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <div class="tile-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
           </div>
-          <h3 class="card-title">Private Visual Transformation Diary</h3>
-          <p class="card-desc">Capture and compress daily body composition photos right in your device. Auto-linked to your Daily Progress Photo habit so saving a picture automatically completes your daily checklist.</p>
+          <h3 class="tile-h3">Private Hardware Photo Journal</h3>
+          <p class="tile-text">Hardware-accelerated client-side canvas compression captures your daily body transformation snapshots without leaking a single byte to external servers. Auto-completes the linked habit upon capture.</p>
         </div>
-        <div class="card-metric">
-          <span class="metric-value">100% On-Device</span>
-          <span class="metric-label">Private IndexedDB storage — zero cloud exposure</span>
+        <div class="tile-stat">
+          <span class="stat-number">100% On-Device</span>
+          <span class="stat-label">IndexedDB storage with zero cloud telemetry</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="gallery">
-    <div class="section-header">
-      <span class="section-tag">Visual Showcase</span>
-      <h2 class="section-title">Pixel-perfect craftsmanship across all pages.</h2>
-      <p class="section-sub">Swipe through the gallery to see Thirty in action.</p>
+  <!-- ─── Interactive Macro Solver Demonstration ────────────────────────── -->
+  <section class="section-wrap" id="calculator">
+    <div class="section-headline">
+      <span class="section-chip">Scientific Engine</span>
+      <h2 class="section-h2">Interactive Macro Balancing Engine</h2>
+      <p class="section-lead">Test how Thirty dynamically solves macronutrient ratios in real-time right here in your browser.</p>
     </div>
 
-    <div class="screenshots-scroll">
-      <div class="gallery-item"><img src="screenshots/shot-02.jpeg" alt="Screen" loading="lazy" /></div>
-      <div class="gallery-item"><img src="screenshots/shot-05.jpeg" alt="Screen" loading="lazy" /></div>
-      <div class="gallery-item"><img src="screenshots/shot-07.jpeg" alt="Screen" loading="lazy" /></div>
-      <div class="gallery-item"><img src="screenshots/shot-10.jpeg" alt="Screen" loading="lazy" /></div>
-      <div class="gallery-item"><img src="screenshots/shot-13.jpeg" alt="Screen" loading="lazy" /></div>
-      <div class="gallery-item"><img src="screenshots/shot-18.jpeg" alt="Screen" loading="lazy" /></div>
-      <div class="gallery-item"><img src="screenshots/shot-22.jpeg" alt="Screen" loading="lazy" /></div>
-      <div class="gallery-item"><img src="screenshots/shot-28.jpeg" alt="Screen" loading="lazy" /></div>
-      <div class="gallery-item"><img src="screenshots/shot-35.jpeg" alt="Screen" loading="lazy" /></div>
-    </div>
-  </section>
+    <div class="calculator-box">
+      <div class="calc-grid">
+        <div class="calc-controls">
+          <div class="calc-input-group">
+            <label>Target Daily Calories (kcal)</label>
+            <input type="number" id="calInput" value="2000" min="800" max="6000" step="50" class="calc-input" oninput="solveMacros()" />
+          </div>
 
-  <section class="section">
-    <div class="download-section">
-      <div class="download-box">
-        <h2 class="section-title">Ready to take control of your day?</h2>
-        <p class="section-sub">Directly install Thirty on your Android device without Play Store restrictions or bloatware.</p>
-        
-        <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-hero-primary" style="font-size: 18px; padding: 18px 44px;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Thirty APK (v2.0.0)
-        </a>
+          <div class="calc-input-group">
+            <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:4px;">
+              <label>Protein Target</label>
+              <span id="proteinGramsLabel" style="color:var(--accent); font-family:var(--font-mono);">150g</span>
+            </div>
+            <input type="range" id="proteinSlider" min="40" max="300" value="150" class="calc-slider" oninput="solveMacros()" />
+          </div>
 
-        <div style="font-size: 13px; color: var(--text-dim); margin-top: 6px;">
-          Direct download link: <code>https://30-landing.vercel.app/thirty-app.apk</code>
+          <div class="calc-input-group">
+            <label>Dietary Goal Preset</label>
+            <select id="goalPreset" class="calc-input" style="font-size:14px; padding:10px 14px;" onchange="applyGoalPreset()">
+              <option value="0">Maintenance (2000 kcal)</option>
+              <option value="-250">Lean Weight Loss (-250 kcal)</option>
+              <option value="-500">Aggressive Cut (-500 kcal)</option>
+              <option value="250">Lean Bulk (+250 kcal)</option>
+              <option value="500">Aggressive Bulk (+500 kcal)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="macro-bar-row">
+            <div class="macro-bar-header">
+              <span style="color:#F59E0B;">Protein (4 kcal/g)</span>
+              <span id="proteinVal" style="font-family:var(--font-mono);">150g · 600 kcal (30%)</span>
+            </div>
+            <div class="macro-track">
+              <div class="macro-fill" id="proteinFill" style="background:#F59E0B; width:30%;"></div>
+            </div>
+          </div>
+
+          <div class="macro-bar-row">
+            <div class="macro-bar-header">
+              <span style="color:#06B6D4;">Carbohydrates (4 kcal/g)</span>
+              <span id="carbsVal" style="font-family:var(--font-mono);">212g · 850 kcal (42%)</span>
+            </div>
+            <div class="macro-track">
+              <div class="macro-fill" id="carbsFill" style="background:#06B6D4; width:42%;"></div>
+            </div>
+          </div>
+
+          <div class="macro-bar-row">
+            <div class="macro-bar-header">
+              <span style="color:#8B5CF6;">Fats (9 kcal/g)</span>
+              <span id="fatVal" style="font-family:var(--font-mono);">61g · 550 kcal (28%)</span>
+            </div>
+            <div class="macro-track">
+              <div class="macro-fill" id="fatFill" style="background:#8B5CF6; width:28%;"></div>
+            </div>
+          </div>
+
+          <div style="margin-top:10px; font-size:12px; color:var(--text-dim); text-align:center;">
+            Enforcing formula: <code>(150 × 4) + (212 × 4) + (61 × 9) = 2,000 kcal</code>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="faq">
-    <div class="section-header">
-      <span class="section-tag">Frequently Asked Questions</span>
-      <h2 class="section-title">Everything you need to know.</h2>
+  <!-- ─── Horizontal Screenshots Gallery ────────────────────────────────── -->
+  <section class="section-wrap" id="gallery">
+    <div class="section-headline">
+      <span class="section-chip">Visual Gallery</span>
+      <h2 class="section-h2">Pixel-perfect craftsmanship.</h2>
+      <p class="section-lead">A visual walkthrough of Thirty's dark obsidian and vibrant accent design language.</p>
     </div>
 
-    <div class="faq-list">
-      <details class="faq-item">
+    <div class="gallery-scroller">
+      <div class="gallery-card"><img src="screenshots/03-today-timeline.jpeg" alt="Today Timeline" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/06-tasks-subtasks-checklist.jpeg" alt="Tasks Checklist" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/09-habits-streak-analytics.jpeg" alt="Habits Streak" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/13-calories-macro-distribution.jpeg" alt="Macro Distribution" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/15-calories-portion-multiplier.jpeg" alt="Food Search Modal" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/17-timer-stopwatch-laps.jpeg" alt="Stopwatch Laps" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/20-timer-pomodoro-flow.jpeg" alt="Pomodoro Flow" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/23-photos-body-composition.jpeg" alt="Photo Composition" loading="lazy" /></div>
+      <div class="gallery-card"><img src="screenshots/27-rewards-unlocked-badges.jpeg" alt="Rewards Badges" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- ─── Direct Download & Install Hub ─────────────────────────────────── -->
+  <section class="section-wrap">
+    <div class="download-hub">
+      <h2 class="section-h2" style="margin-bottom:12px;">Get Thirty on your Android device today.</h2>
+      <p class="section-lead" style="max-width:580px; margin:0 auto 24px;">
+        Directly install the standalone APK without Play Store sign-in barriers, tracking SDKs, or recurring subscriptions.
+      </p>
+
+      <a href="thirty-app.apk" download="Thirty-Pro.apk" class="btn-main-download" style="font-size:18px; padding:18px 48px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Thirty APK (v2.0.0)
+      </a>
+
+      <div class="download-options">
+        <div style="text-align:left; max-width:320px;">
+          <h4 style="font-family:var(--font-display); font-size:16px; margin-bottom:8px;">Instant Mobile Scan</h4>
+          <p style="font-size:13.5px; color:var(--text-muted); line-height:1.5;">
+            Point your Android camera at the QR code to initiate the direct APK download immediately on your phone.
+          </p>
+        </div>
+
+        <div class="qr-card">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://30-landing.vercel.app/thirty-app.apk&color=000000" alt="Scan QR Code to Download" width="140" height="140" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ───────────────────────────────────────────────────────────── -->
+  <section class="section-wrap" id="faq">
+    <div class="section-headline">
+      <span class="section-chip">Assurance & FAQ</span>
+      <h2 class="section-h2">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-stack">
+      <details class="faq-row">
         <summary>
-          How do I install Thirty APK on Android?
+          How do I install the Thirty APK on my phone?
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
         </summary>
-        <div class="faq-content">
-          Tap the "Download APK" button. Once downloaded, tap the notification or open your Downloads folder, click <code>Thirty-Pro.apk</code>, and allow "Install Unknown Apps" when prompted.
+        <div class="faq-answer">
+          Click the "Download APK" button. When the file finishes downloading, tap the notification or navigate to your Downloads folder, tap <code>Thirty-Pro.apk</code>, and select "Install" (enabling "Install from Unknown Sources" if prompted by your browser).
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-row">
         <summary>
-          Does Thirty work without internet connection?
+          Does Thirty function completely offline?
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
         </summary>
-        <div class="faq-content">
-          Yes! Thirty is built on a 100% local-first IndexedDB and Capacitor architecture. All your habits, tasks, nutrition logs, and photos remain on your hardware even in airplane mode.
+        <div class="faq-answer">
+          Yes. Thirty is engineered on an offline-first IndexedDB database. All your habits, tasks, nutrition records, timers, and photos remain fully accessible and functional with zero internet connection.
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-row">
         <summary>
-          Are my photos and fitness data private?
+          Are my body transformation photos secure?
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
         </summary>
-        <div class="faq-content">
-          Completely private. Photos and daily logs never leave your phone and are never sent to external servers or ad networks.
+        <div class="faq-answer">
+          100% private. Photos are compressed client-side and saved into your device's private sandboxed IndexedDB storage. They are never transmitted over the internet.
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-row">
         <summary>
-          Do the home screen widgets work on modern Android?
+          Do the home screen widgets stay updated?
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
         </summary>
-        <div class="faq-content">
-          Yes, Thirty provides native RemoteViews AppWidgets for Tasks and Habits designed specifically for Android 12 through Android 14+ with theme synchronization.
+        <div class="faq-answer">
+          Yes! Thirty provides native Android 12-14+ AppWidget providers with instant SharedPreferences broadcasting. Ticking a habit or completing a task in the app immediately refreshes your home screen widgets.
         </div>
       </details>
     </div>
   </section>
 
+  <!-- ─── Footer ────────────────────────────────────────────────────────── -->
   <footer>
     <div class="brand">
-      <div class="brand-icon" style="width: 30px; height: 30px; font-size: 14px;">30</div>
-      <div class="brand-name" style="font-size: 16px;">Thirty Pro</div>
+      <div class="brand-mark" style="width:28px; height:28px; font-size:14px;">30</div>
+      <div class="brand-title" style="font-size:16px;">Thirty Pro (30-ECO)</div>
     </div>
 
     <div>
-      Official Download: <a href="https://30-landing.vercel.app/" target="_blank" style="color: var(--accent); font-weight: 600;">30-landing.vercel.app</a>
+      Official Portal: <a href="https://30-landing.vercel.app/" style="color:var(--accent); font-weight:600;">30-landing.vercel.app</a>
     </div>
 
     <div>
-      Crafted with precision by Hemanth NR · 2026
+      Engineered by Hemanth NR · 2026
     </div>
   </footer>
 
   <script>
-    function switchScreenshot(src, btn) {
-      const img = document.getElementById('mainPhoneImg');
-      if (!img) return;
-      img.style.opacity = '0.3';
-      setTimeout(() => {
-        img.src = src;
-        img.style.opacity = '1';
-      }, 150);
+    const VIEWS = {
+      today: {
+        img: 'screenshots/01-today-agenda-overview.jpeg',
+        tag: 'Horizon Dashboard',
+        title: 'Unified Daily Horizon',
+        desc: 'Eliminates context switching by aggregating daily tasks, recurring items, habit routines, water logging, and progress photos into one intuitive daily timeline.',
+        items: [
+          'Framer Motion drag-handle reordering bound to left color strip.',
+          'Bi-directional auto-completion with nutrition & camera uploads.',
+          'Live focus banner displaying active Pomodoro & Countdown sessions.'
+        ]
+      },
+      tasks: {
+        img: 'screenshots/04-tasks-all-view.jpeg',
+        tag: 'Task Orchestration',
+        title: 'Precision Task Management',
+        desc: 'Organize high-priority action items with customizable tags, categories, subtask checklists, and robust trash & archive recovery states.',
+        items: [
+          'Atomic recurring task engine with independent daily execution tracking.',
+          'Subtask completion meters with expandable nested checklists.',
+          'Priority categorization with color tagging and instant search filter.'
+        ]
+      },
+      habits: {
+        img: 'screenshots/08-habits-daily-tracker.jpeg',
+        tag: 'Atomic Routines',
+        title: 'Multi-Metric Habit Engine',
+        desc: 'Build unbreakable streaks with boolean habits, numeric targets (e.g. 50 pushups), water trackers, and automated photo milestones.',
+        items: [
+          'Rolling 7-day completion window with real-time consistency percentages.',
+          'Habit catalog library with pre-built wellness & productivity templates.',
+          'Custom Web Audio synthesized completion sound feedback.'
+        ]
+      },
+      calories: {
+        img: 'screenshots/12-calories-diary-dashboard.jpeg',
+        tag: 'Nutrition & Macros',
+        title: 'Scientific Macro Diary',
+        desc: 'Track protein, carbohydrates, fats, and water intake with dynamic macro balancing and a pre-loaded database of 500+ Indian and global foods.',
+        items: [
+          'Automatic macro balancing enforcing P×4 + C×4 + F×9 = Calories.',
+          'Custom goal presets: Lean Bulk (+250 kcal), Lean Cut (-250 kcal), and Maintenance.',
+          'Responsive portion multiplier chips (0.5x, 1x, 1.5x, 2x) with recipe builder.'
+        ]
+      },
+      timer: {
+        img: 'screenshots/18-timer-countdown-focus.jpeg',
+        tag: 'Focus Cockpit',
+        title: 'Foreground Focus Engine',
+        desc: 'Deep work cockpit featuring Lap Stopwatch, Target Countdown, HIIT Interval circuits, Pomodoro sessions, and ambient focus soundscapes.',
+        items: [
+          'Android 14+ Foreground Service ensures zero timer drift when locked.',
+          'System notification tray controls (Pause, Resume, Stop) via native intents.',
+          'Integrated ambient focus sounds: Rainstorm, Deep Focus, Alpha Waves 40Hz.'
+        ]
+      },
+      photos: {
+        img: 'screenshots/22-photos-progress-gallery.jpeg',
+        tag: 'Visual Journey',
+        title: 'Private Body Transformation Diary',
+        desc: 'Chronicle your physical transformation with client-side compressed progress photos organized in a sleek Google Photos style month-by-month timeline.',
+        items: [
+          'Hardware-accelerated camera & gallery integration via Capacitor.',
+          '100% on-device IndexedDB storage with zero cloud telemetry.',
+          'Auto-links with Daily Progress Photo habit for seamless agenda completion.'
+        ]
+      }
+    };
 
-      document.querySelectorAll('.showcase-tab').forEach(t => t.classList.remove('active'));
+    function setAppView(key, btn) {
+      const data = VIEWS[key];
+      if (!data) return;
+
+      const img = document.getElementById('stageImg');
+      if (img) {
+        img.style.opacity = '0.2';
+        setTimeout(() => {
+          img.src = data.img;
+          img.style.opacity = '1';
+        }, 150);
+      }
+
+      document.getElementById('stageTag').innerText = data.tag;
+      document.getElementById('stageTitle').innerText = data.title;
+      document.getElementById('stageDesc').innerText = data.desc;
+
+      const hl = document.getElementById('stageHighlights');
+      hl.innerHTML = data.items.map(item => `
+        <div class="stage-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>${item}</span>
+        </div>
+      `).join('');
+
+      document.querySelectorAll('.pill-tab').forEach(t => t.classList.remove('active'));
       if (btn) btn.classList.add('active');
+    }
+
+    function solveMacros() {
+      const cal = Math.max(800, parseInt(document.getElementById('calInput').value) || 2000);
+      const proteinG = parseInt(document.getElementById('proteinSlider').value) || 150;
+      document.getElementById('proteinGramsLabel').innerText = proteinG + 'g';
+
+      const proteinCal = proteinG * 4;
+      const remainingCal = Math.max(0, cal - proteinCal);
+
+      // 60% remaining to carbs, 40% to fat
+      const carbsCal = Math.round(remainingCal * 0.60);
+      const fatCal = Math.round(remainingCal * 0.40);
+
+      const carbsG = Math.round(carbsCal / 4);
+      const fatG = Math.round(fatCal / 9);
+
+      const pPct = Math.round((proteinCal / cal) * 100);
+      const cPct = Math.round((carbsCal / cal) * 100);
+      const fPct = Math.round((fatCal / cal) * 100);
+
+      document.getElementById('proteinVal').innerText = `${proteinG}g · ${proteinCal} kcal (${pPct}%)`;
+      document.getElementById('proteinFill').style.width = pPct + '%';
+
+      document.getElementById('carbsVal').innerText = `${carbsG}g · ${carbsCal} kcal (${cPct}%)`;
+      document.getElementById('carbsFill').style.width = cPct + '%';
+
+      document.getElementById('fatVal').innerText = `${fatG}g · ${fatCal} kcal (${fPct}%)`;
+      document.getElementById('fatFill').style.width = fPct + '%';
+    }
+
+    function applyGoalPreset() {
+      const offset = parseInt(document.getElementById('goalPreset').value) || 0;
+      const base = 2000;
+      document.getElementById('calInput').value = base + offset;
+      solveMacros();
     }
   </script>
 </body>

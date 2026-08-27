@@ -1,35 +1,131 @@
-﻿# 📱 Thirty — Official Landing Page & APK Distribution
+# ⚡ THIRTY (30-ECO)
 
-> The official high-converting landing page and distribution hub for the **Thirty** (30) Android Life Operating System.
+<p align="center">
+  <img src="https://img.shields.io/badge/VERSION-2.0.0_PRO-F59E0B?style=for-the-badge&logoColor=000" alt="Version 2.0" />
+  <img src="https://img.shields.io/badge/PLATFORM-ANDROID_%7C_WEB-06B6D4?style=for-the-badge" alt="Platform" />
+  <img src="https://img.shields.io/badge/DATABASE-100%25_OFFLINE-10B981?style=for-the-badge" alt="Offline" />
+  <img src="https://img.shields.io/badge/LICENSE-PROPRIETARY-8B5CF6?style=for-the-badge" alt="Proprietary" />
+</p>
 
-## 🚀 Live Website
-Visit the live portal to preview features and download the direct APK:
-👉 **[https://30-landing.vercel.app](https://30-landing.vercel.app)**
+<h3 align="center">
+  <b>The All-in-One Life Operating System.</b>
+</h3>
 
----
+<p align="center">
+  Thirty unites precision task scheduling, atomic habit loops, scientific macro calculations, hardware foreground focus timers, and private visual body transformation diaries into one seamless native experience.
+</p>
 
-## 📦 Repository Structure
-- index.html — Ultra-modern glassmorphic landing page with interactive live phone mockup, feature showcases, bento matrix, and FAQ.
-- 	hirty-app.apk / 30-app.apk — Latest production Android APK binary (v2.0.0).
-- screenshots/ — High-resolution curated mobile app screenshots.
-
----
-
-## 🔄 Deployment
-This project is continuously deployed to **Vercel** via GitHub integration.
-
-### Updating the APK
-1. Build the updated APK.
-2. Copy the new .apk to 	hirty-app.apk and 30-app.apk.
-3. Commit and push:
-   `ash
-   git add .
-   git commit -m "chore: update production APK v2.0.0"
-   git push origin main
-   `
-4. Vercel automatically deploys the updated download link and assets in seconds! ⚡
+<p align="center">
+  <a href="https://30-landing.vercel.app/"><b>🌐 Visit Live Portal</b></a> •
+  <a href="https://30-landing.vercel.app/thirty-app.apk"><b>📥 Download APK (9.8 MB)</b></a> •
+  <a href="#-visual-showcase"><b>📸 View Screenshots</b></a>
+</p>
 
 ---
 
-## 👨‍💻 Author
-**Hemanth NR**
+<br />
+
+## 📱 Visual Showcase
+
+<div align="center">
+
+| **⚡ Horizon Today Agenda** | **🎯 Precision Tasks** | **🔄 Atomic Habits** |
+| :---: | :---: | :---: |
+| <img src="screenshots/01-today-agenda-overview.jpeg" width="260" alt="Today Agenda" /> | <img src="screenshots/04-tasks-all-view.jpeg" width="260" alt="Tasks View" /> | <img src="screenshots/08-habits-daily-tracker.jpeg" width="260" alt="Habits Tracker" /> |
+
+<br />
+
+| **🥗 Scientific Macro Diary** | **⏱️ Focus Engine** | **📸 Private Photo Diary** |
+| :---: | :---: | :---: |
+| <img src="screenshots/12-calories-diary-dashboard.jpeg" width="260" alt="Calorie Diary" /> | <img src="screenshots/18-timer-countdown-focus.jpeg" width="260" alt="Focus Timers" /> | <img src="screenshots/22-photos-progress-gallery.jpeg" width="260" alt="Progress Photos" /> |
+
+</div>
+
+<br />
+
+---
+
+<br />
+
+## ✨ The 30-ECO Core Highlights
+
+<br />
+
+### 1. 📅 Horizon Today Agenda
+> **Zero friction. Absolute daily clarity.**
+- Consolidates tasks, recurring items, habit routines, water logging, and progress photos into one intuitive daily timeline.
+- Hardware-accelerated Framer Motion gesture physics with scoped drag handles.
+- Bi-directional auto-completion: logging calories or capturing a photo automatically ticks your agenda.
+
+<br />
+
+### 2. 🥗 Scientific Calorie & Macro Solver
+> **Exact mathematics. No nutritional guesswork.**
+- Strict caloric equilibrium formula:
+  $$\text{Calories} = (\text{Protein} \times 4) + (\text{Carbs} \times 4) + (\text{Fats} \times 9)$$
+- Pre-loaded database of 500+ Indian staples & global verified foods.
+- Responsive portion multipliers (`0.5x`, `1x`, `1.5x`, `2x`) with custom recipe creator.
+
+<br />
+
+### 3. ⏱️ Hardware Foreground Focus Engine
+> **Zero timer drift. Zero OS interruptions.**
+- Android 14+ native Foreground Service keeps Stopwatch, Countdowns, and Pomodoros alive in your system notification tray.
+- Interactive notification actions (Pause, Resume, Stop) via native PendingIntents.
+- Built-in ambient audio generator: *Rainstorm*, *Deep Focus*, *Alpha Waves 40Hz*, and *Forest Stream*.
+
+<br />
+
+### 4. 📸 Private Visual Transformation Diary
+> **100% on-device. Zero cloud exposure.**
+- High-resolution hardware camera integration with client-side canvas compression.
+- Google Photos style month-by-month transformation timeline with starred milestones.
+- Stored exclusively in local sandboxed IndexedDB storage.
+
+<br />
+
+### 5. 📲 Android 14+ Native Home Screen Widgets
+> **Your day, right on your home screen.**
+- Tasks & Habits RemoteViews AppWidgets that automatically reflect your chosen dark, ultra-dark, or light themes.
+- Real-time SharedPreferences bridge broadcasting instant state updates on every tap.
+
+<br />
+
+---
+
+<br />
+
+## 🚀 Direct Android Installation
+
+1. **Download APK**: Tap the direct download button on **[30-landing.vercel.app](https://30-landing.vercel.app/)** or download `thirty-app.apk`.
+2. **Open Package**: Tap the completed download in your notifications or Files app.
+3. **Allow Source**: If prompted by Android, enable *"Install Unknown Apps"* for your browser.
+4. **Launch Thirty**: Enjoy the fastest, most private life operating system on Android.
+
+<br />
+
+---
+
+<br />
+
+## 📦 Deployment & Repository Structure
+
+```
+30-landing/
+├── index.html            # Luxury dark glassmorphic landing page
+├── thirty-app.apk        # Standalone production Android binary (v2.0.0)
+├── 30-app.apk            # Direct mirror APK binary
+├── screenshots/          # 52 Curated, high-resolution mobile screenshots
+└── README.md             # Advertisement showcase document
+```
+
+<br />
+
+---
+
+<br />
+
+<p align="center">
+  <b>Crafted with precision by Hemanth NR</b><br />
+  <sub>Thirty Ecosystem · 2026</sub>
+</p>
