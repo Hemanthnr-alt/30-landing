@@ -59,12 +59,14 @@
 
 <br />
 
-### 2. 🥗 Scientific Calorie & Macro Solver
-> **Exact mathematics. No nutritional guesswork.**
+### 2. 🥗 Scientific Calorie, Macro & 43-Nutrient Clinical Engine
+> **Exact mathematics. Clinical nutritional depth.**
 - Strict caloric equilibrium formula:
   $$\text{Calories} = (\text{Protein} \times 4) + (\text{Carbs} \times 4) + (\text{Fats} \times 9)$$
-- Pre-loaded database of 500+ Indian staples & global verified foods.
-- Responsive portion multipliers (`0.5x`, `1x`, `1.5x`, `2x`) with custom recipe creator.
+- **2,233+ USDA & ICMR-Verified Foods**: Massive local-first offline nutrition database covering Indian regional dishes, global staples, and healthy snacks.
+- **Complete 43-Nutrient Bioactive Spectrum**: Tracks Vitamins (C, D, B12, A, B6, Folate B9, etc.), Minerals (Iron, Calcium, Potassium, Magnesium, Zinc, etc.), Healthy Fats, Fiber, and Hydration.
+- **Dynamic RDA Scaling & Contributor Drill-Down**: Real-time personalized RDA calculations based on age, gender, and activity with interactive food contributor breakdowns.
+- Responsive portion multipliers (`0.5x`, `1x`, `1.5x`, `2x`) with custom recipe builder.
 
 <br />
 
