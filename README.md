@@ -17,7 +17,7 @@
 
 <p align="center">
   <a href="https://30-landing.vercel.app/"><b>🌐 Visit Live Portal</b></a> •
-  <a href="https://30-landing.vercel.app/thirty-app.apk"><b>📥 Download APK (9.8 MB)</b></a> •
+  <a href="https://30-landing.vercel.app/lock-in.apk"><b>📥 Download APK (9.8 MB)</b></a> •
   <a href="#-visual-showcase"><b>📸 View Screenshots</b></a>
 </p>
 
@@ -47,7 +47,7 @@
 
 <br />
 
-## ✨ The 30-ECO Core Highlights
+## ✨ The Lock In Core Highlights
 
 <br />
 
@@ -99,10 +99,10 @@
 
 ## 🚀 Direct Android Installation
 
-1. **Download APK**: Tap the direct download button on **[30-landing.vercel.app](https://30-landing.vercel.app/)** or download `thirty-app.apk`.
+1. **Download APK**: Tap the direct download button on **[30-landing.vercel.app](https://30-landing.vercel.app/)** or download `lock-in.apk`.
 2. **Open Package**: Tap the completed download in your notifications or Files app.
 3. **Allow Source**: If prompted by Android, enable *"Install Unknown Apps"* for your browser.
-4. **Launch Thirty**: Enjoy the fastest, most private life operating system on Android.
+4. **Launch Lock In**: Enjoy the fastest, most private life operating system on Android.
 
 <br />
 
@@ -113,11 +113,10 @@
 ## 📦 Deployment & Repository Structure
 
 ```
-30-landing/
+Lock-In-landing/
 ├── index.html            # Luxury dark glassmorphic landing page
-├── thirty-app.apk        # Standalone production Android binary (v2.0.0)
-├── 30-app.apk            # Direct mirror APK binary
-├── screenshots/          # 52 Accurately named high-resolution screenshots
+├── lock-in.apk           # Standalone production Android binary (v2.0.0)
+├── screenshots/          # High-resolution screenshots
 └── README.md             # Advertisement showcase document
 ```
 
@@ -129,5 +128,5 @@
 
 <p align="center">
   <b>Crafted with precision by Hemanth NR</b><br />
-  <sub>Thirty Ecosystem · 2026</sub>
+  <sub>Lock In · 2026</sub>
 </p>
