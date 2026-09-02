@@ -430,6 +430,130 @@
       color: var(--text-dim);
     }
 
+    /* ── Details ───────────────────────────────────────────── */
+    .details {
+      padding: 80px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .details-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .details-header .kicker {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .details-header h2 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .details-header p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 12px auto 0;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 640px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .stat-cell {
+      background: var(--bg);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .stat-cell .stat-num {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .stat-cell .stat-label {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .detail-blocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .detail-blocks { grid-template-columns: 1fr; }
+    }
+
+    .detail-block {
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .detail-block h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .detail-block p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .detail-block ul {
+      list-style: none;
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .detail-block ul li {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .detail-block ul li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
     /* ── CTA ───────────────────────────────────────────────── */
     .cta-section {
       padding: 100px 24px;
@@ -716,6 +840,76 @@
         <div class="card-label"><h4>Categories</h4><p>Organization</p></div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- Details -->
+  <section class="details">
+    <div class="details-header">
+      <div class="kicker">Under the Hood</div>
+      <h2>Built different. Not just different looking.</h2>
+      <p>Lock In isn't another habit tracker with a dark mode. It's a complete performance system built from first principles.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-cell">
+        <div class="stat-num">43</div>
+        <div class="stat-label">Micronutrients tracked</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">2,233+</div>
+        <div class="stat-label">Offline food database</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Data sent to any server</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Domains in PDF reports</div>
+      </div>
+    </div>
+
+    <div class="detail-blocks">
+      <div class="detail-block">
+        <h3>Clinical-grade nutrition, not just calorie counting</h3>
+        <p>Most apps stop at calories and macros. Lock In tracks 43 individual bioactives — 13 vitamins, 9 minerals, omega-3/6 ratios, EPA, DHA, fiber, and more — with personalized RDA targets based on your age, sex, and activity level.</p>
+        <ul>
+          <li>USDA and ICMR verified food database works entirely offline</li>
+          <li>Category adequacy scores detect chronic vitamin and mineral gaps</li>
+          <li>Quick-add frequently used foods for sub-5-second logging</li>
+        </ul>
+      </div>
+
+      <div class="detail-block">
+        <h3>Your data stays on your device. Period.</h3>
+        <p>Lock In uses Dexie.js over IndexedDB — everything lives in your browser's local database. No accounts, no sign-ups, no analytics, no telemetry. Your weight logs, photos, and nutrition history never leave your phone.</p>
+        <ul>
+          <li>Progress photos stored in sandboxed local storage, not a cloud bucket</li>
+          <li>Private vault with PIN protection for sensitive notes</li>
+          <li>Full data export so you always own your information</li>
+        </ul>
+      </div>
+
+      <div class="detail-block">
+        <h3>Real engineering, not a wrapper</h3>
+        <p>Built with React 19, Vite 5, and Capacitor 8 for native Android performance. Focus timers use an Android Foreground Service so they keep running accurately even when the screen is off. Audio soundscapes are synthesized in real-time with the Web Audio API.</p>
+        <ul>
+          <li>Zero timer drift during Doze mode and screen sleep</li>
+          <li>Client-side PDF generation with jsPDF — no server round-trips</li>
+          <li>Hardware camera integration with canvas-level photo compression</li>
+        </ul>
+      </div>
+
+      <div class="detail-block">
+        <h3>Designed for daily use, not just screenshots</h3>
+        <p>Three visual themes (Light, Dark, Ultra-Dark) with 12 accent colors. Haptic feedback on check-ins. Drag-to-reorder tasks. Gamification with XP, levels, and milestone badges that reward consistency over perfection.</p>
+        <ul>
+          <li>Executive PDF dossiers available in both light and dark themes</li>
+          <li>Weekly insights synthesize all 6 domains into a single discipline score</li>
+          <li>Recurring tasks and habits with flexible scheduling rules</li>
+        </ul>
+      </div>
     </div>
   </section>
 
