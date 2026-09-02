@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lock In — Master the 1% Standard</title>
   <meta name="description" content="The complete local-first personal performance engine. Habits, nutrition, weight tracking, focus timers, and executive PDF reports — 100% offline." />
-  <meta name="theme-color" content="#F7F7F6" />
+  <meta name="theme-color" content="#EFECE6" />
   <meta property="og:title" content="Lock In — Master the 1% Standard" />
   <meta property="og:description" content="100% Offline. Zero Subscriptions. The complete operating system for body, mind, and discipline." />
 
@@ -15,17 +15,17 @@
 
   <style>
     :root {
-      --bg: #F7F7F6;
+      --bg: #EFECE6;
       --surface: #FFFFFF;
-      --surface-subtle: #F2F2F0;
+      --surface-subtle: #F7F5F0;
       --border: rgba(0, 0, 0, 0.08);
-      --border-hover: rgba(0, 0, 0, 0.16);
-      --text: #1D1D1F;
-      --text-secondary: #6E6E73;
-      --text-dim: #86868B;
+      --border-hover: rgba(0, 0, 0, 0.18);
+      --text: #121214;
+      --text-secondary: #57575B;
+      --text-dim: #7C7C82;
       --accent: #B87304;
-      --accent-bg: rgba(184, 115, 4, 0.08);
-      --accent-border: rgba(184, 115, 4, 0.22);
+      --accent-bg: rgba(184, 115, 4, 0.09);
+      --accent-border: rgba(184, 115, 4, 0.24);
       --radius: 18px;
     }
 
@@ -39,6 +39,10 @@
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.65) 0%, transparent 55%),
+        linear-gradient(180deg, #F5F2EC 0%, #EBE6DE 50%, #E3DCD2 100%);
+      background-attachment: fixed;
       color: var(--text);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -58,7 +62,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(247, 247, 246, 0.82);
+      background: rgba(245, 242, 236, 0.84);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -106,7 +110,7 @@
       height: 36px;
       padding: 0 16px;
       border-radius: 999px;
-      background: #1D1D1F;
+      background: #121214;
       color: #FFF;
       font-weight: 600;
       font-size: 13px;
@@ -133,12 +137,12 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: -60px;
+      top: -40px;
       left: 50%;
       transform: translateX(-50%);
-      width: 720px;
+      width: 760px;
       height: 480px;
-      background: radial-gradient(ellipse at center, rgba(184, 115, 4, 0.05) 0%, transparent 68%);
+      background: radial-gradient(ellipse at center, rgba(184, 115, 4, 0.07) 0%, transparent 68%);
       pointer-events: none;
     }
 
@@ -173,12 +177,12 @@
     }
 
     .hero h1 {
-      font-size: clamp(48px, 9.5vw, 88px);
+      font-size: clamp(50px, 10vw, 92px);
       font-weight: 800;
       letter-spacing: -0.045em;
-      line-height: 0.96;
+      line-height: 0.95;
       margin-bottom: 22px;
-      background: linear-gradient(180deg, #1D1D1F 35%, #6E6E73 100%);
+      background: linear-gradient(180deg, #121214 40%, #5E5E64 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -209,18 +213,18 @@
       height: 50px;
       padding: 0 28px;
       border-radius: 980px;
-      background: #1D1D1F;
+      background: #121214;
       color: #FFF;
       font-weight: 600;
       font-size: 15px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .hero-cta:hover {
       background: #000;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.22);
     }
 
     .hero-cta-secondary {
@@ -235,13 +239,14 @@
       color: var(--text);
       font-weight: 600;
       font-size: 15px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       transition: all 0.2s;
     }
 
     .hero-cta-secondary:hover {
       border-color: var(--border-hover);
       transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     }
 
     .hero-meta {
@@ -285,14 +290,14 @@
     .device-frame {
       width: 304px;
       height: 630px;
-      background: #0A0A0A;
+      background: #08080A;
       border-radius: 44px;
       padding: 10px;
-      border: 2px solid rgba(0, 0, 0, 0.16);
+      border: 2px solid rgba(0, 0, 0, 0.18);
       box-shadow:
-        0 40px 90px -20px rgba(0, 0, 0, 0.24),
-        0 20px 40px -15px rgba(0, 0, 0, 0.12),
-        0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+        0 42px 100px -20px rgba(0, 0, 0, 0.30),
+        0 24px 48px -15px rgba(0, 0, 0, 0.16),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
       transition: transform 0.12s ease-out;
     }
 
@@ -333,7 +338,7 @@
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
       transition: all 0.15s;
     }
 
@@ -343,10 +348,10 @@
     }
 
     .screen-tab.active {
-      background: #1D1D1F;
+      background: #121214;
       color: #FFF;
-      border-color: #1D1D1F;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      border-color: #121214;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     /* ── Features ──────────────────────────────────────────── */
@@ -385,7 +390,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
     }
 
     @media (max-width: 768px) {
@@ -399,7 +404,7 @@
     }
 
     .feature-card:hover {
-      background: #FDFDFD;
+      background: #FAFAF9;
     }
 
     .feature-icon {
@@ -469,14 +474,14 @@
       border: 1px solid var(--border);
       background: var(--surface);
       cursor: pointer;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
       transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
 
     .gallery-card:hover {
       transform: translateY(-4px);
       border-color: var(--border-hover);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.10);
     }
 
     .gallery-card img {
@@ -549,7 +554,7 @@
       border-radius: var(--radius);
       overflow: hidden;
       margin-bottom: 48px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
     }
 
     @media (max-width: 640px) {
@@ -591,7 +596,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--surface);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
     }
 
     .detail-block h3 {
@@ -664,18 +669,18 @@
       height: 50px;
       padding: 0 30px;
       border-radius: 999px;
-      background: #1D1D1F;
+      background: #121214;
       color: #FFF;
       font-weight: 600;
       font-size: 15px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .cta-btn:hover {
       background: #000;
       transform: translateY(-2px);
-      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
     }
 
     .cta-meta {
