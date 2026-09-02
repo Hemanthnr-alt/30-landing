@@ -1,4 +1,4 @@
-# ⚡ THIRTY (30-ECO)
+# ⚡ LOCK IN
 
 <p align="center">
   <img src="https://img.shields.io/badge/VERSION-2.0.0_PRO-F59E0B?style=for-the-badge&logoColor=000" alt="Version 2.0" />
@@ -12,7 +12,7 @@
 </h3>
 
 <p align="center">
-  Thirty unites precision task scheduling, atomic habit loops, scientific macro calculations, hardware foreground focus timers, and private visual body transformation diaries into one seamless native experience.
+  Lock In unites precision task scheduling, atomic habit loops, scientific macro calculations, hardware foreground focus timers, and private visual body transformation diaries into one seamless native experience.
 </p>
 
 <p align="center">
